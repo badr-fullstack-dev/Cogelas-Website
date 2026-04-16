@@ -3,309 +3,1541 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cogelas - Gros oeuvre - Terrassement - Réhabilitation</title>
+  <title>Cogelas - Design 1 | Architectural Precision</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&family=Rubik:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    /* =====================================================
+       DESIGN 1: ARCHITECTURAL PRECISION
+       Swiss grid + 3D depth + Glassmorphism + Trust
+       ===================================================== */
+
+    :root {
+      --navy: #0F172A;
+      --navy-light: #1E293B;
+      --slate: #334155;
+      --slate-mid: #475569;
+      --slate-light: #94A3B8;
+      --blue-cta: #0369A1;
+      --blue-hover: #0284C7;
+      --blue-glow: rgba(3, 105, 161, 0.3);
+      --gold: #D4A55A;
+      --bg-cream: #F8FAFC;
+      --bg-warm: #F1F5F9;
+      --white: #FFFFFF;
+      --text-primary: #020617;
+      --text-muted: #475569;
+      --border: rgba(15, 23, 42, 0.08);
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+      --shadow-md: 0 4px 20px rgba(0,0,0,0.08);
+      --shadow-lg: 0 12px 40px rgba(0,0,0,0.12);
+      --shadow-3d: 0 20px 60px rgba(0,0,0,0.15);
+      --radius: 12px;
+      --radius-lg: 20px;
+      --transition: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* === RESET === */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      color: var(--text-primary);
+      background: var(--bg-cream);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+    img { max-width: 100%; display: block; }
+
+    /* === NOISE TEXTURE OVERLAY === */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    /* === NAVBAR === */
+    .navbar {
+      position: fixed;
+      top: 16px;
+      left: 24px;
+      right: 24px;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 0 32px;
+      transition: all var(--transition);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .navbar.scrolled {
+      background: rgba(255, 255, 255, 0.95);
+      box-shadow: var(--shadow-md);
+      top: 8px;
+    }
+
+    .navbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+      max-width: 1340px;
+      margin: 0 auto;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'DM Serif Display', serif;
+      font-size: 24px;
+      color: var(--navy);
+      cursor: pointer;
+    }
+
+    .logo-mark {
+      width: 36px;
+      height: 36px;
+      background: var(--navy);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 20px;
+      font-weight: 300;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .nav-link {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--slate);
+      padding: 8px 16px;
+      border-radius: 8px;
+      transition: all var(--transition);
+      cursor: pointer;
+      position: relative;
+    }
+
+    .nav-link:hover {
+      color: var(--navy);
+      background: var(--bg-warm);
+    }
+
+    .nav-dropdown { position: relative; }
+    .nav-dropdown:hover .dropdown { opacity: 1; visibility: visible; transform: translateY(0); }
+
+    .dropdown {
+      position: absolute;
+      top: calc(100% + 8px);
+      left: -12px;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 8px;
+      min-width: 280px;
+      box-shadow: var(--shadow-lg);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-8px);
+      transition: all var(--transition);
+    }
+
+    .dropdown a {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 14px;
+      color: var(--slate);
+      transition: all var(--transition);
+      cursor: pointer;
+    }
+
+    .dropdown a:hover {
+      background: var(--bg-warm);
+      color: var(--navy);
+    }
+
+    .dropdown a i { width: 18px; height: 18px; color: var(--blue-cta); }
+
+    .btn-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 24px;
+      background: var(--navy);
+      color: white;
+      font-size: 14px;
+      font-weight: 600;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      transition: all var(--transition);
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.2);
+    }
+
+    .btn-cta:hover {
+      background: var(--blue-cta);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 16px var(--blue-glow);
+    }
+
+    .nav-phone {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--slate);
+      margin-left: 12px;
+      cursor: pointer;
+      transition: color var(--transition);
+    }
+
+    .nav-phone:hover { color: var(--blue-cta); }
+
+    /* Mobile menu button */
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--navy);
+      z-index: 10;
+    }
+
+    .mobile-close {
+      display: none;
+    }
+
+    /* Mobile menu overlay */
+    .mobile-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.4);
+      backdrop-filter: blur(4px);
+      z-index: 999;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .mobile-overlay.active {
+      opacity: 1;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 300px;
+        max-width: 85vw;
+        height: 100vh;
+        background: white;
+        padding: 80px 24px 32px;
+        gap: 0;
+        box-shadow: -8px 0 30px rgba(0,0,0,0.12);
+        transform: translateX(100%);
+        transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 1001;
+        overflow-y: auto;
+        align-items: stretch;
+      }
+
+      .nav-links.open {
+        transform: translateX(0);
+      }
+
+      .nav-links li {
+        border-bottom: 1px solid var(--border);
+      }
+
+      .nav-links li:last-child {
+        border-bottom: none;
+        margin-top: 16px;
+      }
+
+      .nav-links .nav-link {
+        display: block;
+        padding: 14px 8px;
+        font-size: 15px;
+        border-radius: 0;
+      }
+
+      .nav-links .btn-cta {
+        text-align: center;
+        justify-content: center;
+        border-radius: 10px;
+        padding: 14px 24px;
+      }
+
+      /* Mobile dropdown - show inline instead of absolute */
+      .nav-links .nav-dropdown .dropdown {
+        position: static;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        box-shadow: none;
+        border: none;
+        border-radius: 0;
+        padding: 0 0 8px 12px;
+        min-width: 0;
+        background: transparent;
+      }
+
+      .nav-links .nav-dropdown .dropdown a {
+        padding: 10px 8px;
+        font-size: 13px;
+        border-radius: 6px;
+      }
+
+      /* Close button inside menu */
+      .mobile-close {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: var(--navy);
+        width: 36px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 8px;
+        transition: background var(--transition);
+      }
+
+      .mobile-close:hover {
+        background: var(--bg-warm);
+      }
+
+      .mobile-overlay {
+        display: block;
+        pointer-events: none;
+      }
+
+      .mobile-overlay.active {
+        pointer-events: auto;
+      }
+    }
+
+    /* === HERO === */
+    .hero {
+      position: relative;
+      height: 100vh;
+      min-height: 600px;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+    }
+
+    .hero-video-wrap {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .hero-video-wrap iframe {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 120%;
+      height: 120%;
+      transform: translate(-50%, -50%);
+      border: none;
+      pointer-events: none;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(15, 23, 42, 0.2) 0%,
+        rgba(15, 23, 42, 0.4) 50%,
+        rgba(15, 23, 42, 0.85) 100%
+      );
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 1340px;
+      margin: 0 auto;
+      padding: 0 40px 140px;
+      width: 100%;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      background: rgba(255,255,255,0.12);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 100px;
+      color: rgba(255,255,255,0.9);
+      font-size: 13px;
+      font-weight: 500;
+      margin-bottom: 24px;
+    }
+
+    .hero-badge i { width: 14px; height: 14px; }
+
+    .hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(36px, 5vw, 64px);
+      font-weight: 400;
+      color: white;
+      line-height: 1.1;
+      max-width: 700px;
+      margin-bottom: 20px;
+    }
+
+    .hero-sub {
+      font-size: 17px;
+      color: rgba(255,255,255,0.75);
+      max-width: 520px;
+      line-height: 1.7;
+      margin-bottom: 32px;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn-hero-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 32px;
+      background: var(--blue-cta);
+      color: white;
+      font-size: 15px;
+      font-weight: 600;
+      border-radius: 12px;
+      border: none;
+      cursor: pointer;
+      transition: all var(--transition);
+      box-shadow: 0 4px 20px var(--blue-glow);
+    }
+
+    .btn-hero-primary:hover {
+      background: var(--blue-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px var(--blue-glow);
+    }
+
+    .btn-hero-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
+      color: white;
+      font-size: 15px;
+      font-weight: 500;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.2);
+      cursor: pointer;
+      transition: all var(--transition);
+    }
+
+    .btn-hero-secondary:hover {
+      background: rgba(255,255,255,0.2);
+      border-color: rgba(255,255,255,0.4);
+    }
+
+    /* Hero stats bar */
+    .hero-stats {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 3;
+      background: rgba(255,255,255,0.06);
+      backdrop-filter: blur(20px);
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .hero-stats-inner {
+      max-width: 1340px;
+      margin: 0 auto;
+      padding: 20px 40px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+    }
+
+    .stat {
+      text-align: center;
+      color: white;
+    }
+
+    .stat-number {
+      font-family: 'DM Serif Display', serif;
+      font-size: 32px;
+      font-weight: 400;
+      margin-bottom: 2px;
+    }
+
+    .stat-label {
+      font-size: 13px;
+      color: rgba(255,255,255,0.6);
+      font-weight: 400;
+    }
+
+    /* === SECTION SYSTEM === */
+    .section {
+      padding: 100px 40px;
+      max-width: 1340px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      margin-bottom: 60px;
+    }
+
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--blue-cta);
+      margin-bottom: 16px;
+    }
+
+    .section-label::before {
+      content: '';
+      width: 24px;
+      height: 2px;
+      background: var(--blue-cta);
+      border-radius: 2px;
+    }
+
+    .section-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(28px, 3vw, 42px);
+      color: var(--navy);
+      line-height: 1.2;
+      max-width: 580px;
+    }
+
+    .section-desc {
+      font-size: 16px;
+      color: var(--text-muted);
+      line-height: 1.7;
+      max-width: 520px;
+      margin-top: 16px;
+    }
+
+    /* === SERVICES (Workflow replacement) === */
+    .services-section {
+      padding: 100px 40px;
+      background: white;
+    }
+
+    .services-inner {
+      max-width: 1340px;
+      margin: 0 auto;
+    }
+
+    .services-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: start;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .service-card {
+      background: var(--bg-cream);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      transition: all var(--transition);
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transform-style: preserve-3d;
+      perspective: 800px;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--blue-cta);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform var(--transition);
+    }
+
+    .service-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+      border-color: transparent;
+    }
+
+    .service-card:hover::before { transform: scaleX(1); }
+
+    .service-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin-bottom: 16px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+      border: 3px solid white;
+      background: linear-gradient(135deg, var(--slate), var(--navy));
+      flex-shrink: 0;
+    }
+
+    .service-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .service-card:hover .service-icon img {
+      transform: scale(1.1);
+    }
+
+    .service-card h3 {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+
+    .service-card p {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .services-text {
+      padding-top: 20px;
+    }
+
+    .services-text .section-desc {
+      margin-top: 20px;
+      max-width: 100%;
+    }
+
+    .services-text .section-desc + .section-desc {
+      margin-top: 16px;
+    }
+
+    .team-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--blue-cta);
+      font-weight: 600;
+      font-size: 15px;
+      margin-top: 24px;
+      transition: gap var(--transition);
+      cursor: pointer;
+    }
+
+    .team-link:hover { gap: 10px; }
+    .team-link i { width: 16px; height: 16px; }
+
+    /* === EXPERTISE (Planchers) === */
+    .expertise-section {
+      padding: 0 40px;
+      max-width: 1340px;
+      margin: 0 auto 100px;
+    }
+
+    .expertise-card {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      background: var(--navy);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      min-height: 420px;
+    }
+
+    .expertise-text {
+      padding: 60px 50px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .expertise-text .section-label { color: var(--gold); }
+    .expertise-text .section-label::before { background: var(--gold); }
+
+    .expertise-text .section-title {
+      color: white;
+      font-size: clamp(24px, 2.5vw, 34px);
+    }
+
+    .expertise-text p {
+      color: rgba(255,255,255,0.65);
+      font-size: 15px;
+      line-height: 1.7;
+      margin-top: 20px;
+    }
+
+    .btn-expertise {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 28px;
+      background: rgba(255,255,255,0.1);
+      color: white;
+      font-size: 14px;
+      font-weight: 600;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.2);
+      cursor: pointer;
+      transition: all var(--transition);
+      margin-top: 28px;
+      width: fit-content;
+    }
+
+    .btn-expertise:hover {
+      background: var(--blue-cta);
+      border-color: var(--blue-cta);
+    }
+
+    .expertise-image {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .expertise-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* === PROJECTS === */
+    .projects-section {
+      padding: 100px 40px;
+      background: white;
+    }
+
+    .projects-inner {
+      max-width: 1340px;
+      margin: 0 auto;
+    }
+
+    .projects-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 50px;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    .project-card {
+      position: relative;
+      border-radius: var(--radius);
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      cursor: pointer;
+      group: true;
+    }
+
+    .project-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .project-card:hover img { transform: scale(1.08); }
+
+    .project-card-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(15,23,42,0.85) 0%, transparent 60%);
+      display: flex;
+      align-items: flex-end;
+      padding: 24px;
+      transition: all var(--transition);
+    }
+
+    .project-card:hover .project-card-overlay {
+      background: linear-gradient(to top, rgba(15,23,42,0.9) 0%, rgba(15,23,42,0.2) 60%);
+    }
+
+    .project-card-info h3 {
+      color: white;
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .project-card-info span {
+      color: rgba(255,255,255,0.6);
+      font-size: 13px;
+    }
+
+    .btn-projects {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 28px;
+      background: var(--bg-cream);
+      color: var(--navy);
+      font-size: 14px;
+      font-weight: 600;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      cursor: pointer;
+      transition: all var(--transition);
+    }
+
+    .btn-projects:hover {
+      background: var(--navy);
+      color: white;
+      border-color: var(--navy);
+    }
+
+    /* === DOMAINES === */
+    .domaines-section {
+      padding: 100px 40px;
+      background: var(--navy);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .domaines-section::before {
+      content: '';
+      position: absolute;
+      top: -200px;
+      right: -200px;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(3,105,161,0.15), transparent 70%);
+      pointer-events: none;
+    }
+
+    .domaines-inner {
+      max-width: 1340px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .domaines-header { text-align: center; margin-bottom: 60px; }
+    .domaines-header .section-label { color: var(--gold); }
+    .domaines-header .section-label::before { background: var(--gold); display: none; }
+    .domaines-header .section-title { color: white; margin: 0 auto; }
+    .domaines-header .section-desc { color: rgba(255,255,255,0.5); margin: 12px auto 0; }
+
+    .domaines-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 24px;
+    }
+
+    .domaine-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius);
+      padding: 32px 20px;
+      text-align: center;
+      transition: all var(--transition);
+      cursor: pointer;
+    }
+
+    .domaine-card:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: rgba(255,255,255,0.15);
+      transform: translateY(-4px);
+    }
+
+    .domaine-card-icon {
+      width: 88px;
+      height: 88px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin: 0 auto 16px;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.3);
+      border: 3px solid rgba(255,255,255,0.2);
+      background: linear-gradient(135deg, var(--blue-cta), var(--navy));
+    }
+
+    .domaine-card-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .domaine-card:hover .domaine-card-icon img {
+      transform: scale(1.12);
+    }
+
+    .domaine-card:hover .domaine-card-icon {
+      border-color: rgba(255,255,255,0.4);
+      box-shadow: 0 8px 30px rgba(3,105,161,0.3);
+    }
+
+    .domaine-card h3 {
+      color: white;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    /* === CTA === */
+    .cta-section {
+      padding: 100px 40px;
+    }
+
+    .cta-card {
+      max-width: 1340px;
+      margin: 0 auto;
+      background: linear-gradient(135deg, var(--bg-warm) 0%, white 100%);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 80px 60px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-card::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, var(--blue-glow), transparent 70%);
+      pointer-events: none;
+    }
+
+    .cta-card .section-title {
+      margin: 0 auto 12px;
+      text-align: center;
+      max-width: 100%;
+    }
+
+    .cta-card .section-desc {
+      margin: 0 auto 32px;
+      text-align: center;
+      max-width: 100%;
+    }
+
+    .btn-cta-large {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 40px;
+      background: var(--navy);
+      color: white;
+      font-size: 16px;
+      font-weight: 600;
+      border-radius: 12px;
+      border: none;
+      cursor: pointer;
+      transition: all var(--transition);
+      box-shadow: 0 4px 20px rgba(15,23,42,0.2);
+      position: relative;
+      z-index: 1;
+    }
+
+    .btn-cta-large:hover {
+      background: var(--blue-cta);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px var(--blue-glow);
+    }
+
+    /* === FOOTER === */
+    .footer {
+      background: var(--navy);
+      color: white;
+      padding: 60px 40px 0;
+    }
+
+    .footer-inner {
+      max-width: 1340px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 48px;
+      padding-bottom: 48px;
+    }
+
+    .footer-brand .logo {
+      color: white;
+      margin-bottom: 16px;
+    }
+
+    .footer-brand .logo-mark { background: white; color: var(--navy); }
+
+    .footer-brand p {
+      color: rgba(255,255,255,0.5);
+      font-size: 14px;
+      line-height: 1.7;
+      max-width: 280px;
+    }
+
+    .footer h4 {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 20px;
+    }
+
+    .footer-links li { margin-bottom: 10px; }
+
+    .footer-links a {
+      color: rgba(255,255,255,0.7);
+      font-size: 14px;
+      transition: color var(--transition);
+      cursor: pointer;
+    }
+
+    .footer-links a:hover { color: white; }
+
+    .footer-contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 14px;
+      color: rgba(255,255,255,0.7);
+      font-size: 14px;
+    }
+
+    .footer-contact-item i { width: 16px; height: 16px; flex-shrink: 0; margin-top: 3px; color: var(--blue-cta); }
+
+    .footer-contact-item a {
+      color: rgba(255,255,255,0.7);
+      transition: color var(--transition);
+      cursor: pointer;
+    }
+
+    .footer-contact-item a:hover { color: white; }
+
+    .footer-bottom {
+      max-width: 1340px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 0;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      font-size: 12px;
+      color: rgba(255,255,255,0.3);
+    }
+
+    /* === SCROLL REVEAL === */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-delay-1 { transition-delay: 100ms; }
+    .reveal-delay-2 { transition-delay: 200ms; }
+    .reveal-delay-3 { transition-delay: 300ms; }
+    .reveal-delay-4 { transition-delay: 400ms; }
+
+    /* prefers-reduced-motion */
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
+
+    /* === RESPONSIVE === */
+    @media (max-width: 1024px) {
+      .services-layout { grid-template-columns: 1fr; }
+      .expertise-card { grid-template-columns: 1fr; }
+      .expertise-image { min-height: 300px; }
+      .projects-grid { grid-template-columns: repeat(2, 1fr); }
+      .domaines-grid { grid-template-columns: repeat(3, 1fr); }
+      .footer-inner { grid-template-columns: 1fr 1fr; }
+      .hero-stats-inner { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    }
+
+    @media (max-width: 768px) {
+      .navbar { left: 12px; right: 12px; top: 10px; padding: 0 16px; }
+      .nav-phone { display: none; }
+      .menu-toggle { display: flex; }
+
+      .hero { min-height: 500px; }
+      .hero h1 { font-size: 28px; }
+      .hero-content { padding: 0 20px 180px; }
+      .hero-stats-inner { grid-template-columns: repeat(2, 1fr); padding: 16px 20px; gap: 12px; }
+      .stat-number { font-size: 24px; }
+
+      .section { padding: 60px 20px; }
+      .services-section { padding: 60px 20px; }
+      .services-grid { grid-template-columns: 1fr; }
+      .projects-section { padding: 60px 20px; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .projects-header { flex-direction: column; align-items: flex-start; gap: 20px; }
+      .domaines-section { padding: 60px 20px; }
+      .domaines-grid { grid-template-columns: 1fr 1fr; }
+      .domaine-card-icon { width: 72px; height: 72px; }
+      .expertise-section { padding: 0 20px; margin-bottom: 60px; }
+      .expertise-text { padding: 40px 28px; }
+      .cta-section { padding: 60px 20px; }
+      .cta-card { padding: 50px 28px; }
+      .footer { padding: 40px 20px 0; }
+      .footer-inner { grid-template-columns: 1fr; gap: 32px; }
+    }
+  </style>
 </head>
 <body>
-  <!-- ========== NAVBAR ========== -->
-  <header class="header">
-    <div class="header-inner">
-      <a href="/" class="logo">
-        <span class="logo-icon">+</span> COGELAS
-      </a>
-      <nav class="nav">
-        <ul class="nav-list">
-          <li><a href="#" class="nav-link">Accueil</a></li>
-          <li><a href="#" class="nav-link">Réalisations</a></li>
-          <li><a href="#" class="nav-link">Qui sommes-nous ?</a></li>
-          <li class="nav-dropdown">
-            <a href="#" class="nav-link">Expertises <span class="dropdown-arrow">&#9662;</span></a>
-            <ul class="dropdown-menu">
-              <li><a href="#">Planchers techniques surélevés</a></li>
-              <li><a href="#">Revêtement de sol</a></li>
-              <li><a href="#">Terrassement et Assainissement</a></li>
-              <li><a href="#">Maçonnerie / Gros Oeuvre</a></li>
-              <li><a href="#">Isolation thermique par l'extérieur</a></li>
-            </ul>
-          </li>
-          <li><a href="#" class="nav-link btn-project">J'ai un projet !</a></li>
-        </ul>
-      </nav>
-      <a href="tel:0170928129" class="header-phone">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
-      </a>
-    </div>
-  </header>
 
-  <!-- ========== HERO (YouTube Video) ========== -->
+  <!-- ========== NAVBAR ========== -->
+  <nav class="navbar" id="navbar">
+    <div class="navbar-inner">
+      <a href="/" class="logo">
+        <div class="logo-mark">+</div>
+        COGELAS
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <button class="mobile-close" id="menuClose" aria-label="Fermer le menu">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+        <li><a class="nav-link" href="#">Accueil</a></li>
+        <li><a class="nav-link" href="#">Realisations</a></li>
+        <li><a class="nav-link" href="#">Qui sommes-nous ?</a></li>
+        <li class="nav-dropdown">
+          <a class="nav-link" href="#">Expertises <i data-lucide="chevron-down" style="width:14px;height:14px;display:inline;vertical-align:middle;"></i></a>
+          <div class="dropdown">
+            <a href="#"><i class="fa-solid fa-layer-group" style="width:18px;color:var(--blue-cta);"></i> Planchers techniques sureleves</a>
+            <a href="#"><i class="fa-solid fa-border-all" style="width:18px;color:var(--blue-cta);"></i> Revetement de sol</a>
+            <a href="#"><i class="fa-solid fa-truck-monster" style="width:18px;color:var(--blue-cta);"></i> Terrassement et Assainissement</a>
+            <a href="#"><i class="fa-solid fa-trowel-bricks" style="width:18px;color:var(--blue-cta);"></i> Maconnerie / Gros Oeuvre</a>
+            <a href="#"><i class="fa-solid fa-temperature-arrow-down" style="width:18px;color:var(--blue-cta);"></i> Isolation thermique par l'exterieur</a>
+          </div>
+        </li>
+        <li><a class="btn-cta" href="#">J'ai un projet !</a></li>
+      </ul>
+      <a href="tel:0170928129" class="nav-phone">
+        <i data-lucide="phone" style="width:16px;height:16px;"></i>
+        01 70 92 81 29
+      </a>
+      <button class="menu-toggle" aria-label="Menu">
+        <i data-lucide="menu" style="width:24px;height:24px;"></i>
+      </button>
+    </div>
+  </nav>
+  <div class="mobile-overlay" id="mobileOverlay"></div>
+
+  <!-- ========== HERO ========== -->
   <section class="hero">
-    <div class="hero-video">
+    <div class="hero-video-wrap">
       <iframe
-        src="https://www.youtube.com/embed/LfTC5ZFGlB8?controls=0&showinfo=0&rel=0&autoplay=1&mute=1&loop=1&playlist=LfTC5ZFGlB8"
-        title="COGELAS - Chantier de construction"
-        frameborder="0"
-        allow="autoplay; encrypted-media"
-        allowfullscreen>
-      </iframe>
-      <!-- Fallback image if video doesn't load -->
-      <img class="hero-fallback" src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1400&h=500&fit=crop" alt="Chantier de construction en Ile-de-France">
+        src="https://www.youtube.com/embed/LfTC5ZFGlB8?controls=0&showinfo=0&rel=0&autoplay=1&mute=1&loop=1&playlist=LfTC5ZFGlB8&playsinline=1"
+        title="COGELAS - Construction" allow="autoplay; encrypted-media" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+      <div class="hero-badge reveal"><i data-lucide="shield-check"></i> 25 ans d'excellence en construction</div>
+      <h1 class="reveal reveal-delay-1">Construction &amp; renovation en Ile-de-France</h1>
+      <p class="hero-sub reveal reveal-delay-2">Des solutions sur mesure en terrassement, maconnerie gros oeuvre, planchers techniques et bien plus. Professionnalisme et savoir-faire europeens.</p>
+      <div class="hero-actions reveal reveal-delay-3">
+        <a href="#" class="btn-hero-primary">
+          <i data-lucide="send" style="width:18px;height:18px;"></i>
+          Contactez-nous
+        </a>
+        <a href="#" class="btn-hero-secondary">
+          <i data-lucide="users" style="width:18px;height:18px;"></i>
+          L'equipe COGELAS
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-stats">
+      <div class="hero-stats-inner">
+        <div class="stat reveal">
+          <div class="stat-number" data-count="25">0</div>
+          <div class="stat-label">Annees d'experience</div>
+        </div>
+        <div class="stat reveal reveal-delay-1">
+          <div class="stat-number" data-count="500">0</div>
+          <div class="stat-label">Projets realises</div>
+        </div>
+        <div class="stat reveal reveal-delay-2">
+          <div class="stat-number" data-count="6">0</div>
+          <div class="stat-label">Corps de metier</div>
+        </div>
+        <div class="stat reveal reveal-delay-3">
+          <div class="stat-number" data-count="100">0</div>
+          <div class="stat-label">Clients satisfaits %</div>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- ========== MAIN CONTENT ========== -->
-  <main>
-    <!-- Section: Titre + Intro with Workflow -->
-    <section class="section-intro">
-      <h1>COGELAS, construction, rénovation en Ile-de-France</h1>
-      <div class="intro-layout">
-        <!-- Left: Services Workflow Wheel -->
-        <div class="workflow-side scroll-reveal">
-          <h2 class="workflow-title">COGELAS SERVICES WORKFLOW</h2>
-          <div class="workflow-container">
-            <!-- Row 1 -->
-            <div class="wf-label wf-left">
-              <strong>Maçonnerie générale</strong>
-              <span>Vos projets de construction et de rénovation, réalisés avec une touche sur mesure</span>
+  <!-- ========== SERVICES / WORKFLOW ========== -->
+  <section class="services-section">
+    <div class="services-inner">
+      <div class="services-layout">
+        <div>
+          <div class="section-header reveal">
+            <div class="section-label">Nos Expertises</div>
+            <h2 class="section-title">COGELAS Services Workflow</h2>
+          </div>
+          <div class="services-grid">
+            <div class="service-card reveal">
+              <div class="service-icon"><img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=140&h=140&fit=crop&crop=center" alt="Maconnerie generale"></div>
+              <h3>Maconnerie generale</h3>
+              <p>Vos projets de construction et de renovation, realises avec une touche sur mesure</p>
             </div>
-            <div class="wf-label wf-right">
-              <strong>Gros oeuvre</strong>
-              <span>Bâtissons les bases de votre projet avec des fondations solides, structures béton et travaux durables</span>
+            <div class="service-card reveal reveal-delay-1">
+              <div class="service-icon"><img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=140&h=140&fit=crop&crop=center" alt="Gros oeuvre"></div>
+              <h3>Gros oeuvre</h3>
+              <p>Fondations solides, structures beton et travaux durables</p>
             </div>
-            <!-- Row 2 -->
-            <div class="wf-label wf-left">
-              <strong>Planchers surélevés</strong>
-              <span>Donnez vie à vos espaces avec des planchers surélevés robustes, designs et sur mesure</span>
+            <div class="service-card reveal reveal-delay-2">
+              <div class="service-icon"><img src="https://images.unsplash.com/photo-1503594384566-461fe158e797?w=140&h=140&fit=crop&crop=center" alt="Planchers sureleves"></div>
+              <h3>Planchers sureleves</h3>
+              <p>Planchers sureleves robustes, designs et sur mesure</p>
             </div>
-            <div class="wf-label wf-right">
-              <strong>Isolation thermique par l'extérieur</strong>
-              <span>Bénéficiez d'une isolation thermique extérieure performante et d'aides comme MaPrimeRénov</span>
+            <div class="service-card reveal reveal-delay-3">
+              <div class="service-icon"><img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=140&h=140&fit=crop&crop=center" alt="Isolation thermique"></div>
+              <h3>Isolation thermique</h3>
+              <p>Isolation exterieure performante et aides MaPrimeRenov</p>
             </div>
-            <!-- Row 3 -->
-            <div class="wf-label wf-left">
-              <strong>Terrassement / Assainissement</strong>
-              <span>Préparons votre terrain avec des travaux de terrassement précis et un assainissement fiable</span>
+            <div class="service-card reveal">
+              <div class="service-icon"><img src="https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=140&h=140&fit=crop&crop=center" alt="Terrassement"></div>
+              <h3>Terrassement</h3>
+              <p>Travaux de terrassement precis et assainissement fiable</p>
             </div>
-            <div class="wf-label wf-right">
-              <strong>Revêtement de sol</strong>
-              <span>Transformez vos sols avec des revêtements élégants et résistants, avec du carrelage ou du cuvelage</span>
-            </div>
-            <!-- Central Wheel (SVG pie chart) -->
-            <div class="wf-wheel-wrap">
-              <svg class="wf-wheel-svg" viewBox="0 0 300 300">
-                <!-- Pie segments -->
-                <path d="M150,150 L150,30 A120,120 0 0,1 253.9,90 Z" fill="#D4A55A"/>
-                <path d="M150,150 L253.9,90 A120,120 0 0,1 253.9,210 Z" fill="#5B8C5A"/>
-                <path d="M150,150 L253.9,210 A120,120 0 0,1 150,270 Z" fill="#4A90D9"/>
-                <path d="M150,150 L150,270 A120,120 0 0,1 46.1,210 Z" fill="#D94A6B"/>
-                <path d="M150,150 L46.1,210 A120,120 0 0,1 46.1,90 Z" fill="#7B6DAA"/>
-                <path d="M150,150 L46.1,90 A120,120 0 0,1 150,30 Z" fill="#E8734A"/>
-                <!-- Segment icons (small white symbols) -->
-                <text x="175" y="72" font-size="22" fill="#fff" text-anchor="middle">&#9965;</text>
-                <text x="228" y="158" font-size="22" fill="#fff" text-anchor="middle">&#9874;</text>
-                <text x="200" y="235" font-size="22" fill="#fff" text-anchor="middle">&#8962;</text>
-                <text x="100" y="235" font-size="22" fill="#fff" text-anchor="middle">&#9632;</text>
-                <text x="72" y="158" font-size="22" fill="#fff" text-anchor="middle">&#9881;</text>
-                <text x="125" y="72" font-size="22" fill="#fff" text-anchor="middle">&#9638;</text>
-                <!-- White center circle -->
-                <circle cx="150" cy="150" r="52" fill="#fff" stroke="#e0e0e0" stroke-width="1"/>
-                <text x="150" y="145" font-family="Rubik, sans-serif" font-size="11" fill="#34546C" text-anchor="middle" font-weight="300">+</text>
-                <text x="150" y="162" font-family="Rubik, sans-serif" font-size="13" fill="#353535" text-anchor="middle" font-weight="600" letter-spacing="1">COGELAS</text>
-              </svg>
+            <div class="service-card reveal reveal-delay-1">
+              <div class="service-icon"><img src="https://images.unsplash.com/photo-1562259949-e8e7689d7828?w=140&h=140&fit=crop&crop=center" alt="Revetement de sol"></div>
+              <h3>Revetement de sol</h3>
+              <p>Revetements elegants et resistants, carrelage ou cuvelage</p>
             </div>
           </div>
         </div>
-        <!-- Right: Intro text -->
-        <div class="intro-text scroll-reveal">
-          <p>
-            Fort de 25 ans d'expérience dans la construction, nos équipes excellent dans le
-            <a href="#">terrassement</a>, la <a href="#">maçonnerie gros oeuvre</a>, les
-            <a href="#">planchers techniques surélevés</a> et bien plus encore, couvrant tous les corps d'état.
-            Basés en Île de France, nous étendons nos services à travers le territoire
-            européen, offrant des solutions de construction, rénovation et
-            aménagement avec professionnalisme et savoir-faire.
-          </p>
-          <p>
-            Chaque défi est une opportunité d'innover et de dépasser les attentes,
-            offrant des solutions personnalisées et adaptées à vos besoins
-            spécifiques. Que vous cherchiez à rénover un espace existant ou à
-            concevoir de nouvelles installations, nous sommes prêts à transformer
-            vos idées en réalité avec une qualité et une précision inégalées.
-          </p>
-          <a href="#" class="team-link">L'équipe COGELAS.</a>
-          <div class="intro-cta">
-            <a href="#" class="btn btn-secondary">Contactez-nous</a>
+        <div class="services-text reveal">
+          <div class="section-label">A propos</div>
+          <h2 class="section-title">COGELAS, construction, renovation en Ile-de-France</h2>
+          <p class="section-desc">Fort de 25 ans d'experience dans la construction, nos equipes excellent dans le terrassement, la maconnerie gros oeuvre, les planchers techniques sureleves et bien plus encore, couvrant tous les corps d'etat.</p>
+          <p class="section-desc">Bases en Ile de France, nous etendons nos services a travers le territoire europeen, offrant des solutions de construction, renovation et amenagement avec professionnalisme et savoir-faire.</p>
+          <p class="section-desc">Chaque defi est une opportunite d'innover et de depasser les attentes, offrant des solutions personnalisees et adaptees a vos besoins specifiques.</p>
+          <a href="#" class="team-link">L'equipe COGELAS <i data-lucide="arrow-right"></i></a>
+          <div style="margin-top:28px;">
+            <a href="#" class="btn-cta"><i data-lucide="send" style="width:16px;height:16px;"></i> Contactez-nous</a>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Section: Planchers techniques -->
-    <section class="section-planchers scroll-reveal">
-      <div class="planchers-grid">
-        <div class="planchers-text">
-          <h2><strong>Révolutionnez votre espace</strong> avec les planchers techniques en sulfate de calcium</h2>
-          <p>
-            Repoussez les limites de l'architecture moderne avec nos planchers techniques en sulfate de calcium.
-            Cette solution transforme les espaces de travail en alliant esthétique raffinée, fonctionnalité optimale
-            et durabilité exceptionnelle.
-          </p>
-          <p>
-            Parfait pour les environnements exigeants, nos planchers techniques offrent une performance
-            acoustique supérieure, une résistance maximale au feu et une modularité qui soutient l'évolution
-            technologique des bâtiments.
-          </p>
-          <a href="#" class="btn btn-primary">Découvrir l'entreprise</a>
-        </div>
-        <div class="planchers-image">
-          <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=600&h=400&fit=crop" alt="Planchers techniques en sulfate de calcium">
-        </div>
+  <!-- ========== EXPERTISE (Planchers) ========== -->
+  <section class="expertise-section reveal">
+    <div class="expertise-card">
+      <div class="expertise-text">
+        <div class="section-label">Expertise</div>
+        <h2 class="section-title"><strong>Revolutionnez votre espace</strong> avec les planchers techniques en sulfate de calcium</h2>
+        <p>Repoussez les limites de l'architecture moderne avec nos planchers techniques en sulfate de calcium. Esthetique raffinee, fonctionnalite optimale et durabilite exceptionnelle.</p>
+        <p>Performance acoustique superieure, resistance maximale au feu et modularite qui soutient l'evolution technologique des batiments.</p>
+        <a href="#" class="btn-expertise">Decouvrir l'entreprise <i data-lucide="arrow-right" style="width:16px;height:16px;"></i></a>
       </div>
-    </section>
+      <div class="expertise-image">
+        <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&h=600&fit=crop&q=90" alt="Planchers techniques en sulfate de calcium" loading="lazy">
+      </div>
+    </div>
+  </section>
 
-    <!-- Section: Projets en cours -->
-    <section class="section-projects scroll-reveal">
-      <h4 class="projects-title"><strong>PROJETS EN COURS</strong></h4>
+  <!-- ========== PROJECTS ========== -->
+  <section class="projects-section">
+    <div class="projects-inner">
+      <div class="projects-header">
+        <div class="section-header reveal">
+          <div class="section-label">Portfolio</div>
+          <h2 class="section-title">Projets en cours</h2>
+        </div>
+        <a href="#" class="btn-projects reveal">Tous nos projets <i data-lucide="arrow-right" style="width:16px;height:16px;"></i></a>
+      </div>
       <div class="projects-grid">
-        <div class="project-card">
-          <div class="project-image">
-            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&h=300&fit=crop" alt="Pandion Rise">
+        <div class="project-card reveal">
+          <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=500&h=400&fit=crop&q=85" alt="Pandion Rise" loading="lazy">
+          <div class="project-card-overlay">
+            <div class="project-card-info">
+              <h3>Pandion Rise</h3>
+              <span>Construction neuve</span>
+            </div>
           </div>
-          <p class="project-name">Pandion Rise</p>
         </div>
-        <div class="project-card">
-          <div class="project-image">
-            <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=300&fit=crop" alt="Centre Socio-Culturel Sarcelles">
+        <div class="project-card reveal reveal-delay-1">
+          <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=500&h=400&fit=crop&q=85" alt="Centre Socio-Culturel Sarcelles" loading="lazy">
+          <div class="project-card-overlay">
+            <div class="project-card-info">
+              <h3>Centre Socio-Culturel Sarcelles</h3>
+              <span>Rehabilitation</span>
+            </div>
           </div>
-          <p class="project-name">Centre Socio-Culturel Sarcelles</p>
         </div>
-        <div class="project-card">
-          <div class="project-image">
-            <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=400&h=300&fit=crop" alt="Cube-Central-378">
+        <div class="project-card reveal reveal-delay-2">
+          <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=500&h=400&fit=crop&q=85" alt="Cube-Central-378" loading="lazy">
+          <div class="project-card-overlay">
+            <div class="project-card-info">
+              <h3>Cube-Central-378</h3>
+              <span>Gros oeuvre</span>
+            </div>
           </div>
-          <p class="project-name">Cube-Central-378</p>
         </div>
-        <div class="project-card">
-          <div class="project-image">
-            <img src="https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=400&h=300&fit=crop" alt="Trium Bochum">
+        <div class="project-card reveal reveal-delay-3">
+          <img src="https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=500&h=400&fit=crop&q=85" alt="Trium Bochum" loading="lazy">
+          <div class="project-card-overlay">
+            <div class="project-card-info">
+              <h3>Trium Bochum</h3>
+              <span>Amenagement</span>
+            </div>
           </div>
-          <p class="project-name">Trium Bochum</p>
         </div>
       </div>
-      <div class="projects-cta">
-        <a href="#" class="btn btn-primary">Découvrir tous nos projets</a>
-      </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Section: Domaines d'activité -->
-    <section class="section-domaines">
-      <div class="domaines-header">
-        <h2>Nos domaines d'activité</h2>
-        <p class="domaines-subtitle">Construction & Réhabilitation</p>
+  <!-- ========== DOMAINES ========== -->
+  <section class="domaines-section">
+    <div class="domaines-inner">
+      <div class="domaines-header reveal">
+        <div class="section-label">Secteurs</div>
+        <h2 class="section-title">Nos domaines d'activite</h2>
+        <p class="section-desc">Construction &amp; Rehabilitation</p>
       </div>
       <div class="domaines-grid">
-        <div class="domaine-card">
-          <div class="domaine-icon">
-            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6"/></svg>
-          </div>
-          <p>Maisons individuelles</p>
+        <div class="domaine-card reveal">
+          <div class="domaine-card-icon"><img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=200&h=200&fit=crop&crop=center" alt="Maisons individuelles"></div>
+          <h3>Maisons individuelles</h3>
         </div>
-        <div class="domaine-card">
-          <div class="domaine-icon">
-            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21h18M4 21V10l8-6 8 6v11M9 21v-4h6v4"/><path d="M9 9h.01M15 9h.01M9 13h.01M15 13h.01"/></svg>
-          </div>
-          <p>Bâtiments ERP</p>
+        <div class="domaine-card reveal reveal-delay-1">
+          <div class="domaine-card-icon"><img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=200&h=200&fit=crop&crop=center" alt="Batiments ERP"></div>
+          <h3>Batiments ERP</h3>
         </div>
-        <div class="domaine-card">
-          <div class="domaine-icon">
-            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="7" width="20" height="14" rx="1"/><path d="M6 7V5a2 2 0 012-2h8a2 2 0 012 2v2"/></svg>
-          </div>
-          <p>Entrepôts d'entreprises</p>
+        <div class="domaine-card reveal reveal-delay-2">
+          <div class="domaine-card-icon"><img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=200&h=200&fit=crop&crop=center" alt="Entrepots d'entreprises"></div>
+          <h3>Entrepots d'entreprises</h3>
         </div>
-        <div class="domaine-card">
-          <div class="domaine-icon">
-            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21h18M5 21V5a2 2 0 012-2h10a2 2 0 012 2v16"/><path d="M9 7h1M14 7h1M9 11h1M14 11h1M9 15h1M14 15h1"/></svg>
-          </div>
-          <p>Etablissements publics</p>
+        <div class="domaine-card reveal reveal-delay-3">
+          <div class="domaine-card-icon"><img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=200&h=200&fit=crop&crop=center" alt="Etablissements publics"></div>
+          <h3>Etablissements publics</h3>
         </div>
-        <div class="domaine-card">
-          <div class="domaine-icon">
-            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21h18M9 21V12h6v9M3 7l9-4 9 4"/><path d="M3 7v14M21 7v14"/></svg>
-          </div>
-          <p>Espaces commerciaux</p>
+        <div class="domaine-card reveal reveal-delay-4">
+          <div class="domaine-card-icon"><img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=200&h=200&fit=crop&crop=center" alt="Espaces commerciaux"></div>
+          <h3>Espaces commerciaux</h3>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Section: CTA Devis -->
-    <section class="section-cta scroll-reveal">
-      <h2>OBTENIR UNE OFFRE MAINTENANT</h2>
-      <h3>Votre devis gratuit en un clic - rapide et sans engagement !</h3>
-      <a href="#" class="btn btn-primary">Obtenir votre devis</a>
-    </section>
-  </main>
+  <!-- ========== CTA ========== -->
+  <section class="cta-section">
+    <div class="cta-card reveal">
+      <div class="section-label" style="justify-content:center;">Devis gratuit</div>
+      <h2 class="section-title">Obtenir une offre maintenant</h2>
+      <p class="section-desc">Votre devis gratuit en un clic - rapide et sans engagement !</p>
+      <a href="#" class="btn-cta-large">
+        Obtenir votre devis
+        <i data-lucide="arrow-right" style="width:18px;height:18px;"></i>
+      </a>
+    </div>
+  </section>
 
   <!-- ========== FOOTER ========== -->
   <footer class="footer">
     <div class="footer-inner">
-      <div class="footer-col footer-sitemap">
-        <h2>Plan du site</h2>
-        <ul>
+      <div class="footer-brand">
+        <a href="/" class="logo">
+          <div class="logo-mark">+</div>
+          COGELAS
+        </a>
+        <p>Pour vous, nous amenageons le meilleur. Fort de 25 ans d'experience en construction et renovation en Ile-de-France.</p>
+      </div>
+      <div>
+        <h4>Navigation</h4>
+        <ul class="footer-links">
           <li><a href="#">Accueil</a></li>
-          <li><a href="#">Réalisations</a></li>
+          <li><a href="#">Realisations</a></li>
           <li><a href="#">Qui sommes-nous ?</a></li>
           <li><a href="#">Expertises</a></li>
           <li><a href="#">J'ai un projet !</a></li>
         </ul>
-        <ul class="footer-legal">
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <ul class="footer-links">
           <li><a href="#">Plan du site</a></li>
-          <li><a href="#">Mentions légales</a></li>
+          <li><a href="#">Mentions legales</a></li>
         </ul>
       </div>
-      <div class="footer-col footer-brand">
-        <p class="footer-tagline"><strong>Pour vous, nous aménageons le meilleur.</strong></p>
-        <div class="footer-logo">
-          <span class="logo-icon">+</span> COGELAS
+      <div>
+        <h4>Contact</h4>
+        <div class="footer-contact-item">
+          <i data-lucide="map-pin"></i>
+          <span>17 rue Parmentier<br>95190 Goussainville</span>
         </div>
-      </div>
-      <div class="footer-col footer-contact">
-        <h2>Coordonnées</h2>
-        <div class="contact-items">
-          <div class="contact-item">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            <p>17 rue Parmentier<br>95190 Goussainville</p>
-          </div>
-          <div class="contact-item">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
-            <p><a href="tel:0170928129">01 70 92 81 29</a></p>
-          </div>
-          <div class="contact-item">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-            <p><a href="mailto:info@cogelas.fr">info@cogelas.fr</a></p>
-          </div>
+        <div class="footer-contact-item">
+          <i data-lucide="phone"></i>
+          <a href="tel:0170928129">01 70 92 81 29</a>
+        </div>
+        <div class="footer-contact-item">
+          <i data-lucide="mail"></i>
+          <a href="mailto:info@cogelas.fr">info@cogelas.fr</a>
         </div>
       </div>
     </div>
     <div class="footer-bottom">
-      <p>Création et référencement du site par Simplébo</p>
+      <span>Creation et referencement du site par Simplebo</span>
       <a href="#">Connexion</a>
     </div>
   </footer>
-  <!-- Scroll Reveal Animation Script -->
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('revealed');
-          }
-        });
-      }, { threshold: 0.15 });
 
-      document.querySelectorAll('.scroll-reveal').forEach(el => {
-        observer.observe(el);
+  <script>
+    // Initialize Lucide icons
+    lucide.createIcons();
+
+    // Navbar scroll effect
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    // Scroll Reveal (IntersectionObserver)
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Counter animation for stats
+    const countObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          const target = parseInt(el.dataset.count);
+          const suffix = el.textContent.includes('%') ? '%' : '+';
+          let current = 0;
+          const step = Math.max(1, Math.floor(target / 40));
+          const timer = setInterval(() => {
+            current += step;
+            if (current >= target) {
+              current = target;
+              clearInterval(timer);
+            }
+            el.textContent = current + (target > 10 ? '+' : '');
+          }, 30);
+          countObserver.unobserve(el);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    document.querySelectorAll('[data-count]').forEach(el => countObserver.observe(el));
+
+    // Mobile menu toggle
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.getElementById('navLinks');
+    const mobileOverlay = document.getElementById('mobileOverlay');
+    const menuClose = document.getElementById('menuClose');
+
+    function openMenu() {
+      navLinks.classList.add('open');
+      mobileOverlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeMenu() {
+      navLinks.classList.remove('open');
+      mobileOverlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    menuToggle.addEventListener('click', openMenu);
+    menuClose.addEventListener('click', closeMenu);
+    mobileOverlay.addEventListener('click', closeMenu);
+
+    // Close menu when a nav link is clicked
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', closeMenu);
+    });
+
+    // 3D tilt effect on service cards
+    document.querySelectorAll('.service-card').forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotateX = (y - centerY) / centerY * -4;
+        const rotateY = (x - centerX) / centerX * 4;
+        card.style.transform = `translateY(-4px) perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+      });
+
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = '';
       });
     });
   </script>

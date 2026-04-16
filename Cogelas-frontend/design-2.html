@@ -43,7 +43,7 @@
     }
 
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
 
     body {
       font-family: 'Cabin', sans-serif;
@@ -1146,12 +1146,14 @@
     }
 
     /* === RESPONSIVE === */
+
+    /* Tablet: 769px–1024px */
     @media (max-width: 1024px) {
       .workflow-body { grid-template-columns: 1fr; }
       .workflow-wheel-col { position: static; flex-direction: row; gap: 16px; }
       .wf-wheel-wrap { width: 200px; height: 200px; }
       .workflow-about { grid-template-columns: 1fr; }
-      .expertise-card { grid-template-columns: 1fr; }
+      .expertise-card { grid-template-columns: 1fr; overflow: hidden; }
       .expertise-image { min-height: 300px; }
       .projects-grid {
         grid-template-columns: 1fr 1fr;
@@ -1164,8 +1166,9 @@
       .hero-stats-inner { grid-template-columns: repeat(2, 1fr); gap: 20px; }
     }
 
+    /* Mobile: <=768px */
     @media (max-width: 768px) {
-      .navbar { padding: 0; }
+      /* Navbar */
       .navbar-inner { padding: 0 16px; height: 60px; }
       .nav-phone { display: none; }
       .menu-toggle { display: flex; }
@@ -1249,31 +1252,33 @@
 
       .mobile-close:hover { background: var(--stone-100); }
 
-      .mobile-overlay {
-        display: block;
-        pointer-events: none;
-      }
-
+      .mobile-overlay { display: block; pointer-events: none; }
       .mobile-overlay.active { pointer-events: auto; }
 
-      .hero { min-height: 500px; }
+      /* Hero — override base height: 100vh with 100svh for mobile browser chrome */
+      .hero { height: 100svh; min-height: 500px; }
       .hero h1 { font-size: 28px; }
+      .hero-sub { font-size: 15px; }
       .hero-content { padding: 0 20px; }
-      .hero-stats-inner { grid-template-columns: repeat(2, 1fr); padding: 16px 20px; gap: 12px; }
+      .hero-video-wrap iframe { width: 300%; }
+      .hero-stats-inner { padding: 16px 20px; gap: 12px; }
       .stat-number { font-size: 26px; }
 
+      /* Workflow — inherits grid-template-columns: 1fr from 1024px */
       .workflow-section { padding: 60px 20px 40px; }
-      .workflow-body { grid-template-columns: 1fr; gap: 32px; }
       .workflow-wheel-col { flex-direction: column; }
       .wf-wheel-wrap { width: 180px; height: 180px; }
       .wf-services-grid { grid-template-columns: 1fr; }
       .wf-service-card { padding: 20px; }
-      .workflow-about { grid-template-columns: 1fr; gap: 32px; }
+      .workflow-about { gap: 32px; }
       .about-cta { padding: 32px 24px; }
 
+      /* Expertise — inherits grid-template-columns: 1fr + overflow: hidden from 1024px */
       .expertise-section { padding: 0 20px; margin-bottom: 60px; }
       .expertise-text { padding: 36px 24px; }
+      .expertise-image { min-height: 260px; }
 
+      /* Projects */
       .projects-section { padding: 60px 0; }
       .projects-inner { padding: 0 20px; }
       .projects-header { flex-direction: column; align-items: flex-start; gap: 16px; }
@@ -1282,19 +1287,46 @@
         grid-template-rows: auto;
         gap: 12px;
       }
-      .project-card { height: 260px; }
-      .project-card:nth-child(1) { grid-row: auto; height: 320px; }
-      .project-card:nth-child(4) { grid-column: auto; }
+      .project-card { height: 240px; border-radius: var(--radius-sm); }
+      .project-card:nth-child(1) { grid-row: auto; height: 300px; }
 
+      /* Domaines */
       .domaines-section { padding: 60px 20px; }
       .domaines-grid { grid-template-columns: 1fr 1fr; }
+      .domaine-card { padding: 24px 12px; }
       .domaine-card-icon { width: 68px; height: 68px; }
+      .domaine-card:last-child:nth-child(odd) {
+        grid-column: 1 / -1;
+        max-width: 200px;
+        margin: 0 auto;
+      }
 
+      /* CTA */
       .cta-section { padding: 60px 20px; }
-      .cta-card { padding: 48px 24px; }
+      .cta-card { padding: 48px 24px; border-radius: var(--radius-sm); }
+      .cta-card::before { width: 280px; height: 280px; right: -30%; }
+      .cta-card::after { width: 200px; height: 200px; left: -15%; }
 
+      /* Footer */
       .footer { padding: 40px 20px 0; }
       .footer-inner { grid-template-columns: 1fr; gap: 32px; }
+      .footer-bottom { flex-direction: column; gap: 8px; text-align: center; padding: 16px 0; }
+    }
+
+    /* Extra small: <=380px */
+    @media (max-width: 380px) {
+      .hero h1 { font-size: 24px; }
+      .hero-sub { font-size: 14px; }
+      .hero-actions { flex-direction: column; }
+      .btn-hero-primary, .btn-hero-secondary { width: 100%; justify-content: center; }
+      .stat-number { font-size: 22px; }
+      .stat-label { font-size: 11px; }
+      .workflow-header h1 { font-size: 20px; }
+      .wf-wheel-wrap { width: 150px; height: 150px; }
+      .domaines-grid { grid-template-columns: 1fr; }
+      .domaine-card:last-child:nth-child(odd) { max-width: none; grid-column: auto; }
+      .cta-card .section-title { font-size: 22px; }
+      .btn-cta-large { padding: 14px 28px; font-size: 14px; }
     }
   </style>
 </head>

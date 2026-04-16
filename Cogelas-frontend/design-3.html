@@ -1,0 +1,1951 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cogelas - Design 3 | Architectural Noir</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    /* =====================================================
+       DESIGN 3: ARCHITECTURAL NOIR
+       Bebas Neue display + Gold accent + Dark editorial
+       ===================================================== */
+
+    :root {
+      --black: #0C0C0C;
+      --black-light: #141414;
+      --black-card: #1A1A1A;
+      --black-elevated: #222222;
+      --gold: #C8A96E;
+      --gold-light: #D4BC8A;
+      --gold-dim: rgba(200, 169, 110, 0.15);
+      --gold-glow: rgba(200, 169, 110, 0.08);
+      --white: #F5F2ED;
+      --white-pure: #FFFFFF;
+      --gray-100: #E8E4DE;
+      --gray-300: #A8A29E;
+      --gray-500: #6B6660;
+      --gray-700: #3D3A37;
+      --gray-800: #2A2725;
+      --border: rgba(200, 169, 110, 0.12);
+      --border-light: rgba(255, 255, 255, 0.06);
+      --glass: rgba(26, 26, 26, 0.7);
+      --glass-border: rgba(200, 169, 110, 0.1);
+      --shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+      --shadow-lg: 0 24px 64px rgba(0, 0, 0, 0.5);
+      --radius: 12px;
+      --radius-sm: 6px;
+      --transition: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-slow: 600ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+    /* Eliminate 300ms tap delay on mobile */
+    a, button { touch-action: manipulation; }
+
+    body {
+      font-family: 'Source Sans 3', sans-serif;
+      color: var(--white);
+      background: var(--black);
+      line-height: 1.65;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Grain texture overlay */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 256px 256px;
+    }
+
+    a { text-decoration: none; color: inherit; cursor: pointer; }
+    ul { list-style: none; }
+    img { max-width: 100%; display: block; }
+
+    /* === TYPOGRAPHY === */
+    .display {
+      font-family: 'Bebas Neue', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      line-height: 1;
+    }
+
+    /* === NAVBAR === */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(12, 12, 12, 0.8);
+      backdrop-filter: blur(20px) saturate(1.2);
+      -webkit-backdrop-filter: blur(20px) saturate(1.2);
+      border-bottom: 1px solid var(--border-light);
+      transition: background var(--transition);
+    }
+
+    .navbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+      max-width: 1340px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    .logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 26px;
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      letter-spacing: 4px;
+    }
+
+    .logo-mark {
+      width: 8px;
+      height: 8px;
+      background: var(--gold);
+      display: inline-block;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .nav-link {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--gray-300);
+      padding: 8px 16px;
+      letter-spacing: 0.5px;
+      transition: color var(--transition);
+      position: relative;
+    }
+
+    .nav-link:hover { color: var(--white); }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 4px;
+      left: 16px;
+      right: 16px;
+      height: 1px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform var(--transition);
+    }
+
+    .nav-link:hover::after { transform: scaleX(1); }
+
+    /* Dropdown */
+    .nav-dropdown { position: relative; }
+    .nav-dropdown:hover .dropdown { opacity: 1; visibility: visible; transform: translateY(0); }
+
+    .dropdown {
+      position: absolute;
+      top: calc(100% + 12px);
+      left: -16px;
+      background: var(--glass);
+      backdrop-filter: blur(24px) saturate(1.2);
+      -webkit-backdrop-filter: blur(24px) saturate(1.2);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius);
+      padding: 8px;
+      min-width: 280px;
+      box-shadow: var(--shadow-lg);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-8px);
+      transition: all var(--transition);
+    }
+
+    .dropdown a {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      color: var(--gray-300);
+      transition: all var(--transition);
+    }
+
+    .dropdown a:hover {
+      background: rgba(200, 169, 110, 0.08);
+      color: var(--white);
+    }
+
+    .dropdown a i { color: var(--gold); }
+
+    /* CTA button */
+    .btn-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 24px;
+      background: transparent;
+      color: var(--gold);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      border: 1px solid var(--gold);
+      border-radius: 0;
+      cursor: pointer;
+      transition: all var(--transition);
+    }
+
+    .btn-cta:hover {
+      background: var(--gold);
+      color: var(--black);
+    }
+
+    .nav-phone {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--gray-300);
+      margin-left: 12px;
+      transition: color var(--transition);
+    }
+
+    .nav-phone:hover { color: var(--gold); }
+
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--white);
+      min-width: 44px;
+      min-height: 44px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .mobile-close { display: none; }
+
+    .mobile-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 999;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .mobile-overlay.active { opacity: 1; }
+
+    /* === HERO === */
+    .hero {
+      position: relative;
+      height: 100vh;
+      min-height: 640px;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+    }
+
+    .hero-video-wrap {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .hero-video-wrap iframe {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 120%;
+      height: 120%;
+      transform: translate(-50%, -50%);
+      border: none;
+      pointer-events: none;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        180deg,
+        rgba(12, 12, 12, 0.3) 0%,
+        rgba(12, 12, 12, 0.5) 40%,
+        rgba(12, 12, 12, 0.92) 100%
+      );
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 1340px;
+      margin: 0 auto;
+      padding: 0 40px 100px;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: end;
+      gap: 60px;
+    }
+
+    .hero-text { max-width: 740px; }
+
+    .hero-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      width: 48px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    .hero-eyebrow span {
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      color: var(--gold);
+    }
+
+    .hero h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(48px, 7vw, 96px);
+      color: var(--white);
+      line-height: 0.95;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 span {
+      display: block;
+      color: var(--gold);
+    }
+
+    .hero-sub {
+      font-size: 16px;
+      font-weight: 300;
+      color: var(--gray-300);
+      max-width: 480px;
+      line-height: 1.8;
+      margin-bottom: 40px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .btn-hero {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 36px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all var(--transition);
+    }
+
+    .btn-hero-primary {
+      background: var(--gold);
+      color: var(--black);
+      border: none;
+    }
+
+    .btn-hero-primary:hover {
+      background: var(--gold-light);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(200, 169, 110, 0.25);
+    }
+
+    .btn-hero-ghost {
+      background: transparent;
+      color: var(--white);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .btn-hero-ghost:hover {
+      border-color: var(--white);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    /* Hero stats — vertical on the right */
+    .hero-stats {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      padding-left: 40px;
+      border-left: 1px solid var(--border);
+    }
+
+    .stat { text-align: left; }
+
+    .stat-number {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 48px;
+      color: var(--gold);
+      line-height: 1;
+      letter-spacing: 2px;
+    }
+
+    .stat-label {
+      font-size: 12px;
+      color: var(--gray-500);
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-top: 4px;
+    }
+
+    /* === SECTION SHARED === */
+    .section-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+
+    .section-eyebrow::before {
+      content: '';
+      width: 24px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    .section-heading {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(32px, 4vw, 56px);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      line-height: 1;
+      color: var(--white);
+      margin-bottom: 20px;
+    }
+
+    .section-desc {
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--gray-300);
+      line-height: 1.8;
+      max-width: 520px;
+    }
+
+    /* === SERVICES / WORKFLOW === */
+    .services-section {
+      padding: 120px 40px;
+      max-width: 1340px;
+      margin: 0 auto;
+    }
+
+    .services-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+      margin-bottom: 80px;
+    }
+
+    .services-intro p {
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--gray-300);
+      line-height: 1.85;
+      margin-bottom: 16px;
+    }
+
+    .services-intro a {
+      color: var(--gold);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-color: rgba(200, 169, 110, 0.3);
+      transition: text-decoration-color var(--transition);
+    }
+
+    .services-intro a:hover { text-decoration-color: var(--gold); }
+
+    /* Services two-column layout: donut chart + list */
+    .services-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    /* Donut chart container */
+    .services-chart {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+    }
+
+    .donut-chart {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .donut-segment {
+      fill: none;
+      stroke-width: 38;
+      stroke-linecap: butt;
+      opacity: 0.65;
+      transition: opacity var(--transition), stroke-width var(--transition), filter var(--transition);
+      cursor: pointer;
+    }
+
+    .donut-segment:hover,
+    .donut-segment.active {
+      opacity: 1;
+      stroke-width: 44;
+      filter: drop-shadow(0 0 16px rgba(200, 169, 110, 0.25));
+    }
+
+    .donut-center {
+      fill: var(--black-card);
+      stroke: var(--border);
+      stroke-width: 1;
+    }
+
+    .donut-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 26px;
+      fill: var(--white);
+      letter-spacing: 5px;
+    }
+
+    .donut-sub {
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 11px;
+      fill: var(--gray-500);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .donut-mark {
+      fill: var(--gold);
+    }
+
+    /* Service list — vertical editorial stack */
+    .services-list {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .service-item {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      padding: 24px 0;
+      border-bottom: 1px solid var(--border-light);
+      cursor: pointer;
+      transition: all var(--transition);
+    }
+
+    .service-item:first-child {
+      border-top: 1px solid var(--border-light);
+    }
+
+    .service-item:hover,
+    .service-item.active {
+      padding-left: 12px;
+      border-color: var(--border);
+    }
+
+    .service-item-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 14px;
+      color: var(--gold);
+      letter-spacing: 2px;
+      opacity: 0.4;
+      min-width: 28px;
+      transition: opacity var(--transition);
+    }
+
+    .service-item:hover .service-item-num,
+    .service-item.active .service-item-num {
+      opacity: 1;
+    }
+
+    .service-item-content {
+      flex: 1;
+    }
+
+    .service-item-content h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 20px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--gray-300);
+      transition: color var(--transition);
+    }
+
+    .service-item:hover .service-item-content h3,
+    .service-item.active .service-item-content h3 {
+      color: var(--white);
+    }
+
+    .service-item-content p {
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--gray-500);
+      line-height: 1.6;
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      margin-top: 0;
+      transition: max-height 0.4s ease, opacity 0.3s ease, margin-top 0.3s ease;
+    }
+
+    .service-item:hover .service-item-content p,
+    .service-item.active .service-item-content p {
+      max-height: 60px;
+      opacity: 1;
+      margin-top: 6px;
+    }
+
+    .service-item-arrow {
+      color: var(--gold);
+      opacity: 0;
+      transform: translateX(-8px);
+      transition: all var(--transition);
+      flex-shrink: 0;
+    }
+
+    .service-item:hover .service-item-arrow,
+    .service-item.active .service-item-arrow {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    /* Donut photo markers on the ring */
+    .donut-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 380px;
+    }
+
+    .donut-photo {
+      position: absolute;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2px solid var(--gray-700);
+      background: var(--black-card);
+      transform: translate(-50%, -50%);
+      transition: all var(--transition);
+      cursor: pointer;
+      z-index: 2;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+    }
+
+    .donut-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(80%) brightness(0.7);
+      transition: filter var(--transition);
+    }
+
+    .donut-photo::after {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      border-radius: 50%;
+      border: 2px solid transparent;
+      transition: all var(--transition);
+    }
+
+    .donut-photo:hover,
+    .donut-photo.active {
+      border-color: var(--gold);
+      transform: translate(-50%, -50%) scale(1.2);
+      box-shadow: 0 0 24px rgba(200, 169, 110, 0.4), 0 4px 16px rgba(0, 0, 0, 0.5);
+    }
+
+    .donut-photo:hover::after,
+    .donut-photo.active::after {
+      border-color: rgba(200, 169, 110, 0.3);
+      inset: -6px;
+    }
+
+    .donut-photo:hover img,
+    .donut-photo.active img {
+      filter: grayscale(0%) brightness(1);
+    }
+
+    /* === EXPERTISE (PLANCHERS) === */
+    .expertise-section {
+      padding: 0 40px;
+      max-width: 1340px;
+      margin: 0 auto 120px;
+    }
+
+    .expertise-card {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 520px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .expertise-text {
+      background: var(--black-card);
+      border: 1px solid var(--border-light);
+      padding: 64px 56px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .expertise-text p {
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--gray-300);
+      line-height: 1.85;
+      margin-bottom: 14px;
+    }
+
+    .btn-expertise {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 28px;
+      padding: 14px 32px;
+      background: var(--gold);
+      color: var(--black);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      transition: all var(--transition);
+      width: fit-content;
+    }
+
+    .btn-expertise:hover {
+      background: var(--gold-light);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(200, 169, 110, 0.2);
+    }
+
+    .expertise-image {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .expertise-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      inset: 0;
+      filter: grayscale(30%) contrast(1.1);
+      transition: filter var(--transition-slow), transform var(--transition-slow);
+    }
+
+    .expertise-card:hover .expertise-image img {
+      filter: grayscale(0%) contrast(1);
+      transform: scale(1.03);
+    }
+
+    /* Gold corner accent */
+    .expertise-image::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 80px;
+      height: 80px;
+      border-right: 3px solid var(--gold);
+      border-bottom: 3px solid var(--gold);
+    }
+
+    /* === PROJECTS === */
+    .projects-section {
+      background: var(--black-light);
+      padding: 120px 0;
+      overflow: hidden;
+    }
+
+    .projects-inner {
+      max-width: 1340px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    .projects-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      margin-bottom: 56px;
+    }
+
+    .btn-projects {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--gold);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 12px 28px;
+      border: 1px solid var(--border);
+      transition: all var(--transition);
+      cursor: pointer;
+    }
+
+    .btn-projects:hover {
+      background: var(--gold);
+      color: var(--black);
+      border-color: var(--gold);
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr 1fr;
+      grid-template-rows: 260px 260px;
+      gap: 4px;
+    }
+
+    .project-card {
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .project-card:first-child { grid-row: 1 / 3; }
+    .project-card:last-child { grid-column: 2 / 4; }
+
+    .project-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(40%);
+      transition: filter var(--transition-slow), transform var(--transition-slow);
+    }
+
+    .project-card:hover img {
+      filter: grayscale(0%);
+      transform: scale(1.06);
+    }
+
+    .project-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 40%, rgba(12, 12, 12, 0.85) 100%);
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      padding: 28px;
+      transition: background var(--transition);
+    }
+
+    .project-card:hover .project-overlay {
+      background: linear-gradient(180deg, transparent 20%, rgba(12, 12, 12, 0.9) 100%);
+    }
+
+    .project-num {
+      position: absolute;
+      top: 20px;
+      left: 24px;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 14px;
+      color: rgba(200, 169, 110, 0.5);
+      letter-spacing: 2px;
+    }
+
+    .project-info h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 20px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 4px;
+    }
+
+    .project-card:first-child .project-info h3 { font-size: 28px; }
+
+    .project-info span {
+      font-size: 11px;
+      color: var(--gold);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .project-arrow {
+      width: 36px;
+      height: 36px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      opacity: 0;
+      transform: translateX(-8px);
+      transition: all var(--transition);
+      flex-shrink: 0;
+    }
+
+    .project-card:hover .project-arrow {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    /* === DOMAINES === */
+    .domaines-section {
+      padding: 120px 40px;
+      max-width: 1340px;
+      margin: 0 auto;
+    }
+
+    .domaines-header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+
+    .domaines-header .section-eyebrow { justify-content: center; }
+    .domaines-header .section-desc { margin: 0 auto; }
+
+    .domaines-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 2px;
+    }
+
+    .domaine-card {
+      background: var(--black-card);
+      border: 1px solid var(--border-light);
+      padding: 40px 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: all var(--transition);
+      position: relative;
+    }
+
+    .domaine-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transition: transform var(--transition-slow);
+    }
+
+    .domaine-card:hover {
+      background: var(--black-elevated);
+      border-color: var(--border);
+    }
+
+    .domaine-card:hover::after { transform: scaleX(1); }
+
+    .domaine-icon {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin: 0 auto 20px;
+      border: 2px solid var(--border);
+      transition: border-color var(--transition);
+    }
+
+    .domaine-card:hover .domaine-icon { border-color: var(--gold); }
+
+    .domaine-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(50%);
+      transition: filter var(--transition);
+    }
+
+    .domaine-card:hover .domaine-icon img { filter: grayscale(0%); }
+
+    .domaine-card h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 16px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--gray-300);
+      transition: color var(--transition);
+    }
+
+    .domaine-card:hover h3 { color: var(--white); }
+
+    /* === CTA === */
+    .cta-section {
+      padding: 120px 40px;
+    }
+
+    .cta-card {
+      max-width: 1000px;
+      margin: 0 auto;
+      background: var(--black-card);
+      border: 1px solid var(--border);
+      padding: 80px 64px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Corner accents */
+    .cta-card::before,
+    .cta-card::after {
+      content: '';
+      position: absolute;
+      width: 60px;
+      height: 60px;
+    }
+
+    .cta-card::before {
+      top: -1px;
+      left: -1px;
+      border-top: 2px solid var(--gold);
+      border-left: 2px solid var(--gold);
+    }
+
+    .cta-card::after {
+      bottom: -1px;
+      right: -1px;
+      border-bottom: 2px solid var(--gold);
+      border-right: 2px solid var(--gold);
+    }
+
+    .cta-card .section-eyebrow { justify-content: center; }
+
+    .cta-card .section-heading {
+      font-size: clamp(36px, 4vw, 56px);
+    }
+
+    .cta-card .section-desc {
+      margin: 0 auto 36px;
+      color: var(--gray-500);
+    }
+
+    .btn-cta-large {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 18px 48px;
+      background: var(--gold);
+      color: var(--black);
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 18px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      transition: all var(--transition);
+    }
+
+    .btn-cta-large:hover {
+      background: var(--gold-light);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(200, 169, 110, 0.2);
+    }
+
+    /* === FOOTER === */
+    .footer {
+      background: var(--black-light);
+      border-top: 1px solid var(--border-light);
+      padding: 64px 40px 0;
+    }
+
+    .footer-inner {
+      max-width: 1340px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 0.8fr 1.2fr;
+      gap: 48px;
+      padding-bottom: 48px;
+    }
+
+    .footer .logo { font-size: 22px; }
+
+    .footer-brand p {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--gray-500);
+      line-height: 1.7;
+      margin-top: 16px;
+    }
+
+    .footer-tagline {
+      font-size: 13px;
+      color: var(--gold);
+      font-style: italic;
+      margin-top: 8px;
+    }
+
+    .footer h4 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 16px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 24px;
+    }
+
+    .footer-links li { margin-bottom: 12px; }
+
+    .footer-links a {
+      font-size: 13px;
+      color: var(--gray-500);
+      transition: color var(--transition);
+      display: inline-block;
+      padding: 6px 0;
+    }
+
+    .footer-links a:hover { color: var(--gold); }
+
+    .footer-contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 16px;
+      font-size: 13px;
+      color: var(--gray-500);
+    }
+
+    .footer-contact-item i {
+      color: var(--gold);
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
+
+    .footer-contact-item a {
+      color: var(--gray-500);
+      transition: color var(--transition);
+    }
+
+    .footer-contact-item a:hover { color: var(--gold); }
+
+    .footer-bottom {
+      max-width: 1340px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 0;
+      border-top: 1px solid var(--border-light);
+      font-size: 12px;
+      color: var(--gray-700);
+    }
+
+    .footer-bottom a {
+      color: var(--gray-700);
+      transition: color var(--transition);
+      padding: 12px 0;
+      display: inline-block;
+    }
+    .footer-bottom a:hover { color: var(--gold); }
+
+    /* === SCROLL REVEAL === */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-d1 { transition-delay: 100ms; }
+    .reveal-d2 { transition-delay: 200ms; }
+    .reveal-d3 { transition-delay: 300ms; }
+    .reveal-d4 { transition-delay: 400ms; }
+    .reveal-d5 { transition-delay: 500ms; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+    }
+
+    /* === RESPONSIVE === */
+
+    /* Tablet: <=1024px */
+    @media (max-width: 1024px) {
+      .navbar-inner { padding: 0 24px; }
+      .hero-content { padding: 0 24px 80px; grid-template-columns: 1fr; gap: 40px; }
+      .hero-stats { flex-direction: row; border-left: none; border-top: 1px solid var(--border); padding-left: 0; padding-top: 24px; }
+      .services-section { padding: 80px 24px; }
+      .services-header { grid-template-columns: 1fr; gap: 32px; }
+      .services-layout { grid-template-columns: 1fr; gap: 48px; }
+      .services-chart { max-width: 340px; margin: 0 auto; padding: 20px; }
+      .donut-wrapper { max-width: 320px; margin: 0 auto; }
+      .donut-photo { width: 46px; height: 46px; }
+      .expertise-section { padding: 0 24px; margin-bottom: 80px; }
+      .expertise-card { grid-template-columns: 1fr; }
+      .expertise-image { min-height: 320px; }
+      .projects-inner { padding: 0 24px; }
+      .projects-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 240px 240px;
+      }
+      .project-card:first-child { grid-row: 1 / 3; }
+      .project-card:last-child { grid-column: auto; }
+      .domaines-section { padding: 80px 24px; }
+      .domaines-grid { grid-template-columns: repeat(3, 1fr); }
+      .cta-section { padding: 80px 24px; }
+      .footer { padding: 48px 24px 0; }
+      .footer-inner { grid-template-columns: 1fr 1fr; }
+    }
+
+    /* Mobile: <=768px */
+    @media (max-width: 768px) {
+      /* Navbar */
+      .navbar-inner { padding: 0 20px; height: 60px; }
+      .nav-phone { display: none; }
+      .menu-toggle { display: flex; }
+
+      .nav-links {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 300px;
+        max-width: 85vw;
+        height: 100vh;
+        background: var(--black-card);
+        padding: 80px 24px 32px;
+        gap: 0;
+        box-shadow: -8px 0 40px rgba(0, 0, 0, 0.6);
+        transform: translateX(100%);
+        transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 1001;
+        overflow-y: auto;
+        align-items: stretch;
+      }
+
+      .nav-links.open { transform: translateX(0); }
+      .nav-links li { border-bottom: 1px solid var(--border-light); }
+      .nav-links li:last-child { border-bottom: none; margin-top: 16px; }
+
+      /* Min 44px touch targets per UX guideline */
+      .nav-links .nav-link {
+        display: block;
+        padding: 14px 8px;
+        font-size: 15px;
+        border-radius: 0;
+        min-height: 44px;
+      }
+
+      .nav-links .nav-link::after { display: none; }
+
+      .nav-links .btn-cta {
+        text-align: center;
+        justify-content: center;
+        padding: 14px 24px;
+        min-height: 48px;
+      }
+
+      .nav-links .nav-dropdown .dropdown {
+        position: static;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        box-shadow: none;
+        border: none;
+        padding: 0 0 8px 12px;
+        min-width: 0;
+        background: transparent;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+      }
+
+      .nav-links .nav-dropdown .dropdown a {
+        padding: 10px 8px;
+        font-size: 13px;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+      }
+
+      .mobile-close {
+        display: flex;
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: var(--white);
+        width: 44px;
+        height: 44px;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .mobile-overlay { display: block; pointer-events: none; }
+      .mobile-overlay.active { pointer-events: auto; }
+
+      /* === Hero === */
+      .hero { height: 100svh; min-height: 560px; }
+      .hero-content {
+        padding: 0 20px 28px;
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+      .hero h1 { font-size: clamp(40px, 11vw, 56px); margin-bottom: 16px; }
+      .hero-sub { font-size: 14px; margin-bottom: 28px; line-height: 1.7; }
+      .hero-video-wrap iframe { width: 300%; }
+
+      /* Hero buttons — full width, stacked, proper touch targets */
+      .hero-actions { flex-direction: column; gap: 10px; }
+      .btn-hero { width: 100%; justify-content: center; min-height: 48px; padding: 14px 24px; }
+
+      /* Stats — compact 3-col row inside the hero, above the fold */
+      .hero-stats {
+        flex-direction: row;
+        justify-content: space-between;
+        border-left: none;
+        border-top: 1px solid var(--border);
+        padding: 20px 0 0;
+        margin-top: 24px;
+        gap: 8px;
+      }
+      .stat { text-align: center; flex: 1; }
+      .stat-number { font-size: 28px; }
+      .stat-label { font-size: 10px; letter-spacing: 1px; }
+
+      /* === Services === */
+      .services-section { padding: 64px 20px; }
+      .services-chart { max-width: 280px; padding: 16px; }
+      .donut-wrapper { max-width: 260px; }
+      .donut-photo { width: 38px; height: 38px; border-width: 1.5px; }
+      .service-item { padding: 20px 0; gap: 16px; min-height: 44px; }
+      .service-item-content p { max-height: none; opacity: 1; margin-top: 6px; }
+      .service-item-arrow { opacity: 1; transform: translateX(0); }
+
+      /* === Expertise === */
+      .expertise-section { padding: 0 20px; margin-bottom: 64px; }
+      .expertise-card { overflow: hidden; }
+      .expertise-text { padding: 36px 24px; }
+      .expertise-image { min-height: 220px; }
+      .expertise-image::after { width: 40px; height: 40px; }
+      .btn-expertise { width: 100%; justify-content: center; min-height: 48px; }
+
+      /* === Projects === */
+      .projects-section { padding: 64px 0; }
+      .projects-inner { padding: 0 20px; }
+      .projects-header { flex-direction: column; align-items: flex-start; gap: 16px; }
+      .btn-projects { min-height: 44px; }
+      .projects-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        gap: 4px;
+      }
+      .project-card { height: 200px; }
+      .project-card:first-child { grid-row: auto; height: 260px; }
+      .project-card:last-child { grid-column: auto; }
+      .project-info h3 { font-size: 18px; }
+      .project-card:first-child .project-info h3 { font-size: 22px; }
+      .project-overlay { padding: 20px; }
+
+      /* === Domaines === */
+      .domaines-section { padding: 64px 20px; }
+      .domaines-header { margin-bottom: 40px; }
+      .domaines-grid { grid-template-columns: 1fr 1fr; gap: 2px; }
+      .domaine-card { padding: 24px 12px; }
+      .domaine-icon { width: 56px; height: 56px; margin-bottom: 12px; }
+      .domaine-card h3 { font-size: 13px; letter-spacing: 1px; }
+      .domaine-card:last-child:nth-child(odd) {
+        grid-column: 1 / -1;
+        max-width: 50%;
+        margin: 0 auto;
+      }
+
+      /* === CTA === */
+      .cta-section { padding: 64px 20px; }
+      .cta-card { padding: 48px 24px; }
+      .cta-card::before, .cta-card::after { width: 36px; height: 36px; }
+      .btn-cta-large { width: 100%; justify-content: center; min-height: 52px; }
+
+      /* === Footer === */
+      .footer { padding: 40px 20px 0; }
+      .footer-inner { grid-template-columns: 1fr; gap: 32px; }
+      .footer-bottom { flex-direction: column; gap: 8px; text-align: center; padding: 16px 0; }
+    }
+
+    /* Extra small: <=380px */
+    @media (max-width: 380px) {
+      .hero h1 { font-size: 36px; }
+      .hero-sub { font-size: 13px; }
+      .stat-number { font-size: 24px; }
+      .stat-label { font-size: 9px; }
+      .section-heading { font-size: 28px; }
+      .services-chart { max-width: 240px; padding: 8px; }
+      .donut-wrapper { max-width: 220px; }
+      .donut-photo { width: 32px; height: 32px; border-width: 1px; }
+      .service-item-content h3 { font-size: 18px; }
+      .service-item-num { display: none; }
+      .domaine-icon { width: 48px; height: 48px; }
+      .domaine-card h3 { font-size: 11px; }
+      .cta-card .section-heading { font-size: 26px; }
+      .btn-cta-large { padding: 14px 24px; font-size: 15px; }
+    }
+
+    /* Tiny screens: <=320px — single column domaines */
+    @media (max-width: 320px) {
+      .services-chart { max-width: 180px; }
+      .donut-logo { font-size: 20px; }
+      .domaines-grid { grid-template-columns: 1fr; }
+      .domaine-card:last-child:nth-child(odd) { max-width: none; grid-column: auto; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========== NAVBAR ========== -->
+  <nav class="navbar" id="navbar">
+    <div class="navbar-inner">
+      <a href="/" class="logo">
+        <span class="logo-mark"></span>COGELAS
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <button class="mobile-close" id="menuClose" aria-label="Fermer le menu">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+        <li><a class="nav-link" href="#">Accueil</a></li>
+        <li><a class="nav-link" href="#">Realisations</a></li>
+        <li><a class="nav-link" href="#">Qui sommes-nous ?</a></li>
+        <li class="nav-dropdown">
+          <a class="nav-link" href="#">Expertises <i data-lucide="chevron-down" style="width:12px;height:12px;display:inline;vertical-align:middle;opacity:0.5;"></i></a>
+          <div class="dropdown">
+            <a href="#"><i data-lucide="layers" style="width:16px;height:16px;"></i> Planchers techniques sureleves</a>
+            <a href="#"><i data-lucide="grid-3x3" style="width:16px;height:16px;"></i> Revetement de sol</a>
+            <a href="#"><i data-lucide="truck" style="width:16px;height:16px;"></i> Terrassement et Assainissement</a>
+            <a href="#"><i data-lucide="brick-wall" style="width:16px;height:16px;"></i> Maconnerie / Gros Oeuvre</a>
+            <a href="#"><i data-lucide="thermometer-snowflake" style="width:16px;height:16px;"></i> Isolation thermique par l'exterieur</a>
+          </div>
+        </li>
+        <li><a class="btn-cta" href="#">J'ai un projet !</a></li>
+      </ul>
+      <a href="tel:0170928129" class="nav-phone">
+        <i data-lucide="phone" style="width:14px;height:14px;"></i>
+        01 70 92 81 29
+      </a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+        <i data-lucide="menu" style="width:24px;height:24px;"></i>
+      </button>
+    </div>
+  </nav>
+  <div class="mobile-overlay" id="mobileOverlay"></div>
+
+  <!-- ========== HERO ========== -->
+  <section class="hero">
+    <div class="hero-video-wrap">
+      <iframe
+        src="https://www.youtube.com/embed/LfTC5ZFGlB8?controls=0&showinfo=0&rel=0&autoplay=1&mute=1&loop=1&playlist=LfTC5ZFGlB8&playsinline=1"
+        title="COGELAS - Construction" allow="autoplay; encrypted-media" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+      <div class="hero-text">
+        <div class="hero-eyebrow reveal"><span>25 ans d'excellence</span></div>
+        <h1 class="reveal reveal-d1">Construire<br><span>l'excellence</span></h1>
+        <p class="hero-sub reveal reveal-d2">Des solutions sur mesure en terrassement, maconnerie gros oeuvre, planchers techniques et bien plus. Professionnalisme et savoir-faire europeens.</p>
+        <div class="hero-actions reveal reveal-d3">
+          <a href="#" class="btn-hero btn-hero-primary">
+            <i data-lucide="send" style="width:16px;height:16px;"></i>
+            Contactez-nous
+          </a>
+          <a href="#" class="btn-hero btn-hero-ghost">
+            <i data-lucide="eye" style="width:16px;height:16px;"></i>
+            Nos Realisations
+          </a>
+        </div>
+      </div>
+      <div class="hero-stats reveal reveal-d4">
+        <div class="stat">
+          <div class="stat-number" data-count="25">0</div>
+          <div class="stat-label">Annees d'experience</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number" data-count="500">0</div>
+          <div class="stat-label">Projets realises</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number" data-count="6">0</div>
+          <div class="stat-label">Corps de metier</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SERVICES ========== -->
+  <section class="services-section">
+    <div class="services-header">
+      <div class="reveal">
+        <div class="section-eyebrow">Nos Expertises</div>
+        <h2 class="section-heading">COGELAS, construction,<br>renovation en Ile-de-France</h2>
+      </div>
+      <div class="services-intro reveal reveal-d1">
+        <p>Fort de 25 ans d'experience dans la construction, nos equipes excellent dans le <a href="#">terrassement</a>, la <a href="#">maconnerie gros oeuvre</a>, les <a href="#">planchers techniques sureleves</a> et bien plus encore.</p>
+        <p>Chaque defi est une opportunite d'innover et de depasser les attentes, offrant des solutions personnalisees et adaptees a vos besoins specifiques.</p>
+      </div>
+    </div>
+
+    <div class="services-layout">
+      <!-- SVG Donut Chart -->
+      <div class="services-chart reveal">
+        <div class="donut-wrapper">
+        <svg class="donut-chart" viewBox="0 0 400 400" role="img" aria-labelledby="donut-title">
+          <title id="donut-title">Repartition des 6 expertises Cogelas</title>
+          <defs>
+            <linearGradient id="seg1" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#C8A96E"/><stop offset="100%" stop-color="#B89A5F"/>
+            </linearGradient>
+            <linearGradient id="seg2" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#D4BC8A"/><stop offset="100%" stop-color="#C8A96E"/>
+            </linearGradient>
+            <linearGradient id="seg3" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#BFA062"/><stop offset="100%" stop-color="#A8894F"/>
+            </linearGradient>
+            <linearGradient id="seg4" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#D4BC8A"/><stop offset="100%" stop-color="#BFA062"/>
+            </linearGradient>
+            <linearGradient id="seg5" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#C8A96E"/><stop offset="100%" stop-color="#D4BC8A"/>
+            </linearGradient>
+            <linearGradient id="seg6" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#A8894F"/><stop offset="100%" stop-color="#C8A96E"/>
+            </linearGradient>
+          </defs>
+          <!-- Donut ring segments (r=140, circumference=879.65, segment=146.61, gap=4, arc=142.61) -->
+          <g transform="rotate(-90, 200, 200)">
+            <circle class="donut-segment" data-service="1" cx="200" cy="200" r="140"
+                    stroke="url(#seg1)" style="stroke-dasharray: 142.61 737.04; stroke-dashoffset: 0;"/>
+            <circle class="donut-segment" data-service="2" cx="200" cy="200" r="140"
+                    stroke="url(#seg2)" style="stroke-dasharray: 142.61 737.04; stroke-dashoffset: -146.61;"/>
+            <circle class="donut-segment" data-service="3" cx="200" cy="200" r="140"
+                    stroke="url(#seg3)" style="stroke-dasharray: 142.61 737.04; stroke-dashoffset: -293.22;"/>
+            <circle class="donut-segment" data-service="4" cx="200" cy="200" r="140"
+                    stroke="url(#seg4)" style="stroke-dasharray: 142.61 737.04; stroke-dashoffset: -439.83;"/>
+            <circle class="donut-segment" data-service="5" cx="200" cy="200" r="140"
+                    stroke="url(#seg5)" style="stroke-dasharray: 142.61 737.04; stroke-dashoffset: -586.44;"/>
+            <circle class="donut-segment" data-service="6" cx="200" cy="200" r="140"
+                    stroke="url(#seg6)" style="stroke-dasharray: 142.61 737.04; stroke-dashoffset: -733.04;"/>
+          </g>
+          <!-- Center -->
+          <circle class="donut-center" cx="200" cy="200" r="96"/>
+          <rect class="donut-mark" x="196" y="170" width="8" height="8"/>
+          <text class="donut-logo" x="200" y="200" text-anchor="middle">COGELAS</text>
+          <text class="donut-sub" x="200" y="218" text-anchor="middle">6 expertises</text>
+        </svg>
+        <!-- Photo markers positioned on ring midpoints -->
+        <div class="donut-photo" data-service="1" style="left:67.5%;top:19.7%">
+          <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=120&h=120&fit=crop&crop=center" alt="Maconnerie" loading="lazy">
+        </div>
+        <div class="donut-photo" data-service="2" style="left:85%;top:50%">
+          <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=120&h=120&fit=crop&crop=center" alt="Gros oeuvre" loading="lazy">
+        </div>
+        <div class="donut-photo" data-service="3" style="left:67.5%;top:80.3%">
+          <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=120&h=120&fit=crop&crop=center" alt="Planchers sureleves" loading="lazy">
+        </div>
+        <div class="donut-photo" data-service="4" style="left:32.5%;top:80.3%">
+          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=120&h=120&fit=crop&crop=center" alt="Isolation thermique" loading="lazy">
+        </div>
+        <div class="donut-photo" data-service="5" style="left:15%;top:50%">
+          <img src="https://images.unsplash.com/photo-1581094288338-2314dddb7ece?w=120&h=120&fit=crop&crop=center" alt="Terrassement" loading="lazy">
+        </div>
+        <div class="donut-photo" data-service="6" style="left:32.5%;top:19.7%">
+          <img src="https://images.unsplash.com/photo-1615971677499-5467cbab01c0?w=120&h=120&fit=crop&crop=center" alt="Revetement de sol" loading="lazy">
+        </div>
+        </div>
+      </div>
+
+      <!-- Service list -->
+      <div class="services-list">
+        <div class="service-item reveal" data-service="1">
+          <span class="service-item-num">01</span>
+          <div class="service-item-content">
+            <h3>Maconnerie generale</h3>
+            <p>Vos projets de construction et de renovation, realises avec une touche sur mesure</p>
+          </div>
+          <span class="service-item-arrow"><i data-lucide="arrow-right" style="width:16px;height:16px;"></i></span>
+        </div>
+        <div class="service-item reveal reveal-d1" data-service="2">
+          <span class="service-item-num">02</span>
+          <div class="service-item-content">
+            <h3>Gros oeuvre</h3>
+            <p>Fondations solides, structures beton et travaux durables</p>
+          </div>
+          <span class="service-item-arrow"><i data-lucide="arrow-right" style="width:16px;height:16px;"></i></span>
+        </div>
+        <div class="service-item reveal reveal-d2" data-service="3">
+          <span class="service-item-num">03</span>
+          <div class="service-item-content">
+            <h3>Planchers sureleves</h3>
+            <p>Planchers sureleves robustes, designs et sur mesure</p>
+          </div>
+          <span class="service-item-arrow"><i data-lucide="arrow-right" style="width:16px;height:16px;"></i></span>
+        </div>
+        <div class="service-item reveal reveal-d3" data-service="4">
+          <span class="service-item-num">04</span>
+          <div class="service-item-content">
+            <h3>Isolation thermique</h3>
+            <p>Isolation exterieure performante et aides MaPrimeRenov</p>
+          </div>
+          <span class="service-item-arrow"><i data-lucide="arrow-right" style="width:16px;height:16px;"></i></span>
+        </div>
+        <div class="service-item reveal reveal-d4" data-service="5">
+          <span class="service-item-num">05</span>
+          <div class="service-item-content">
+            <h3>Terrassement</h3>
+            <p>Travaux de terrassement precis et assainissement fiable</p>
+          </div>
+          <span class="service-item-arrow"><i data-lucide="arrow-right" style="width:16px;height:16px;"></i></span>
+        </div>
+        <div class="service-item reveal reveal-d5" data-service="6">
+          <span class="service-item-num">06</span>
+          <div class="service-item-content">
+            <h3>Revetement de sol</h3>
+            <p>Revetements elegants et resistants, carrelage ou cuvelage</p>
+          </div>
+          <span class="service-item-arrow"><i data-lucide="arrow-right" style="width:16px;height:16px;"></i></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== EXPERTISE (Planchers) ========== -->
+  <section class="expertise-section reveal">
+    <div class="expertise-card">
+      <div class="expertise-text">
+        <div class="section-eyebrow">Expertise</div>
+        <h2 class="section-heading">Revolutionnez<br>votre espace</h2>
+        <p>Repoussez les limites de l'architecture moderne avec nos planchers techniques en sulfate de calcium. Esthetique raffinee, fonctionnalite optimale et durabilite exceptionnelle.</p>
+        <p>Performance acoustique superieure, resistance maximale au feu et modularite qui soutient l'evolution technologique des batiments.</p>
+        <a href="#" class="btn-expertise">Decouvrir l'entreprise <i data-lucide="arrow-right" style="width:16px;height:16px;"></i></a>
+      </div>
+      <div class="expertise-image">
+        <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&h=600&fit=crop&q=90" alt="Planchers techniques en sulfate de calcium" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== PROJECTS ========== -->
+  <section class="projects-section">
+    <div class="projects-inner">
+      <div class="projects-header">
+        <div class="reveal">
+          <div class="section-eyebrow">Portfolio</div>
+          <h2 class="section-heading">Projets en cours</h2>
+        </div>
+        <a href="#" class="btn-projects reveal">Tous nos projets <i data-lucide="arrow-right" style="width:14px;height:14px;"></i></a>
+      </div>
+      <div class="projects-grid">
+        <div class="project-card reveal">
+          <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=700&h=600&fit=crop&q=85" alt="Pandion Rise" loading="lazy">
+          <span class="project-num">01</span>
+          <div class="project-overlay">
+            <div class="project-info">
+              <h3>Pandion Rise</h3>
+              <span>Construction neuve</span>
+            </div>
+            <div class="project-arrow"><i data-lucide="arrow-up-right" style="width:16px;height:16px;"></i></div>
+          </div>
+        </div>
+        <div class="project-card reveal reveal-d1">
+          <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=500&h=300&fit=crop&q=85" alt="Centre Socio-Culturel Sarcelles" loading="lazy">
+          <span class="project-num">02</span>
+          <div class="project-overlay">
+            <div class="project-info">
+              <h3>Centre Socio-Culturel</h3>
+              <span>Rehabilitation</span>
+            </div>
+            <div class="project-arrow"><i data-lucide="arrow-up-right" style="width:16px;height:16px;"></i></div>
+          </div>
+        </div>
+        <div class="project-card reveal reveal-d1">
+          <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=500&h=300&fit=crop&q=85" alt="Cube-Central-378" loading="lazy">
+          <span class="project-num">03</span>
+          <div class="project-overlay">
+            <div class="project-info">
+              <h3>Cube-Central-378</h3>
+              <span>Gros oeuvre</span>
+            </div>
+            <div class="project-arrow"><i data-lucide="arrow-up-right" style="width:16px;height:16px;"></i></div>
+          </div>
+        </div>
+        <div class="project-card reveal reveal-d2">
+          <img src="https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=800&h=300&fit=crop&q=85" alt="Trium Bochum" loading="lazy">
+          <span class="project-num">04</span>
+          <div class="project-overlay">
+            <div class="project-info">
+              <h3>Trium Bochum</h3>
+              <span>Amenagement</span>
+            </div>
+            <div class="project-arrow"><i data-lucide="arrow-up-right" style="width:16px;height:16px;"></i></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== DOMAINES ========== -->
+  <section class="domaines-section">
+    <div class="domaines-header reveal">
+      <div class="section-eyebrow">Secteurs</div>
+      <h2 class="section-heading">Nos domaines d'activite</h2>
+      <p class="section-desc">Construction &amp; Rehabilitation</p>
+    </div>
+    <div class="domaines-grid">
+      <div class="domaine-card reveal">
+        <div class="domaine-icon"><img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=200&h=200&fit=crop&crop=center" alt="Maisons individuelles" loading="lazy"></div>
+        <h3>Maisons individuelles</h3>
+      </div>
+      <div class="domaine-card reveal reveal-d1">
+        <div class="domaine-icon"><img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=200&h=200&fit=crop&crop=center" alt="Batiments ERP" loading="lazy"></div>
+        <h3>Batiments ERP</h3>
+      </div>
+      <div class="domaine-card reveal reveal-d2">
+        <div class="domaine-icon"><img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=200&h=200&fit=crop&crop=center" alt="Entrepots" loading="lazy"></div>
+        <h3>Entrepots</h3>
+      </div>
+      <div class="domaine-card reveal reveal-d3">
+        <div class="domaine-icon"><img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=200&h=200&fit=crop&crop=center" alt="Etablissements publics" loading="lazy"></div>
+        <h3>Etablissements publics</h3>
+      </div>
+      <div class="domaine-card reveal reveal-d4">
+        <div class="domaine-icon"><img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=200&h=200&fit=crop&crop=center" alt="Espaces commerciaux" loading="lazy"></div>
+        <h3>Espaces commerciaux</h3>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CTA ========== -->
+  <section class="cta-section">
+    <div class="cta-card reveal">
+      <div class="section-eyebrow">Devis gratuit</div>
+      <h2 class="section-heading">Obtenir une offre<br>maintenant</h2>
+      <p class="section-desc">Votre devis gratuit en un clic — rapide et sans engagement.</p>
+      <a href="#" class="btn-cta-large">
+        Obtenir votre devis
+        <i data-lucide="arrow-right" style="width:18px;height:18px;"></i>
+      </a>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="/" class="logo"><span class="logo-mark"></span>COGELAS</a>
+        <p>Fort de 25 ans d'experience en construction et renovation en Ile-de-France.</p>
+        <p class="footer-tagline">Pour vous, nous amenageons le meilleur.</p>
+      </div>
+      <div>
+        <h4>Navigation</h4>
+        <ul class="footer-links">
+          <li><a href="#">Accueil</a></li>
+          <li><a href="#">Realisations</a></li>
+          <li><a href="#">Qui sommes-nous ?</a></li>
+          <li><a href="#">Expertises</a></li>
+          <li><a href="#">J'ai un projet !</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <ul class="footer-links">
+          <li><a href="#">Plan du site</a></li>
+          <li><a href="#">Mentions legales</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <div class="footer-contact-item">
+          <i data-lucide="map-pin" style="width:16px;height:16px;"></i>
+          <span>17 rue Parmentier<br>95190 Goussainville</span>
+        </div>
+        <div class="footer-contact-item">
+          <i data-lucide="phone" style="width:16px;height:16px;"></i>
+          <a href="tel:0170928129">01 70 92 81 29</a>
+        </div>
+        <div class="footer-contact-item">
+          <i data-lucide="mail" style="width:16px;height:16px;"></i>
+          <a href="mailto:info@cogelas.fr">info@cogelas.fr</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>Creation et referencement du site par Simplebo</span>
+      <a href="#">Connexion</a>
+    </div>
+  </footer>
+
+  <script>
+    lucide.createIcons();
+
+    // Mobile menu
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+    const mobileOverlay = document.getElementById('mobileOverlay');
+    const menuClose = document.getElementById('menuClose');
+
+    function openMenu() {
+      navLinks.classList.add('open');
+      mobileOverlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeMenu() {
+      navLinks.classList.remove('open');
+      mobileOverlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    menuToggle.addEventListener('click', openMenu);
+    menuClose.addEventListener('click', closeMenu);
+    mobileOverlay.addEventListener('click', closeMenu);
+    navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
+
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // === Donut chart draw-in animation ===
+    const donutChart = document.querySelector('.donut-chart');
+    if (donutChart) {
+      const segments = donutChart.querySelectorAll('.donut-segment');
+      const r = 140;
+      const circumference = 2 * Math.PI * r; // ~879.65
+      const segmentArc = circumference / 6;   // ~146.61
+      const gap = 4;
+      const visibleArc = segmentArc - gap;     // ~142.61
+
+      // Store target offsets, then hide all segments
+      segments.forEach((seg, i) => {
+        const targetOffset = -i * segmentArc;
+        seg.dataset.targetOffset = targetOffset;
+        seg.style.transition = 'none';
+        seg.style.strokeDasharray = `${visibleArc} ${circumference - visibleArc}`;
+        seg.style.strokeDashoffset = targetOffset + circumference; // hidden
+      });
+
+      // Respect prefers-reduced-motion
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      const donutObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            segments.forEach((seg, i) => {
+              if (prefersReduced) {
+                seg.style.strokeDashoffset = seg.dataset.targetOffset;
+              } else {
+                setTimeout(() => {
+                  seg.style.transition = 'stroke-dashoffset 1s cubic-bezier(0.16, 1, 0.3, 1)';
+                  seg.style.strokeDashoffset = seg.dataset.targetOffset;
+                }, i * 120);
+              }
+            });
+            donutObserver.unobserve(donutChart);
+          }
+        });
+      }, { threshold: 0.3 });
+
+      donutObserver.observe(donutChart);
+
+      // === Donut <-> list hover interactivity ===
+      const serviceItems = document.querySelectorAll('.service-item');
+      const donutIcons = document.querySelectorAll('.donut-photo');
+      const isMobile = () => window.innerWidth <= 768;
+
+      function activateService(id) {
+        segments.forEach(seg => seg.classList.toggle('active', seg.dataset.service === id));
+        serviceItems.forEach(item => item.classList.toggle('active', item.dataset.service === id));
+        donutIcons.forEach(icon => icon.classList.toggle('active', icon.dataset.service === id));
+      }
+
+      function clearAll() {
+        segments.forEach(seg => seg.classList.remove('active'));
+        serviceItems.forEach(item => item.classList.remove('active'));
+        donutIcons.forEach(icon => icon.classList.remove('active'));
+      }
+
+      serviceItems.forEach(item => {
+        item.addEventListener('mouseenter', () => { if (!isMobile()) activateService(item.dataset.service); });
+        item.addEventListener('mouseleave', () => { if (!isMobile()) clearAll(); });
+      });
+
+      segments.forEach(seg => {
+        seg.addEventListener('mouseenter', () => { if (!isMobile()) activateService(seg.dataset.service); });
+        seg.addEventListener('mouseleave', () => { if (!isMobile()) clearAll(); });
+      });
+
+      donutIcons.forEach(icon => {
+        icon.addEventListener('mouseenter', () => { if (!isMobile()) activateService(icon.dataset.service); });
+        icon.addEventListener('mouseleave', () => { if (!isMobile()) clearAll(); });
+      });
+    }
+
+    // Counter animation
+    const countObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          const target = parseInt(el.dataset.count);
+          let current = 0;
+          const step = Math.max(1, Math.floor(target / 40));
+          const timer = setInterval(() => {
+            current += step;
+            if (current >= target) { current = target; clearInterval(timer); }
+            el.textContent = current + (target > 10 ? '+' : '');
+          }, 30);
+          countObserver.unobserve(el);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    document.querySelectorAll('[data-count]').forEach(el => countObserver.observe(el));
+  </script>
+</body>
+</html>
