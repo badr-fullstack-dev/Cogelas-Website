@@ -102,24 +102,13 @@
     .logo {
       display: flex;
       align-items: center;
-      gap: 8px;
-      font-family: 'DM Serif Display', serif;
-      font-size: 24px;
-      color: var(--navy);
       cursor: pointer;
     }
 
-    .logo-mark {
-      width: 36px;
+    .logo img {
       height: 36px;
-      background: var(--navy);
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 20px;
-      font-weight: 300;
+      width: auto;
+      display: block;
     }
 
     .nav-links {
@@ -1018,11 +1007,10 @@
     }
 
     .footer-brand .logo {
-      color: white;
       margin-bottom: 16px;
     }
 
-    .footer-brand .logo-mark { background: white; color: var(--navy); }
+    .footer-brand .logo img { filter: brightness(0) invert(1); }
 
     .footer-brand p {
       color: rgba(255,255,255,0.5);
@@ -1151,9 +1139,8 @@
   <!-- ========== NAVBAR ========== -->
   <nav class="navbar" id="navbar">
     <div class="navbar-inner">
-      <a href="/" class="logo">
-        <div class="logo-mark">+</div>
-        COGELAS
+      <a href="index.html" class="logo">
+        <img src="logo.png" alt="Cogelas">
       </a>
       <ul class="nav-links" id="navLinks">
         <button class="mobile-close" id="menuClose" aria-label="Fermer le menu">
@@ -1406,9 +1393,8 @@
   <footer class="footer">
     <div class="footer-inner">
       <div class="footer-brand">
-        <a href="/" class="logo">
-          <div class="logo-mark">+</div>
-          COGELAS
+        <a href="index.html" class="logo">
+          <img src="logo.png" alt="Cogelas">
         </a>
         <p>Pour vous, nous amenageons le meilleur. Fort de 25 ans d'experience en construction et renovation en Ile-de-France.</p>
       </div>
