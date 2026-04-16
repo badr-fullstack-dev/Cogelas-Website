@@ -9,8 +9,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;900&display=swap" rel="stylesheet">
   <style>
     /* ============================================
-       VERSION 1 — Corporate Teal
-       Primary: #001017 | Accent: #0D7377
+       DESIGN 4 — Mauffrey-Inspired Corporate
+       Primary: #001017 | Accent: #D9000D
        Font: Montserrat
        ============================================ */
 
@@ -19,10 +19,11 @@
 
     :root {
       --primary: #001017;
-      --accent: #0D7377;
-      --accent-hover: #0A5C5F;
+      --accent: #D9000D;
+      --accent-hover: #b8000b;
+      --teal: #34546C;
       --white: #ffffff;
-      --light: #f0f7f7;
+      --light: #f8f9fa;
       --gray-600: #6c757d;
       --gray-400: #ced4da;
       --font: 'Montserrat', sans-serif;
@@ -59,7 +60,9 @@
       transition: background var(--transition), box-shadow var(--transition);
     }
 
-    .header.transparent { background: transparent; }
+    .header.transparent {
+      background: transparent;
+    }
 
     .header.scrolled {
       background: var(--white);
@@ -81,8 +84,13 @@
       transition: filter var(--transition);
     }
 
-    .header.transparent .logo img { filter: brightness(0) invert(1); }
-    .header.scrolled .logo img { filter: none; }
+    .header.transparent .logo img {
+      filter: brightness(0) invert(1);
+    }
+
+    .header.scrolled .logo img {
+      filter: none;
+    }
 
     .nav-menu {
       display: flex;
@@ -123,47 +131,6 @@
     }
 
     .nav-cta:hover { background: var(--accent-hover); }
-
-    .nav-dropdown { position: relative; }
-    .nav-dropdown-menu {
-      position: absolute;
-      top: 100%;
-      left: 0;
-      background: var(--white);
-      min-width: 280px;
-      padding: 12px 0;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
-      opacity: 0;
-      visibility: hidden;
-      transform: translateY(8px);
-      transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
-      z-index: 1000;
-    }
-    .nav-dropdown:hover .nav-dropdown-menu {
-      opacity: 1;
-      visibility: visible;
-      transform: translateY(0);
-    }
-    .nav-dropdown-menu a {
-      display: block;
-      padding: 10px 24px;
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--primary);
-      text-decoration: none;
-      transition: background 0.2s, color 0.2s;
-    }
-    .nav-dropdown-menu a:hover {
-      background: rgba(13,115,119,0.06);
-      color: var(--accent);
-    }
-
-    /* Mobile sub-links */
-    .mobile-sub-link {
-      padding-left: 32px !important;
-      font-size: 13px !important;
-      opacity: 0.7;
-    }
 
     /* Hamburger */
     .hamburger {
@@ -244,7 +211,7 @@
       position: absolute;
       top: 0; left: 0;
       width: 100%; height: 100%;
-      background: linear-gradient(180deg, rgba(0,16,23,0.4) 0%, rgba(0,16,23,0.75) 100%);
+      background: linear-gradient(180deg, rgba(0,16,23,0.5) 0%, rgba(0,16,23,0.7) 100%);
       z-index: 1;
     }
 
@@ -252,140 +219,238 @@
       position: relative;
       z-index: 2;
       height: 100%;
-      max-width: var(--container);
-      margin: 0 auto;
-      padding: 0 20px 120px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       text-align: center;
+      padding: 0 20px 160px;
     }
 
-    .hero-text {
-      max-width: 750px;
-    }
-
-    .hero-text h1 {
+    .hero-content h1 {
       font-size: clamp(28px, 4vw, 48px);
       font-weight: 900;
       color: var(--white);
       letter-spacing: 3px;
       line-height: 1.15;
-      margin-bottom: 16px;
+      margin-bottom: 20px;
       text-transform: uppercase;
     }
 
-    .hero-text p {
+    .hero-content p {
       font-size: clamp(14px, 1.2vw, 16px);
       font-weight: 300;
-      color: rgba(255,255,255,0.75);
+      color: rgba(255,255,255,0.8);
+      max-width: 700px;
+      margin: 0 auto;
       line-height: 1.8;
-      margin-bottom: 32px;
     }
 
-    .hero-btns {
-      display: flex;
-      gap: 16px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .hero-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 14px 32px;
-      font-family: var(--font);
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      border: none;
-      cursor: pointer;
-      transition: all var(--transition);
-    }
-
-    .hero-btn--primary {
-      background: var(--accent);
-      color: var(--white);
-    }
-
-    .hero-btn--primary:hover {
-      background: var(--accent-hover);
-    }
-
-    .hero-btn--outline {
-      background: transparent;
-      color: var(--white);
-      border: 1px solid rgba(255,255,255,0.4);
-    }
-
-    .hero-btn--outline:hover {
-      border-color: var(--white);
-      background: rgba(255,255,255,0.08);
-    }
-
-    .hero-btn svg {
-      width: 18px;
-      height: 14px;
-      flex-shrink: 0;
-    }
-
-    /* === HERO STATS (inside hero) === */
-    .hero-stats {
+    /* === CTA CARDS (inside hero, bottom) === */
+    .cta-cards {
       position: absolute;
       bottom: 0;
       left: 0;
       right: 0;
-      z-index: 2;
-      background: rgba(0,16,23,0.6);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      border-top: 1px solid rgba(255,255,255,0.08);
+      z-index: 3;
+      padding: 0 20px 40px;
     }
 
-    .stats-grid {
+    .cta-cards-inner {
+      max-width: var(--container);
+      margin: 0 auto;
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .cta-card {
+      background: var(--white);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      transition: box-shadow var(--transition);
+    }
+
+    .cta-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.12); }
+
+    .cta-card-img {
+      position: relative;
+      min-height: 200px;
+      overflow: hidden;
+    }
+
+    .cta-card-img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+    }
+
+    .cta-card-body {
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .cta-card-body h3 {
+      font-size: 18px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+
+    .cta-card-body p {
+      font-size: 13px;
+      color: var(--gray-600);
+      margin-bottom: 16px;
+      line-height: 1.6;
+    }
+
+    .arrow-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      transition: gap var(--transition);
+      cursor: pointer;
+    }
+
+    .arrow-link:hover { gap: 18px; color: var(--accent); }
+
+    .arrow-link svg polygon { fill: var(--accent); }
+
+    /* === PLANCHERS HIGHLIGHT === */
+    .planchers-highlight {
+      padding: 80px 0;
+      background: var(--white);
+    }
+
+    .planchers-highlight-inner {
       max-width: var(--container);
       margin: 0 auto;
       padding: 0 20px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
     }
 
-    .stat-item {
-      text-align: center;
-      color: var(--white);
-      padding: 28px 0;
+    .planchers-highlight-img {
+      overflow: hidden;
+    }
+
+    .planchers-highlight-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .planchers-highlight-text h2 {
+      font-size: clamp(22px, 2.5vw, 30px);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      line-height: 1.3;
+      color: var(--primary);
+      margin-bottom: 24px;
+    }
+
+    .planchers-highlight-text p {
+      font-size: 14px;
+      line-height: 1.8;
+      color: var(--gray-600);
+      margin-bottom: 16px;
+    }
+
+    .planchers-highlight-text .arrow-link {
+      margin-top: 12px;
+    }
+
+    /* === KEY FIGURES === */
+    .figures {
       position: relative;
+      overflow: hidden;
+      margin-top: 80px;
     }
 
-    .stat-item:not(:last-child)::after {
-      content: '';
+    .figures-bg {
       position: absolute;
-      right: 0;
-      top: 10%;
-      height: 80%;
-      width: 1px;
-      background: rgba(255,255,255,0.15);
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      z-index: 0;
     }
 
-    .stat-item .number {
-      font-size: clamp(32px, 4vw, 48px);
+    .figures-overlay {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,16,23,0.85);
+      z-index: 1;
+    }
+
+    .figures-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 80px 20px;
+    }
+
+    .figures-content h2 {
+      font-size: clamp(22px, 3vw, 36px);
+      font-weight: 900;
+      color: var(--white);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .figures-content > p {
+      font-size: 14px;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 48px;
+    }
+
+    .figures-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 40px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .figure-item { text-align: center; color: var(--white); }
+
+    .figure-item .label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      opacity: 0.6;
+      margin-bottom: 8px;
+    }
+
+    .figure-item .number {
+      font-size: clamp(42px, 5vw, 64px);
       font-weight: 900;
       line-height: 1;
-      margin-bottom: 6px;
+      margin-bottom: 8px;
     }
 
-    .stat-item .label {
-      font-size: 11px;
+    .figure-item .desc {
+      font-size: 12px;
       font-weight: 400;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      opacity: 0.5;
+      opacity: 0.7;
+      line-height: 1.5;
     }
 
-    /* === SECTION HEADERS === */
+    /* === SECTION HEADERS (2-col) === */
     .section-header {
       display: flex;
       align-items: flex-end;
@@ -420,99 +485,6 @@
 
     .section-header a:hover { color: var(--accent); }
 
-    /* SVG Arrow */
-    .svg-arrow { display: inline-block; width: 28px; height: 22px; }
-
-    .arrow-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--primary);
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      transition: gap var(--transition);
-      cursor: pointer;
-    }
-
-    .arrow-link:hover { gap: 18px; color: var(--accent); }
-
-    /* === PLANCHERS HIGHLIGHT === */
-    .planchers-highlight {
-      padding: 80px 0;
-      background: var(--white);
-    }
-
-    .planchers-highlight-split {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0;
-      max-width: var(--container);
-      margin: 0 auto;
-      min-height: 480px;
-    }
-
-    .planchers-highlight-text {
-      padding: 48px 48px 48px 44px;
-      border-left: 4px solid var(--accent);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    .planchers-highlight-text h2 {
-      font-size: clamp(22px, 2.5vw, 30px);
-      font-weight: 900;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      line-height: 1.3;
-      margin-bottom: 24px;
-      color: var(--primary);
-    }
-
-    .planchers-highlight-text p {
-      font-size: 14px;
-      line-height: 1.8;
-      color: var(--gray-600);
-      margin-bottom: 16px;
-    }
-
-    .planchers-highlight-text .arrow-link {
-      margin-top: 16px;
-      color: var(--accent);
-    }
-
-    .planchers-highlight-text .arrow-link:hover {
-      color: var(--accent-hover);
-    }
-
-    .planchers-highlight-image {
-      position: relative;
-      overflow: hidden;
-    }
-
-    .planchers-highlight-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    @media (max-width: 768px) {
-      .planchers-highlight-split {
-        grid-template-columns: 1fr;
-      }
-
-      .planchers-highlight-image {
-        min-height: 300px;
-        order: -1;
-      }
-
-      .planchers-highlight-text {
-        padding: 40px 24px 40px 20px;
-      }
-    }
-
     /* === EXPERTISES GRID === */
     .expertises {
       background: var(--light);
@@ -522,70 +494,71 @@
     .expertises-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
+      gap: 20px;
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 20px;
     }
 
     .expertise-card {
-      background: var(--white);
+      position: relative;
+      height: 380px;
       overflow: hidden;
-      transition: box-shadow var(--transition), transform var(--transition);
       cursor: pointer;
     }
 
-    .expertise-card:hover {
-      box-shadow: 0 12px 32px rgba(0,0,0,0.08);
-      transform: translateY(-4px);
-    }
-
-    .expertise-card-img {
-      position: relative;
-      height: 220px;
-      overflow: hidden;
-    }
-
-    .expertise-card-img img {
+    .expertise-card img {
       width: 100%; height: 100%;
       object-fit: cover;
       transition: transform 0.6s ease;
     }
 
-    .expertise-card:hover .expertise-card-img img { transform: scale(1.05); }
+    .expertise-card:hover img { transform: scale(1.05); }
 
-    .expertise-card-body {
-      padding: 24px;
-      border-bottom: 3px solid transparent;
-      transition: border-color var(--transition);
+    .expertise-card .slide-overlay {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 28px 24px;
+      background: linear-gradient(transparent, rgba(0,16,23,0.85));
+      color: var(--white);
     }
 
-    .expertise-card:hover .expertise-card-body { border-color: var(--accent); }
-
-    .expertise-card-body h3 {
-      font-size: 16px;
+    .expertise-card .slide-label {
+      font-size: 11px;
       font-weight: 700;
+      letter-spacing: 2px;
       text-transform: uppercase;
-      letter-spacing: 0.5px;
+      opacity: 0.7;
       margin-bottom: 8px;
     }
 
-    .expertise-card-body p {
-      font-size: 13px;
-      color: var(--gray-600);
-      line-height: 1.6;
-      margin-bottom: 16px;
+    .expertise-card h3 {
+      font-size: 18px;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 12px;
     }
 
-    /* === PRESTATIONS (50/50 split) === */
-    .prestations { padding: 80px 0; }
+    .expertise-card .slide-arrow {
+      display: inline-block;
+    }
 
-    .prestations-split {
+    /* === PRESTATIONS (image right, card left) === */
+    .prestations {
+      position: relative;
+      padding: 0;
+    }
+
+    .prestations-bg {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0;
-      min-height: 560px;
+      grid-template-columns: 4fr 8fr;
     }
+
+    .prestations-spacer { background: var(--light); }
 
     .prestations-image {
       position: relative;
+      min-height: 500px;
       overflow: hidden;
     }
 
@@ -594,15 +567,20 @@
       object-fit: cover;
     }
 
-    .prestations-panel {
+    .prestations-card {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+      width: 50%;
+      max-width: 560px;
       background: var(--white);
       padding: 48px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
+      margin-left: calc((100vw - var(--container)) / 2 + 20px);
+      box-shadow: 0 4px 30px rgba(0,0,0,0.08);
     }
 
-    .prestations-panel h2 {
+    .prestations-card h2 {
       font-size: 14px;
       font-weight: 300;
       letter-spacing: 2px;
@@ -643,7 +621,7 @@
 
     .projects-grid {
       display: grid;
-      grid-template-columns: 2fr 1fr;
+      grid-template-columns: 1fr 1fr;
       gap: 24px;
     }
 
@@ -657,11 +635,9 @@
 
     .project-card-img {
       position: relative;
+      height: 300px;
       overflow: hidden;
     }
-
-    .project-card--featured .project-card-img { height: 360px; }
-    .project-card--side .project-card-img { height: 220px; }
 
     .project-card-img img {
       width: 100%; height: 100%;
@@ -705,8 +681,6 @@
       line-height: 1.4;
     }
 
-    .project-card--side .project-card-body h3 { font-size: 15px; }
-
     .project-card-body .cta-text {
       font-size: 13px;
       font-weight: 700;
@@ -722,7 +696,10 @@
     .project-card:hover .cta-text { color: var(--accent); }
 
     /* === DOMAINES D'ACTIVITE === */
-    .domaines { background: #f5f5f5; padding: 80px 0; }
+    .domaines {
+      padding: 80px 0;
+      background: var(--white);
+    }
 
     .domaines-header {
       text-align: center;
@@ -730,46 +707,49 @@
     }
 
     .domaines-header h2 {
-      font-size: clamp(22px, 3vw, 32px);
+      font-size: clamp(24px, 3vw, 36px);
       font-weight: 900;
       text-transform: uppercase;
+      letter-spacing: 1px;
       margin-bottom: 8px;
     }
 
     .domaines-header p {
       font-size: 14px;
-      font-weight: 500;
+      color: var(--gray-600);
+      letter-spacing: 1px;
       text-transform: uppercase;
-      letter-spacing: 2px;
-      color: var(--accent);
+      font-weight: 500;
     }
 
     .domaines-grid {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
-      gap: 32px;
+      gap: 24px;
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 20px;
     }
 
     .domaine-item {
       text-align: center;
-      padding: 32px 16px;
-      background: var(--white);
-      transition: box-shadow var(--transition), transform var(--transition);
+      padding: 40px 20px;
+      border: 1px solid var(--gray-400);
+      transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition);
+      cursor: pointer;
     }
 
     .domaine-item:hover {
-      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+      border-color: var(--accent);
+      box-shadow: 0 8px 24px rgba(217, 0, 13, 0.08);
       transform: translateY(-4px);
     }
 
-    .domaine-item .domaine-icon {
+    .domaine-icon {
       width: 120px;
       height: 120px;
       object-fit: contain;
       margin-bottom: 16px;
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
     }
 
     .domaine-item h3 {
@@ -777,11 +757,19 @@
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.5px;
+      color: var(--primary);
       line-height: 1.4;
+      transition: color var(--transition);
+    }
+
+    .domaine-item:hover h3 {
+      color: var(--accent);
     }
 
     /* === COMPANY TEXT === */
-    .company-text { padding: 80px 0; }
+    .company-text {
+      padding: 80px 0;
+    }
 
     .company-text h2 {
       font-size: clamp(22px, 3vw, 32px);
@@ -805,44 +793,6 @@
     }
 
     .company-cols strong { color: var(--primary); font-weight: 600; }
-
-    /* === CTA BANNER === */
-    .cta-banner {
-      background: var(--accent);
-      padding: 60px 0;
-    }
-
-    .cta-banner-inner {
-      max-width: var(--container);
-      margin: 0 auto;
-      padding: 0 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 40px;
-    }
-
-    .cta-banner h2 {
-      font-size: clamp(20px, 2.5vw, 32px);
-      font-weight: 900;
-      color: var(--white);
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    .cta-banner p {
-      font-size: 14px;
-      color: rgba(255,255,255,0.75);
-      margin-top: 8px;
-    }
-
-    .cta-banner .arrow-link {
-      color: var(--white);
-      font-size: 14px;
-      white-space: nowrap;
-    }
-
-    .cta-banner .arrow-link:hover { color: var(--white); gap: 18px; }
 
     /* === FOOTER === */
     .footer {
@@ -906,7 +856,10 @@
       margin-bottom: 8px;
     }
 
-    .footer-details .detail-value { font-size: 14px; font-weight: 600; }
+    .footer-details .detail-value {
+      font-size: 14px;
+      font-weight: 600;
+    }
 
     .footer-details a { transition: color var(--transition); }
     .footer-details a:hover { color: var(--accent); }
@@ -933,7 +886,16 @@
       text-align: center;
     }
 
-    .footer-bottom p { font-size: 11px; opacity: 0.4; }
+    .footer-bottom p {
+      font-size: 11px;
+      opacity: 0.4;
+    }
+
+    /* === SVG ARROW (Mauffrey pattern) === */
+    .svg-arrow {
+      display: inline-block;
+      width: 28px; height: 22px;
+    }
 
     /* === SCROLL REVEAL === */
     .reveal {
@@ -954,38 +916,57 @@
     .reveal-delay-5 { transition-delay: 0.5s; }
 
     /* === RESPONSIVE === */
+    @media (max-width: 1200px) {
+      .prestations-card {
+        margin-left: 40px;
+      }
+    }
+
     @media (max-width: 992px) {
       .nav-menu { display: none; }
       .hamburger { display: flex; }
 
-      .stats-grid { grid-template-columns: repeat(4, 1fr); }
+      .cta-cards-inner { grid-template-columns: 1fr; }
+      .cta-card { grid-template-columns: 200px 1fr; }
+      .hero-content { padding-bottom: 320px; }
+
+      .figures-grid { grid-template-columns: repeat(2, 1fr); gap: 32px; }
 
       .expertises-grid { grid-template-columns: repeat(2, 1fr); }
+      .expertise-card { height: 320px; }
 
-      .prestations-split { grid-template-columns: 1fr; }
-      .prestations-image { min-height: 350px; }
+      .prestations-bg { grid-template-columns: 1fr; }
+      .prestations-spacer { display: none; }
+      .prestations-image { min-height: 400px; }
+      .prestations-card {
+        position: relative;
+        top: auto; transform: none;
+        width: 100%; max-width: 100%;
+        margin: -60px 20px 0;
+        padding: 32px;
+      }
 
       .projects-grid { grid-template-columns: 1fr; }
-      .project-card--featured .project-card-img { height: 280px; }
-      .project-card--side .project-card-img { height: 280px; }
-
       .domaines-grid { grid-template-columns: repeat(3, 1fr); }
-
       .company-cols { grid-template-columns: 1fr; }
       .footer-inner { grid-template-columns: 1fr; }
       .footer-details { grid-template-columns: 1fr; }
-
-      .cta-banner-inner { flex-direction: column; text-align: center; }
     }
 
     @media (max-width: 768px) {
-      .hero { min-height: 500px; }
-      .hero-video iframe { width: 300%; height: 300%; }
-      .hero-content { padding-bottom: 100px; }
+      .hero { min-height: 600px; }
 
-      .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 0; }
-      .stat-item { padding: 14px 0; }
-      .stat-item::after { display: none; }
+      .hero-video iframe { width: 300%; height: 300%; }
+      .hero-content { padding-bottom: 280px; }
+
+      .cta-cards { padding-bottom: 24px; }
+      .cta-card { grid-template-columns: 1fr; }
+      .cta-card-img { min-height: 140px; }
+
+      .planchers-highlight-inner {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
 
       .section-header {
         flex-direction: column;
@@ -994,25 +975,67 @@
         padding: 60px 0 32px;
       }
 
-      .expertises-grid { grid-template-columns: 1fr; }
-      .expertise-card-img { height: 200px; }
-
-      .project-card-img { height: 220px !important; }
+      .project-card-img { height: 220px; }
     }
 
     @media (max-width: 576px) {
-      .domaines-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
-      .domaine-item { padding: 24px 12px; }
+      .figures-grid { grid-template-columns: 1fr 1fr; }
+      .figure-item .number { font-size: 36px; }
 
-      .stat-item .number { font-size: 32px; }
-      .prestations-panel { padding: 32px 20px; }
-      .expertise-card-body { padding: 20px; }
+      .cta-card-body { padding: 20px; }
+      .cta-card-body h3 { font-size: 15px; }
+
+      .prestations-card { margin: -40px 12px 0; padding: 24px; }
+      .expertises-grid { grid-template-columns: 1fr; }
+      .expertise-card { height: 280px; }
+      .domaines-grid { grid-template-columns: repeat(2, 1fr); }
+      .domaine-item { padding: 32px 16px; }
+    }
+
+    /* === NAV DROPDOWN === */
+    .nav-dropdown { position: relative; }
+    .nav-dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: var(--white);
+      min-width: 280px;
+      padding: 12px 0;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(8px);
+      transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+      z-index: 1000;
+    }
+    .nav-dropdown:hover .nav-dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+    .nav-dropdown-menu a {
+      display: block;
+      padding: 10px 24px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--primary);
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+    }
+    .nav-dropdown-menu a:hover {
+      background: rgba(217,0,13,0.06);
+      color: var(--accent);
+    }
+    .mobile-sub-link {
+      padding-left: 32px !important;
+      font-size: 13px !important;
+      opacity: 0.7;
     }
 
     /* Reduced motion */
     @media (prefers-reduced-motion: reduce) {
       .reveal { opacity: 1; transform: none; transition: none; }
-      .expertise-card-img img { transition: none; }
+      .expertise-card img { transition: none; }
       .project-card-img img { transition: none; }
       html { scroll-behavior: auto; }
     }
@@ -1048,6 +1071,7 @@
     </div>
   </header>
 
+  <!-- Mobile nav -->
   <nav class="mobile-nav" id="mobileNav">
     <a href="#">Accueil</a>
     <a href="#projects">Realisations</a>
@@ -1070,57 +1094,89 @@
       </div>
       <div class="hero-overlay"></div>
       <div class="hero-content">
-        <div class="hero-text">
+        <div>
           <h1>Constructeur et renovateur<br>en Ile-de-France</h1>
           <p>Le groupe Cogelas est une entreprise de construction et de renovation, specialisee en maconnerie, gros oeuvre, planchers techniques et isolation thermique. Fort de 25 ans d'experience au service de vos projets.</p>
-          <div class="hero-btns">
-            <a href="#contact" class="hero-btn hero-btn--primary">
-              <span>Demander un devis</span>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 41 33"><polygon fill="currentColor" points="32.255 24.945 29.115 21.747 18.491 32.412 18.491 0 14.019 0 14.019 32.412 3.395 21.747 .255 24.945 16.256 41" transform="rotate(-90 16.5 16.5)"/></svg>
-            </a>
-            <a href="#projects" class="hero-btn hero-btn--outline">
-              <span>Nos realisations</span>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 41 33"><polygon fill="currentColor" points="32.255 24.945 29.115 21.747 18.491 32.412 18.491 0 14.019 0 14.019 32.412 3.395 21.747 .255 24.945 16.256 41" transform="rotate(-90 16.5 16.5)"/></svg>
-            </a>
-          </div>
         </div>
       </div>
-      <div class="hero-stats">
-        <div class="stats-grid">
-          <div class="stat-item reveal">
-            <p class="number" data-target="25">0</p>
-            <p class="label">annees d'experience</p>
+      <div class="cta-cards">
+        <div class="cta-cards-inner">
+          <div class="cta-card reveal">
+            <div class="cta-card-img">
+              <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=600&h=400&fit=crop&crop=center" alt="Devis gratuit">
+            </div>
+            <div class="cta-card-body">
+              <h3>Devis gratuit</h3>
+              <p>Obtenez une estimation rapide et sans engagement pour vos projets de construction ou renovation.</p>
+              <a href="#contact" class="arrow-link">
+                <span>Demander un devis</span>
+                <svg class="svg-arrow" xmlns="http://www.w3.org/2000/svg" width="28" height="22" viewBox="0 0 41 33"><polygon fill="#D9000D" points="32.255 24.945 29.115 21.747 18.491 32.412 18.491 0 14.019 0 14.019 32.412 3.395 21.747 .255 24.945 16.256 41" transform="rotate(-90 16.5 16.5)"/></svg>
+              </a>
+            </div>
           </div>
-          <div class="stat-item reveal reveal-delay-1">
-            <p class="number" data-target="500">0</p>
-            <p class="label">projets realises</p>
-          </div>
-          <div class="stat-item reveal reveal-delay-2">
-            <p class="number" data-target="6">0</p>
-            <p class="label">domaines d'expertise</p>
-          </div>
-          <div class="stat-item reveal reveal-delay-3">
-            <p class="number" data-target="100">0</p>
-            <p class="label">clients satisfaits</p>
+          <div class="cta-card reveal reveal-delay-2">
+            <div class="cta-card-img">
+              <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&h=400&fit=crop&crop=center" alt="Nos realisations">
+            </div>
+            <div class="cta-card-body">
+              <h3>Nos realisations</h3>
+              <p>Decouvrez nos projets en cours et nos realisations en construction neuve et rehabilitation.</p>
+              <a href="#projects" class="arrow-link">
+                <span>Voir les projets</span>
+                <svg class="svg-arrow" xmlns="http://www.w3.org/2000/svg" width="28" height="22" viewBox="0 0 41 33"><polygon fill="#D9000D" points="32.255 24.945 29.115 21.747 18.491 32.412 18.491 0 14.019 0 14.019 32.412 3.395 21.747 .255 24.945 16.256 41" transform="rotate(-90 16.5 16.5)"/></svg>
+              </a>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ========== PLANCHERS HIGHLIGHT ========== -->
+    <!-- ========== PLANCHERS TECHNIQUES HIGHLIGHT ========== -->
     <section class="planchers-highlight">
-      <div class="planchers-highlight-split">
-        <div class="planchers-highlight-text reveal">
+      <div class="planchers-highlight-inner">
+        <div class="planchers-highlight-img reveal">
+          <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=600&fit=crop&crop=center" alt="Planchers techniques en sulfate de calcium">
+        </div>
+        <div class="planchers-highlight-text reveal reveal-delay-2">
           <h2>Revolutionnez votre espace avec les planchers techniques en sulfate de calcium</h2>
           <p>Repoussez les limites de l'architecture moderne avec nos planchers techniques en sulfate de calcium. Cette solution transforme les espaces de travail en alliant esthetique raffinee, fonctionnalite optimale et durabilite exceptionnelle.</p>
           <p>Parfait pour les environnements exigeants, nos planchers techniques offrent une performance acoustique superieure, une resistance maximale au feu et une modularite qui soutient l'evolution technologique des batiments.</p>
           <a href="#company" class="arrow-link">
             <span>Decouvrir l'entreprise</span>
-            <svg class="svg-arrow" xmlns="http://www.w3.org/2000/svg" width="28" height="22" viewBox="0 0 41 33"><polygon fill="#0D7377" points="32.255 24.945 29.115 21.747 18.491 32.412 18.491 0 14.019 0 14.019 32.412 3.395 21.747 .255 24.945 16.256 41" transform="rotate(-90 16.5 16.5)"/></svg>
+            <svg class="svg-arrow" xmlns="http://www.w3.org/2000/svg" width="28" height="22" viewBox="0 0 41 33"><polygon fill="#D9000D" points="32.255 24.945 29.115 21.747 18.491 32.412 18.491 0 14.019 0 14.019 32.412 3.395 21.747 .255 24.945 16.256 41" transform="rotate(-90 16.5 16.5)"/></svg>
           </a>
         </div>
-        <div class="planchers-highlight-image reveal reveal-delay-2">
-          <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=600&fit=crop&crop=center" alt="Planchers techniques en sulfate de calcium" loading="lazy">
+      </div>
+    </section>
+
+    <!-- ========== KEY FIGURES ========== -->
+    <section class="figures">
+      <img class="figures-bg" src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1920&h=800&fit=crop&crop=center" alt="">
+      <div class="figures-overlay"></div>
+      <div class="figures-content">
+        <h2>Cogelas en quelques chiffres</h2>
+        <p>La construction responsable au service de vos projets</p>
+        <div class="figures-grid">
+          <div class="figure-item reveal">
+            <p class="label">Plus de</p>
+            <p class="number" data-target="25">0</p>
+            <p class="desc">annees d'experience</p>
+          </div>
+          <div class="figure-item reveal reveal-delay-1">
+            <p class="label">Plus de</p>
+            <p class="number" data-target="500">0</p>
+            <p class="desc">projets realises</p>
+          </div>
+          <div class="figure-item reveal reveal-delay-2">
+            <p class="label">Plus de</p>
+            <p class="number" data-target="6">0</p>
+            <p class="desc">domaines d'expertise</p>
+          </div>
+          <div class="figure-item reveal reveal-delay-3">
+            <p class="label">Plus de</p>
+            <p class="number" data-target="100">0</p>
+            <p class="desc">clients satisfaits</p>
+          </div>
         </div>
       </div>
     </section>
@@ -1135,66 +1191,54 @@
           </div>
           <a href="#">Toutes nos expertises</a>
         </div>
-        <div class="expertises-grid">
-          <div class="expertise-card reveal">
-            <div class="expertise-card-img">
-              <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&h=440&fit=crop&crop=center" alt="Maconnerie">
-            </div>
-            <div class="expertise-card-body">
-              <h3>Maconnerie generale</h3>
-              <p>Construction de murs porteurs, cloisons et facades en parpaing, brique et pierre.</p>
-              <a href="#" class="arrow-link"><span>En savoir plus</span><svg class="svg-arrow" xmlns="http://www.w3.org/2000/svg" width="28" height="22" viewBox="0 0 41 33"><polygon fill="#0D7377" points="32.255 24.945 29.115 21.747 18.491 32.412 18.491 0 14.019 0 14.019 32.412 3.395 21.747 .255 24.945 16.256 41" transform="rotate(-90 16.5 16.5)"/></svg></a>
-            </div>
+      </div>
+      <div class="expertises-grid">
+        <div class="expertise-card reveal">
+          <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&h=900&fit=crop&crop=center" alt="Maconnerie">
+          <div class="slide-overlay">
+            <p class="slide-label">Expertise</p>
+            <h3>Maconnerie generale</h3>
+            <svg class="svg-arrow slide-arrow" xmlns="http://www.w3.org/2000/svg" width="28" height="22" viewBox="0 0 41 33"><polygon fill="#D9000D" points="32.255 24.945 29.115 21.747 18.491 32.412 18.491 0 14.019 0 14.019 32.412 3.395 21.747 .255 24.945 16.256 41" transform="rotate(-90 16.5 16.5)"/></svg>
           </div>
-          <div class="expertise-card reveal reveal-delay-1">
-            <div class="expertise-card-img">
-              <img src="https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=600&h=440&fit=crop&crop=center" alt="Gros oeuvre">
-            </div>
-            <div class="expertise-card-body">
-              <h3>Gros oeuvre</h3>
-              <p>Fondations, structures porteuses et ouvrages en beton arme pour tous types de batiments.</p>
-              <a href="#" class="arrow-link"><span>En savoir plus</span><svg class="svg-arrow" xmlns="http://www.w3.org/2000/svg" width="28" height="22" viewBox="0 0 41 33"><polygon fill="#0D7377" points="32.255 24.945 29.115 21.747 18.491 32.412 18.491 0 14.019 0 14.019 32.412 3.395 21.747 .255 24.945 16.256 41" transform="rotate(-90 16.5 16.5)"/></svg></a>
-            </div>
+        </div>
+        <div class="expertise-card reveal reveal-delay-1">
+          <img src="https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=600&h=900&fit=crop&crop=center" alt="Gros oeuvre">
+          <div class="slide-overlay">
+            <p class="slide-label">Expertise</p>
+            <h3>Gros oeuvre</h3>
+            <svg class="svg-arrow slide-arrow" xmlns="http://www.w3.org/2000/svg" width="28" height="22" viewBox="0 0 41 33"><polygon fill="#D9000D" points="32.255 24.945 29.115 21.747 18.491 32.412 18.491 0 14.019 0 14.019 32.412 3.395 21.747 .255 24.945 16.256 41" transform="rotate(-90 16.5 16.5)"/></svg>
           </div>
-          <div class="expertise-card reveal reveal-delay-2">
-            <div class="expertise-card-img">
-              <img src="https://images.unsplash.com/photo-1565008447742-97f6f38c985c?w=600&h=440&fit=crop&crop=center" alt="Planchers">
-            </div>
-            <div class="expertise-card-body">
-              <h3>Planchers sureleves</h3>
-              <p>Installation de planchers techniques sureleves pour bureaux et espaces professionnels.</p>
-              <a href="#" class="arrow-link"><span>En savoir plus</span><svg class="svg-arrow" xmlns="http://www.w3.org/2000/svg" width="28" height="22" viewBox="0 0 41 33"><polygon fill="#0D7377" points="32.255 24.945 29.115 21.747 18.491 32.412 18.491 0 14.019 0 14.019 32.412 3.395 21.747 .255 24.945 16.256 41" transform="rotate(-90 16.5 16.5)"/></svg></a>
-            </div>
+        </div>
+        <div class="expertise-card reveal reveal-delay-2">
+          <img src="https://images.unsplash.com/photo-1565008447742-97f6f38c985c?w=600&h=900&fit=crop&crop=center" alt="Planchers">
+          <div class="slide-overlay">
+            <p class="slide-label">Expertise</p>
+            <h3>Planchers sureleves</h3>
+            <svg class="svg-arrow slide-arrow" xmlns="http://www.w3.org/2000/svg" width="28" height="22" viewBox="0 0 41 33"><polygon fill="#D9000D" points="32.255 24.945 29.115 21.747 18.491 32.412 18.491 0 14.019 0 14.019 32.412 3.395 21.747 .255 24.945 16.256 41" transform="rotate(-90 16.5 16.5)"/></svg>
           </div>
-          <div class="expertise-card reveal reveal-delay-3">
-            <div class="expertise-card-img">
-              <img src="https://images.unsplash.com/photo-1607400201889-565b1ee75f8e?w=600&h=440&fit=crop&crop=center" alt="Isolation">
-            </div>
-            <div class="expertise-card-body">
-              <h3>Isolation thermique</h3>
-              <p>Solutions d'isolation interieure et exterieure pour un confort optimal et des economies d'energie.</p>
-              <a href="#" class="arrow-link"><span>En savoir plus</span><svg class="svg-arrow" xmlns="http://www.w3.org/2000/svg" width="28" height="22" viewBox="0 0 41 33"><polygon fill="#0D7377" points="32.255 24.945 29.115 21.747 18.491 32.412 18.491 0 14.019 0 14.019 32.412 3.395 21.747 .255 24.945 16.256 41" transform="rotate(-90 16.5 16.5)"/></svg></a>
-            </div>
+        </div>
+        <div class="expertise-card reveal reveal-delay-3">
+          <img src="https://images.unsplash.com/photo-1607400201889-565b1ee75f8e?w=600&h=900&fit=crop&crop=center" alt="Isolation">
+          <div class="slide-overlay">
+            <p class="slide-label">Expertise</p>
+            <h3>Isolation thermique</h3>
+            <svg class="svg-arrow slide-arrow" xmlns="http://www.w3.org/2000/svg" width="28" height="22" viewBox="0 0 41 33"><polygon fill="#D9000D" points="32.255 24.945 29.115 21.747 18.491 32.412 18.491 0 14.019 0 14.019 32.412 3.395 21.747 .255 24.945 16.256 41" transform="rotate(-90 16.5 16.5)"/></svg>
           </div>
-          <div class="expertise-card reveal reveal-delay-4">
-            <div class="expertise-card-img">
-              <img src="https://images.unsplash.com/photo-1581094288338-2314dddb7ece?w=600&h=440&fit=crop&crop=center" alt="Terrassement">
-            </div>
-            <div class="expertise-card-body">
-              <h3>Terrassement</h3>
-              <p>Travaux de terrassement, deblaiement et preparation des sols pour vos projets de construction.</p>
-              <a href="#" class="arrow-link"><span>En savoir plus</span><svg class="svg-arrow" xmlns="http://www.w3.org/2000/svg" width="28" height="22" viewBox="0 0 41 33"><polygon fill="#0D7377" points="32.255 24.945 29.115 21.747 18.491 32.412 18.491 0 14.019 0 14.019 32.412 3.395 21.747 .255 24.945 16.256 41" transform="rotate(-90 16.5 16.5)"/></svg></a>
-            </div>
+        </div>
+        <div class="expertise-card reveal reveal-delay-4">
+          <img src="https://images.unsplash.com/photo-1581094288338-2314dddb7ece?w=600&h=900&fit=crop&crop=center" alt="Terrassement">
+          <div class="slide-overlay">
+            <p class="slide-label">Expertise</p>
+            <h3>Terrassement</h3>
+            <svg class="svg-arrow slide-arrow" xmlns="http://www.w3.org/2000/svg" width="28" height="22" viewBox="0 0 41 33"><polygon fill="#D9000D" points="32.255 24.945 29.115 21.747 18.491 32.412 18.491 0 14.019 0 14.019 32.412 3.395 21.747 .255 24.945 16.256 41" transform="rotate(-90 16.5 16.5)"/></svg>
           </div>
-          <div class="expertise-card reveal reveal-delay-5">
-            <div class="expertise-card-img">
-              <img src="https://images.unsplash.com/photo-1615971677499-5467cbab01c0?w=600&h=440&fit=crop&crop=center" alt="Revetement">
-            </div>
-            <div class="expertise-card-body">
-              <h3>Revetement de sol</h3>
-              <p>Pose de carrelage, parquet et revetements de sol pour les espaces residentiels et commerciaux.</p>
-              <a href="#" class="arrow-link"><span>En savoir plus</span><svg class="svg-arrow" xmlns="http://www.w3.org/2000/svg" width="28" height="22" viewBox="0 0 41 33"><polygon fill="#0D7377" points="32.255 24.945 29.115 21.747 18.491 32.412 18.491 0 14.019 0 14.019 32.412 3.395 21.747 .255 24.945 16.256 41" transform="rotate(-90 16.5 16.5)"/></svg></a>
-            </div>
+        </div>
+        <div class="expertise-card reveal reveal-delay-4">
+          <img src="https://images.unsplash.com/photo-1615971677499-5467cbab01c0?w=600&h=900&fit=crop&crop=center" alt="Revetement">
+          <div class="slide-overlay">
+            <p class="slide-label">Expertise</p>
+            <h3>Revetement de sol</h3>
+            <svg class="svg-arrow slide-arrow" xmlns="http://www.w3.org/2000/svg" width="28" height="22" viewBox="0 0 41 33"><polygon fill="#D9000D" points="32.255 24.945 29.115 21.747 18.491 32.412 18.491 0 14.019 0 14.019 32.412 3.395 21.747 .255 24.945 16.256 41" transform="rotate(-90 16.5 16.5)"/></svg>
           </div>
         </div>
       </div>
@@ -1202,23 +1246,22 @@
 
     <!-- ========== PRESTATIONS ========== -->
     <section class="prestations">
-      <div class="container">
-        <div class="prestations-split">
-          <div class="prestations-image reveal">
-            <img src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?w=800&h=700&fit=crop&crop=center" alt="Chantier Cogelas">
-          </div>
-          <div class="prestations-panel reveal reveal-delay-2">
-            <h2>Nos prestations</h2>
-            <nav>
-              <a href="#" class="prestation-link"><h3>Construction neuve <svg class="svg-arrow" xmlns="http://www.w3.org/2000/svg" width="28" height="22" viewBox="0 0 41 33"><polygon fill="#0D7377" points="32.255 24.945 29.115 21.747 18.491 32.412 18.491 0 14.019 0 14.019 32.412 3.395 21.747 .255 24.945 16.256 41" transform="rotate(-90 16.5 16.5)"/></svg></h3></a>
-              <a href="#" class="prestation-link"><h3>Rehabilitation <svg class="svg-arrow" xmlns="http://www.w3.org/2000/svg" width="28" height="22" viewBox="0 0 41 33"><polygon fill="#0D7377" points="32.255 24.945 29.115 21.747 18.491 32.412 18.491 0 14.019 0 14.019 32.412 3.395 21.747 .255 24.945 16.256 41" transform="rotate(-90 16.5 16.5)"/></svg></h3></a>
-              <a href="#" class="prestation-link"><h3>Amenagement interieur <svg class="svg-arrow" xmlns="http://www.w3.org/2000/svg" width="28" height="22" viewBox="0 0 41 33"><polygon fill="#0D7377" points="32.255 24.945 29.115 21.747 18.491 32.412 18.491 0 14.019 0 14.019 32.412 3.395 21.747 .255 24.945 16.256 41" transform="rotate(-90 16.5 16.5)"/></svg></h3></a>
-              <a href="#" class="prestation-link"><h3>Renovation energetique <svg class="svg-arrow" xmlns="http://www.w3.org/2000/svg" width="28" height="22" viewBox="0 0 41 33"><polygon fill="#0D7377" points="32.255 24.945 29.115 21.747 18.491 32.412 18.491 0 14.019 0 14.019 32.412 3.395 21.747 .255 24.945 16.256 41" transform="rotate(-90 16.5 16.5)"/></svg></h3></a>
-              <a href="#" class="prestation-link"><h3>Gros oeuvre <svg class="svg-arrow" xmlns="http://www.w3.org/2000/svg" width="28" height="22" viewBox="0 0 41 33"><polygon fill="#0D7377" points="32.255 24.945 29.115 21.747 18.491 32.412 18.491 0 14.019 0 14.019 32.412 3.395 21.747 .255 24.945 16.256 41" transform="rotate(-90 16.5 16.5)"/></svg></h3></a>
-              <a href="#" class="prestation-link"><h3>Planchers techniques <svg class="svg-arrow" xmlns="http://www.w3.org/2000/svg" width="28" height="22" viewBox="0 0 41 33"><polygon fill="#0D7377" points="32.255 24.945 29.115 21.747 18.491 32.412 18.491 0 14.019 0 14.019 32.412 3.395 21.747 .255 24.945 16.256 41" transform="rotate(-90 16.5 16.5)"/></svg></h3></a>
-            </nav>
-          </div>
+      <div class="prestations-bg">
+        <div class="prestations-spacer"></div>
+        <div class="prestations-image">
+          <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1400&h=900&fit=crop&crop=center" alt="Chantier Cogelas">
         </div>
+      </div>
+      <div class="prestations-card reveal">
+        <h2>Nos prestations</h2>
+        <nav>
+          <a href="#" class="prestation-link"><h3>Construction neuve <svg class="svg-arrow" xmlns="http://www.w3.org/2000/svg" width="28" height="22" viewBox="0 0 41 33"><polygon fill="#D9000D" points="32.255 24.945 29.115 21.747 18.491 32.412 18.491 0 14.019 0 14.019 32.412 3.395 21.747 .255 24.945 16.256 41" transform="rotate(-90 16.5 16.5)"/></svg></h3></a>
+          <a href="#" class="prestation-link"><h3>Rehabilitation <svg class="svg-arrow" xmlns="http://www.w3.org/2000/svg" width="28" height="22" viewBox="0 0 41 33"><polygon fill="#D9000D" points="32.255 24.945 29.115 21.747 18.491 32.412 18.491 0 14.019 0 14.019 32.412 3.395 21.747 .255 24.945 16.256 41" transform="rotate(-90 16.5 16.5)"/></svg></h3></a>
+          <a href="#" class="prestation-link"><h3>Amenagement interieur <svg class="svg-arrow" xmlns="http://www.w3.org/2000/svg" width="28" height="22" viewBox="0 0 41 33"><polygon fill="#D9000D" points="32.255 24.945 29.115 21.747 18.491 32.412 18.491 0 14.019 0 14.019 32.412 3.395 21.747 .255 24.945 16.256 41" transform="rotate(-90 16.5 16.5)"/></svg></h3></a>
+          <a href="#" class="prestation-link"><h3>Renovation energetique <svg class="svg-arrow" xmlns="http://www.w3.org/2000/svg" width="28" height="22" viewBox="0 0 41 33"><polygon fill="#D9000D" points="32.255 24.945 29.115 21.747 18.491 32.412 18.491 0 14.019 0 14.019 32.412 3.395 21.747 .255 24.945 16.256 41" transform="rotate(-90 16.5 16.5)"/></svg></h3></a>
+          <a href="#" class="prestation-link"><h3>Gros oeuvre <svg class="svg-arrow" xmlns="http://www.w3.org/2000/svg" width="28" height="22" viewBox="0 0 41 33"><polygon fill="#D9000D" points="32.255 24.945 29.115 21.747 18.491 32.412 18.491 0 14.019 0 14.019 32.412 3.395 21.747 .255 24.945 16.256 41" transform="rotate(-90 16.5 16.5)"/></svg></h3></a>
+          <a href="#" class="prestation-link"><h3>Planchers techniques <svg class="svg-arrow" xmlns="http://www.w3.org/2000/svg" width="28" height="22" viewBox="0 0 41 33"><polygon fill="#D9000D" points="32.255 24.945 29.115 21.747 18.491 32.412 18.491 0 14.019 0 14.019 32.412 3.395 21.747 .255 24.945 16.256 41" transform="rotate(-90 16.5 16.5)"/></svg></h3></a>
+        </nav>
       </div>
     </section>
 
@@ -1233,9 +1276,9 @@
           <a href="#">Tous nos projets</a>
         </div>
         <div class="projects-grid">
-          <article class="project-card project-card--featured reveal">
+          <article class="project-card reveal">
             <div class="project-card-img">
-              <img src="https://pandion.de/wohnungsangebote/next/themes/standard/img/illustration/720/next_aussen_07.jpg" alt="Pandion Rise — PANDION NEXT Düsseldorf">
+              <img src="https://pandion.de/wohnungsangebote/next/themes/standard/img/illustration/720/next_aussen_07.jpg" alt="Pandion Rise">
             </div>
             <div class="project-card-body">
               <div class="project-card-meta">
@@ -1246,9 +1289,9 @@
               <p class="cta-text">Voir le projet</p>
             </div>
           </article>
-          <article class="project-card project-card--side reveal reveal-delay-2">
+          <article class="project-card reveal reveal-delay-2">
             <div class="project-card-img">
-              <img src="https://www.ekopolis.fr/sites/default/files/styles/slidernode/public/import/PRO-92-Reuil-CSC-01_vue%20g%C3%A9n%C3%A9rale_0.JPG.webp?itok=NsWl8NZp" alt="Centre Socio-Culturel Riber — Rueil-Malmaison">
+              <img src="https://www.ekopolis.fr/sites/default/files/styles/slidernode/public/import/PRO-92-Reuil-CSC-01_vue%20g%C3%A9n%C3%A9rale_0.JPG.webp?itok=NsWl8NZp" alt="Centre Socio-Culturel">
             </div>
             <div class="project-card-body">
               <div class="project-card-meta">
@@ -1259,9 +1302,9 @@
               <p class="cta-text">Voir le projet</p>
             </div>
           </article>
-          <article class="project-card project-card--side reveal reveal-delay-2">
+          <article class="project-card reveal reveal-delay-3">
             <div class="project-card-img">
-              <img src="https://files.sbcdnsb.com/images/fobeHVRJj0vtAY3IbVrsrg/content/1744033369/5811651/800/capture_d_ecran_2025-02-17_a_11-20-16.webp" alt="Cube-Central-378 — Complexe de bureaux et commerces">
+              <img src="https://files.sbcdnsb.com/images/fobeHVRJj0vtAY3IbVrsrg/content/1744033369/5811651/800/capture_d_ecran_2025-02-17_a_11-20-16.webp" alt="Cube-Central-378">
             </div>
             <div class="project-card-body">
               <div class="project-card-meta">
@@ -1272,9 +1315,9 @@
               <p class="cta-text">Voir le projet</p>
             </div>
           </article>
-          <article class="project-card project-card--side reveal reveal-delay-3">
+          <article class="project-card reveal reveal-delay-4">
             <div class="project-card-img">
-              <img src="https://files.sbcdnsb.com/images/fobeHVRJj0vtAY3IbVrsrg/content/1744033372/5787664/800/capture_d_ecran_2025-02-17_a_11-20-16.png" alt="Trium Bochum — Ensemble residentiel">
+              <img src="https://files.sbcdnsb.com/images/fobeHVRJj0vtAY3IbVrsrg/content/1744033372/5787664/800/capture_d_ecran_2025-02-17_a_11-20-16.png" alt="Trium Bochum">
             </div>
             <div class="project-card-body">
               <div class="project-card-meta">
@@ -1297,26 +1340,32 @@
           <p>Construction &amp; Rehabilitation</p>
         </div>
         <div class="domaines-grid">
+
           <div class="domaine-item reveal reveal-delay-1">
             <img src="https://files.sbcdnsb.com/images/fobeHVRJj0vtAY3IbVrsrg/content/1744033382/5811648/400/image-demo.png" alt="Maisons individuelles" class="domaine-icon">
             <h3>Maisons individuelles</h3>
           </div>
+
           <div class="domaine-item reveal reveal-delay-2">
             <img src="https://files.sbcdnsb.com/images/fobeHVRJj0vtAY3IbVrsrg/content/1744033405/5704135/400/image-demo.png" alt="Batiments ERP" class="domaine-icon">
             <h3>Batiments ERP</h3>
           </div>
+
           <div class="domaine-item reveal reveal-delay-3">
             <img src="https://files.sbcdnsb.com/images/fobeHVRJj0vtAY3IbVrsrg/content/1744033415/5811647/400/image-demo.png" alt="Entrepots d'entreprises" class="domaine-icon">
             <h3>Entrepots d'entreprises</h3>
           </div>
+
           <div class="domaine-item reveal reveal-delay-4">
             <img src="https://files.sbcdnsb.com/images/fobeHVRJj0vtAY3IbVrsrg/content/1744033421/5811632/400/image-demo.png" alt="Etablissements publics" class="domaine-icon">
             <h3>Etablissements publics</h3>
           </div>
+
           <div class="domaine-item reveal reveal-delay-5">
             <img src="https://files.sbcdnsb.com/images/fobeHVRJj0vtAY3IbVrsrg/content/1744033427/5811649/400/image-demo.png" alt="Espaces commerciaux" class="domaine-icon">
             <h3>Espaces commerciaux</h3>
           </div>
+
         </div>
       </div>
     </section>
@@ -1338,27 +1387,13 @@
       </div>
     </section>
 
-    <!-- ========== CTA BANNER ========== -->
-    <section class="cta-banner">
-      <div class="cta-banner-inner">
-        <div>
-          <h2>Demandez votre devis gratuit</h2>
-          <p>Obtenez une estimation rapide et sans engagement pour tous vos projets de construction ou renovation.</p>
-        </div>
-        <a href="#contact" class="arrow-link">
-          <span>Contactez-nous</span>
-          <svg class="svg-arrow" xmlns="http://www.w3.org/2000/svg" width="28" height="22" viewBox="0 0 41 33"><polygon fill="#ffffff" points="32.255 24.945 29.115 21.747 18.491 32.412 18.491 0 14.019 0 14.019 32.412 3.395 21.747 .255 24.945 16.256 41" transform="rotate(-90 16.5 16.5)"/></svg>
-        </a>
-      </div>
-    </section>
-
   </main>
 
   <!-- ========== FOOTER ========== -->
   <footer class="footer" id="contact">
     <div class="footer-inner">
       <div class="footer-brand">
-        <a href="#" class="logo">
+        <a href="index.html" class="logo">
           <img src="logo.png" alt="Cogelas">
         </a>
         <p>Pour vous, nous amenageons le meilleur.</p>
@@ -1367,10 +1402,10 @@
         <div class="footer-social">
           <span>Nous suivre</span>
           <a href="#" aria-label="LinkedIn">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0D7377" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D9000D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
           </a>
           <a href="#" aria-label="Facebook">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0D7377" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D9000D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
           </a>
         </div>
         <div class="footer-details">
