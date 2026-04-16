@@ -1,0 +1,1752 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cogelas - Design 2 | Warm Industrial</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Cabin:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    /* =====================================================
+       DESIGN 2: WARM INDUSTRIAL
+       Slab-serif + Orange accent + Charcoal depth
+       ===================================================== */
+
+    :root {
+      --charcoal: #1C1917;
+      --charcoal-light: #292524;
+      --stone-700: #44403C;
+      --stone-600: #57534E;
+      --stone-500: #78716C;
+      --stone-400: #A8A29E;
+      --stone-300: #D6D3D1;
+      --stone-200: #E7E5E4;
+      --stone-100: #F5F5F4;
+      --orange: #EA580C;
+      --orange-hover: #DC4E04;
+      --orange-light: #FB923C;
+      --orange-glow: rgba(234, 88, 12, 0.12);
+      --cream: #FAFAF9;
+      --warm-white: #FFFBF5;
+      --text: #1C1917;
+      --text-muted: #57534E;
+      --border: #E7E5E4;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+      --shadow-md: 0 4px 16px rgba(0,0,0,0.07);
+      --shadow-lg: 0 12px 32px rgba(0,0,0,0.1);
+      --radius: 14px;
+      --radius-sm: 8px;
+      --transition: 250ms ease;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Cabin', sans-serif;
+      color: var(--text);
+      background: var(--cream);
+      line-height: 1.65;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { text-decoration: none; color: inherit; cursor: pointer; }
+    ul { list-style: none; }
+    img { max-width: 100%; display: block; }
+
+    /* === NAVBAR === */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: var(--warm-white);
+      border-bottom: 1px solid var(--border);
+      transition: box-shadow var(--transition), background var(--transition);
+    }
+
+    .navbar.scrolled {
+      background: rgba(255, 251, 245, 0.97);
+      box-shadow: var(--shadow-md);
+    }
+
+    .navbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 68px;
+      max-width: 1260px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    .logo {
+      font-family: 'Bitter', serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--charcoal);
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      letter-spacing: 1.5px;
+    }
+
+    .logo-mark {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      background: var(--orange);
+      color: white;
+      border-radius: 6px;
+      font-size: 18px;
+      font-weight: 800;
+      margin-right: 6px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .nav-link {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--stone-600);
+      padding: 8px 14px;
+      border-radius: var(--radius-sm);
+      transition: all var(--transition);
+      position: relative;
+    }
+
+    .nav-link:hover {
+      color: var(--charcoal);
+      background: var(--stone-100);
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 2px;
+      left: 14px;
+      right: 14px;
+      height: 2px;
+      background: var(--orange);
+      border-radius: 1px;
+      transform: scaleX(0);
+      transition: transform var(--transition);
+    }
+
+    .nav-link:hover::after {
+      transform: scaleX(1);
+    }
+
+    /* Dropdown */
+    .nav-dropdown { position: relative; }
+    .nav-dropdown:hover .dropdown { opacity: 1; visibility: visible; transform: translateY(0); }
+
+    .dropdown {
+      position: absolute;
+      top: calc(100% + 8px);
+      left: -12px;
+      background: var(--warm-white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 8px;
+      min-width: 280px;
+      box-shadow: var(--shadow-lg);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-8px);
+      transition: all var(--transition);
+    }
+
+    .dropdown a {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px;
+      border-radius: var(--radius-sm);
+      font-size: 14px;
+      color: var(--stone-600);
+      transition: all var(--transition);
+    }
+
+    .dropdown a:hover {
+      background: var(--stone-100);
+      color: var(--charcoal);
+    }
+
+    .dropdown a i { width: 18px; height: 18px; color: var(--orange); }
+
+    /* CTA Button */
+    .btn-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 24px;
+      background: var(--orange);
+      color: white;
+      font-size: 14px;
+      font-weight: 600;
+      border-radius: var(--radius-sm);
+      border: none;
+      cursor: pointer;
+      transition: all var(--transition);
+    }
+
+    .btn-cta:hover {
+      background: var(--orange-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 16px rgba(234, 88, 12, 0.25);
+    }
+
+    .nav-phone {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--stone-600);
+      margin-left: 8px;
+      transition: color var(--transition);
+    }
+
+    .nav-phone:hover { color: var(--orange); }
+
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--charcoal);
+      z-index: 10;
+    }
+
+    .mobile-close { display: none; }
+
+    /* Mobile overlay */
+    .mobile-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(28, 25, 23, 0.5);
+      z-index: 999;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .mobile-overlay.active { opacity: 1; }
+
+    /* === HERO === */
+    .hero {
+      position: relative;
+      height: 100vh;
+      min-height: 640px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .hero-video-wrap {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .hero-video-wrap iframe {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 120%;
+      height: 120%;
+      transform: translate(-50%, -50%);
+      border: none;
+      pointer-events: none;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        135deg,
+        rgba(28, 25, 23, 0.88) 0%,
+        rgba(28, 25, 23, 0.6) 50%,
+        rgba(28, 25, 23, 0.75) 100%
+      );
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 1260px;
+      margin: 0 auto;
+      padding: 0 32px;
+      width: 100%;
+    }
+
+    .hero-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+
+    .hero-label span {
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: var(--orange-light);
+    }
+
+    .hero-label::before {
+      content: '';
+      width: 40px;
+      height: 3px;
+      background: var(--orange);
+      border-radius: 2px;
+    }
+
+    .hero h1 {
+      font-family: 'Bitter', serif;
+      font-size: clamp(34px, 5vw, 60px);
+      font-weight: 700;
+      color: white;
+      line-height: 1.15;
+      max-width: 700px;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--orange-light);
+    }
+
+    .hero-sub {
+      font-size: 17px;
+      color: var(--stone-400);
+      max-width: 540px;
+      line-height: 1.7;
+      margin-bottom: 36px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn-hero-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 32px;
+      background: var(--orange);
+      color: white;
+      font-size: 15px;
+      font-weight: 600;
+      border-radius: var(--radius-sm);
+      transition: all var(--transition);
+    }
+
+    .btn-hero-primary:hover {
+      background: var(--orange-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(234, 88, 12, 0.3);
+    }
+
+    .btn-hero-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 32px;
+      background: transparent;
+      color: white;
+      font-size: 15px;
+      font-weight: 600;
+      border: 2px solid rgba(255,255,255,0.3);
+      border-radius: var(--radius-sm);
+      transition: all var(--transition);
+    }
+
+    .btn-hero-secondary:hover {
+      border-color: white;
+      background: rgba(255,255,255,0.06);
+    }
+
+    /* Stats strip at bottom of hero */
+    .hero-stats {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 3;
+      background: var(--charcoal);
+      border-top: 3px solid var(--orange);
+    }
+
+    .hero-stats-inner {
+      max-width: 1260px;
+      margin: 0 auto;
+      padding: 24px 32px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+    }
+
+    .stat { text-align: center; }
+
+    .stat-number {
+      font-family: 'Bitter', serif;
+      font-size: 36px;
+      font-weight: 800;
+      color: var(--orange);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .stat-label {
+      font-size: 13px;
+      color: var(--stone-400);
+      font-weight: 500;
+    }
+
+    /* === SECTIONS SHARED === */
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: var(--orange);
+      margin-bottom: 12px;
+    }
+
+    .section-label::before {
+      content: '';
+      width: 24px;
+      height: 2px;
+      background: var(--orange);
+    }
+
+    .section-title {
+      font-family: 'Bitter', serif;
+      font-size: clamp(24px, 3vw, 36px);
+      font-weight: 700;
+      color: var(--charcoal);
+      line-height: 1.25;
+      margin-bottom: 16px;
+    }
+
+    .section-desc {
+      font-size: 15px;
+      color: var(--text-muted);
+      line-height: 1.75;
+      max-width: 560px;
+    }
+
+    /* === WORKFLOW SECTION === */
+    .workflow-section {
+      padding: 100px 32px 80px;
+      max-width: 1260px;
+      margin: 0 auto;
+    }
+
+    .workflow-header {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+
+    .workflow-header .section-label { justify-content: center; }
+
+    .workflow-header h1 {
+      font-family: 'Bitter', serif;
+      font-size: clamp(22px, 3vw, 30px);
+      font-weight: 500;
+      color: var(--charcoal);
+      margin-bottom: 8px;
+    }
+
+    /* Wheel + services layout */
+    .workflow-body {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+
+    /* Wheel column */
+    .workflow-wheel-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+      position: sticky;
+      top: 100px;
+    }
+
+    .wf-wheel-wrap {
+      width: 260px;
+      height: 260px;
+    }
+
+    .wf-wheel-svg {
+      width: 100%;
+      height: 100%;
+      filter: drop-shadow(0 10px 32px rgba(234,88,12,0.12)) drop-shadow(0 4px 12px rgba(0,0,0,0.08));
+    }
+
+    /* Subtle idle rotation on segments only */
+    .wheel-segments {
+      transform-origin: 150px 150px;
+      animation: wheelSpin 50s linear infinite;
+    }
+
+    @keyframes wheelSpin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .wheel-segments { animation: none; }
+    }
+
+    .wheel-caption {
+      font-family: 'Bitter', serif;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--stone-500);
+      text-align: center;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    /* Services grid */
+    .wf-services-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .wf-service-card {
+      display: flex;
+      gap: 16px;
+      padding: 24px;
+      background: var(--warm-white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      transition: all var(--transition);
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .wf-service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      border-radius: 0 4px 4px 0;
+      transition: all var(--transition);
+    }
+
+    .wf-service-card:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-3px);
+      border-color: transparent;
+    }
+
+    .wf-service-card:hover::before { width: 4px; }
+
+    .wf-card-color-1::before { background: #EA580C; }
+    .wf-card-color-2::before { background: #78716C; }
+    .wf-card-color-3::before { background: #D4A55A; }
+    .wf-card-color-4::before { background: #44403C; }
+    .wf-card-color-5::before { background: #A8A29E; }
+    .wf-card-color-6::before { background: #C2410C; }
+
+    .wf-service-photo {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      overflow: hidden;
+      flex-shrink: 0;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+      border: 2px solid var(--stone-200);
+      background: var(--stone-300);
+    }
+
+    .wf-service-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .wf-service-card:hover .wf-service-photo img {
+      transform: scale(1.1);
+    }
+
+    .wf-service-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .wf-service-info h3 {
+      font-family: 'Bitter', serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--charcoal);
+      margin-bottom: 6px;
+      line-height: 1.3;
+    }
+
+    .wf-service-info p {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* About block below services */
+    .workflow-about {
+      margin-top: 64px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    .about-text p {
+      font-size: 14px;
+      line-height: 1.85;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+
+    .about-text a {
+      color: var(--orange);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .about-text a:hover { color: var(--orange-hover); }
+
+    .about-cta {
+      background: var(--charcoal);
+      border-radius: var(--radius);
+      padding: 40px 36px;
+      color: white;
+    }
+
+    .about-cta .section-label { color: var(--orange-light); }
+    .about-cta .section-label::before { background: var(--orange-light); }
+    .about-cta .section-title { color: white; font-size: 22px; }
+
+    .about-cta p {
+      font-size: 14px;
+      color: var(--stone-400);
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    .about-cta .team-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--orange-light);
+      font-weight: 600;
+      font-size: 14px;
+      transition: gap var(--transition);
+    }
+
+    .about-cta .team-link:hover { gap: 10px; }
+
+    /* === EXPERTISE (PLANCHERS) === */
+    .expertise-section {
+      padding: 0 32px;
+      max-width: 1260px;
+      margin: 0 auto 100px;
+    }
+
+    .expertise-card {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .expertise-text {
+      background: var(--stone-100);
+      padding: 56px 48px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .expertise-text p {
+      font-size: 15px;
+      color: var(--text-muted);
+      line-height: 1.75;
+      margin-bottom: 12px;
+    }
+
+    .btn-expertise {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 20px;
+      padding: 12px 28px;
+      background: var(--orange);
+      color: white;
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+      font-size: 14px;
+      transition: all var(--transition);
+      width: fit-content;
+    }
+
+    .btn-expertise:hover {
+      background: var(--orange-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(234, 88, 12, 0.25);
+    }
+
+    .expertise-image {
+      position: relative;
+      min-height: 420px;
+      overflow: hidden;
+    }
+
+    .expertise-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      inset: 0;
+    }
+
+    /* === PROJECTS === */
+    .projects-section {
+      background: var(--charcoal);
+      padding: 90px 0;
+      overflow: hidden;
+    }
+
+    .projects-inner {
+      max-width: 1260px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    .projects-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 48px;
+    }
+
+    .projects-section .section-label { color: var(--orange-light); }
+    .projects-section .section-label::before { background: var(--orange-light); }
+    .projects-section .section-title { color: white; }
+
+    .btn-projects {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--orange-light);
+      padding: 10px 24px;
+      border: 1px solid rgba(251,146,60,0.3);
+      border-radius: 100px;
+      transition: all var(--transition);
+    }
+
+    .btn-projects:hover {
+      background: var(--orange);
+      color: white;
+      border-color: var(--orange);
+      gap: 12px;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 1fr 1fr;
+      grid-template-rows: 235px 235px;
+      gap: 14px;
+    }
+
+    .project-card {
+      border-radius: var(--radius);
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .project-card:nth-child(1) {
+      grid-row: 1 / 3;
+    }
+
+    .project-card:nth-child(4) {
+      grid-column: 2 / 4;
+    }
+
+    .project-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .project-card:hover img {
+      transform: scale(1.08);
+    }
+
+    .project-card-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(28,25,23,0) 30%, rgba(28,25,23,0.75) 100%);
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      padding: 24px;
+      transition: background var(--transition);
+    }
+
+    .project-card:hover .project-card-overlay {
+      background: linear-gradient(180deg, rgba(28,25,23,0) 20%, rgba(28,25,23,0.85) 100%);
+    }
+
+    .project-card-num {
+      position: absolute;
+      top: 16px;
+      left: 18px;
+      font-family: 'Bitter', serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.5);
+      letter-spacing: 1px;
+    }
+
+    .project-card-info h3 {
+      font-family: 'Bitter', serif;
+      font-size: 17px;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 3px;
+    }
+
+    .project-card:nth-child(1) .project-card-info h3 {
+      font-size: 22px;
+      margin-bottom: 6px;
+    }
+
+    .project-card-info span {
+      font-size: 12px;
+      color: var(--orange-light);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+
+    .project-card-arrow {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(4px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      opacity: 0;
+      transform: translateX(-8px);
+      transition: all 0.3s ease;
+      flex-shrink: 0;
+    }
+
+    .project-card:hover .project-card-arrow {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    /* === DOMAINES === */
+    .domaines-section {
+      background: var(--stone-100);
+      padding: 100px 32px;
+    }
+
+    .domaines-inner {
+      max-width: 1260px;
+      margin: 0 auto;
+    }
+
+    .domaines-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .domaines-header .section-label { justify-content: center; }
+    .domaines-header .section-desc { margin: 0 auto; }
+
+    .domaines-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 24px;
+    }
+
+    .domaine-card {
+      background: var(--warm-white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px 16px;
+      text-align: center;
+      transition: all var(--transition);
+      cursor: pointer;
+    }
+
+    .domaine-card:hover {
+      border-color: var(--orange);
+      box-shadow: var(--shadow-md);
+      transform: translateY(-4px);
+    }
+
+    .domaine-card-icon {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin: 0 auto 16px;
+      border: 3px solid var(--stone-200);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      background: var(--stone-300);
+      transition: border-color var(--transition);
+    }
+
+    .domaine-card:hover .domaine-card-icon {
+      border-color: var(--orange);
+    }
+
+    .domaine-card-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .domaine-card:hover .domaine-card-icon img {
+      transform: scale(1.1);
+    }
+
+    .domaine-card h3 {
+      font-family: 'Bitter', serif;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--charcoal);
+    }
+
+    /* === CTA === */
+    .cta-section {
+      padding: 100px 32px;
+    }
+
+    .cta-card {
+      max-width: 900px;
+      margin: 0 auto;
+      background: linear-gradient(135deg, var(--orange) 0%, #C2410C 100%);
+      border-radius: var(--radius);
+      padding: 72px 56px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-card::before {
+      content: '';
+      position: absolute;
+      top: -60%;
+      right: -20%;
+      width: 400px;
+      height: 400px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 50%;
+    }
+
+    .cta-card::after {
+      content: '';
+      position: absolute;
+      bottom: -40%;
+      left: -10%;
+      width: 300px;
+      height: 300px;
+      background: rgba(255,255,255,0.04);
+      border-radius: 50%;
+    }
+
+    .cta-card .section-label {
+      color: rgba(255,255,255,0.7);
+      justify-content: center;
+    }
+
+    .cta-card .section-label::before { background: rgba(255,255,255,0.4); }
+
+    .cta-card .section-title {
+      color: white;
+      font-size: clamp(26px, 3vw, 38px);
+      position: relative;
+      z-index: 1;
+    }
+
+    .cta-card .section-desc {
+      color: rgba(255,255,255,0.8);
+      margin: 0 auto 32px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .btn-cta-large {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 40px;
+      background: white;
+      color: var(--orange);
+      font-family: 'Bitter', serif;
+      font-size: 16px;
+      font-weight: 700;
+      border-radius: var(--radius-sm);
+      transition: all var(--transition);
+      position: relative;
+      z-index: 1;
+    }
+
+    .btn-cta-large:hover {
+      background: var(--charcoal);
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+    }
+
+    /* === FOOTER === */
+    .footer {
+      background: var(--charcoal);
+      padding: 60px 32px 0;
+    }
+
+    .footer-inner {
+      max-width: 1260px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 0.8fr 1.2fr;
+      gap: 48px;
+      padding-bottom: 40px;
+    }
+
+    .footer .logo { color: white; }
+    .footer .logo-mark { background: var(--orange); }
+
+    .footer-brand p {
+      font-size: 14px;
+      color: var(--stone-500);
+      line-height: 1.7;
+      margin-top: 16px;
+    }
+
+    .footer h4 {
+      font-family: 'Bitter', serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 20px;
+    }
+
+    .footer-links li { margin-bottom: 10px; }
+
+    .footer-links a {
+      font-size: 14px;
+      color: var(--stone-500);
+      transition: color var(--transition);
+    }
+
+    .footer-links a:hover { color: var(--orange-light); }
+
+    .footer-contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 14px;
+      font-size: 14px;
+      color: var(--stone-500);
+    }
+
+    .footer-contact-item i {
+      width: 16px;
+      height: 16px;
+      color: var(--orange);
+      margin-top: 3px;
+      flex-shrink: 0;
+    }
+
+    .footer-contact-item a {
+      color: var(--stone-500);
+      transition: color var(--transition);
+    }
+
+    .footer-contact-item a:hover { color: var(--orange-light); }
+
+    .footer-bottom {
+      max-width: 1260px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 0;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      font-size: 12px;
+      color: var(--stone-600);
+    }
+
+    .footer-bottom a { color: var(--stone-600); transition: color var(--transition); }
+    .footer-bottom a:hover { color: var(--orange-light); }
+
+    /* === SCROLL REVEAL === */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-delay-1 { transition-delay: 120ms; }
+    .reveal-delay-2 { transition-delay: 240ms; }
+    .reveal-delay-3 { transition-delay: 360ms; }
+    .reveal-delay-4 { transition-delay: 480ms; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+    }
+
+    /* === RESPONSIVE === */
+    @media (max-width: 1024px) {
+      .workflow-body { grid-template-columns: 1fr; }
+      .workflow-wheel-col { position: static; flex-direction: row; gap: 16px; }
+      .wf-wheel-wrap { width: 200px; height: 200px; }
+      .workflow-about { grid-template-columns: 1fr; }
+      .expertise-card { grid-template-columns: 1fr; }
+      .expertise-image { min-height: 300px; }
+      .projects-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 240px 240px;
+      }
+      .project-card:nth-child(1) { grid-row: 1 / 3; }
+      .project-card:nth-child(4) { grid-column: auto; }
+      .domaines-grid { grid-template-columns: repeat(3, 1fr); }
+      .footer-inner { grid-template-columns: 1fr 1fr; }
+      .hero-stats-inner { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    }
+
+    @media (max-width: 768px) {
+      .navbar { padding: 0; }
+      .navbar-inner { padding: 0 16px; height: 60px; }
+      .nav-phone { display: none; }
+      .menu-toggle { display: flex; }
+
+      /* Mobile slide-in menu */
+      .nav-links {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 300px;
+        max-width: 85vw;
+        height: 100vh;
+        background: var(--warm-white);
+        padding: 80px 24px 32px;
+        gap: 0;
+        box-shadow: -8px 0 30px rgba(0,0,0,0.15);
+        transform: translateX(100%);
+        transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 1001;
+        overflow-y: auto;
+        align-items: stretch;
+      }
+
+      .nav-links.open { transform: translateX(0); }
+
+      .nav-links li { border-bottom: 1px solid var(--border); }
+      .nav-links li:last-child { border-bottom: none; margin-top: 16px; }
+
+      .nav-links .nav-link {
+        display: block;
+        padding: 14px 8px;
+        font-size: 15px;
+        border-radius: 0;
+      }
+
+      .nav-links .nav-link::after { display: none; }
+
+      .nav-links .btn-cta {
+        text-align: center;
+        justify-content: center;
+        padding: 14px 24px;
+      }
+
+      .nav-links .nav-dropdown .dropdown {
+        position: static;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        box-shadow: none;
+        border: none;
+        border-radius: 0;
+        padding: 0 0 8px 12px;
+        min-width: 0;
+        background: transparent;
+      }
+
+      .nav-links .nav-dropdown .dropdown a {
+        padding: 10px 8px;
+        font-size: 13px;
+        border-radius: 6px;
+      }
+
+      .mobile-close {
+        display: flex;
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: var(--charcoal);
+        width: 36px;
+        height: 36px;
+        align-items: center;
+        justify-content: center;
+        border-radius: var(--radius-sm);
+        transition: background var(--transition);
+      }
+
+      .mobile-close:hover { background: var(--stone-100); }
+
+      .mobile-overlay {
+        display: block;
+        pointer-events: none;
+      }
+
+      .mobile-overlay.active { pointer-events: auto; }
+
+      .hero { min-height: 500px; }
+      .hero h1 { font-size: 28px; }
+      .hero-content { padding: 0 20px; }
+      .hero-stats-inner { grid-template-columns: repeat(2, 1fr); padding: 16px 20px; gap: 12px; }
+      .stat-number { font-size: 26px; }
+
+      .workflow-section { padding: 60px 20px 40px; }
+      .workflow-body { grid-template-columns: 1fr; gap: 32px; }
+      .workflow-wheel-col { flex-direction: column; }
+      .wf-wheel-wrap { width: 180px; height: 180px; }
+      .wf-services-grid { grid-template-columns: 1fr; }
+      .wf-service-card { padding: 20px; }
+      .workflow-about { grid-template-columns: 1fr; gap: 32px; }
+      .about-cta { padding: 32px 24px; }
+
+      .expertise-section { padding: 0 20px; margin-bottom: 60px; }
+      .expertise-text { padding: 36px 24px; }
+
+      .projects-section { padding: 60px 0; }
+      .projects-inner { padding: 0 20px; }
+      .projects-header { flex-direction: column; align-items: flex-start; gap: 16px; }
+      .projects-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        gap: 12px;
+      }
+      .project-card { height: 260px; }
+      .project-card:nth-child(1) { grid-row: auto; height: 320px; }
+      .project-card:nth-child(4) { grid-column: auto; }
+
+      .domaines-section { padding: 60px 20px; }
+      .domaines-grid { grid-template-columns: 1fr 1fr; }
+      .domaine-card-icon { width: 68px; height: 68px; }
+
+      .cta-section { padding: 60px 20px; }
+      .cta-card { padding: 48px 24px; }
+
+      .footer { padding: 40px 20px 0; }
+      .footer-inner { grid-template-columns: 1fr; gap: 32px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========== NAVBAR ========== -->
+  <nav class="navbar" id="navbar">
+    <div class="navbar-inner">
+      <a href="/" class="logo">
+        <div class="logo-mark">+</div>
+        COGELAS
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <button class="mobile-close" id="menuClose" aria-label="Fermer le menu">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+        <li><a class="nav-link" href="#">Accueil</a></li>
+        <li><a class="nav-link" href="#">Realisations</a></li>
+        <li><a class="nav-link" href="#">Qui sommes-nous ?</a></li>
+        <li class="nav-dropdown">
+          <a class="nav-link" href="#">Expertises <i data-lucide="chevron-down" style="width:14px;height:14px;display:inline;vertical-align:middle;"></i></a>
+          <div class="dropdown">
+            <a href="#"><i data-lucide="layers" style="width:18px;height:18px;"></i> Planchers techniques sureleves</a>
+            <a href="#"><i data-lucide="grid-3x3" style="width:18px;height:18px;"></i> Revetement de sol</a>
+            <a href="#"><i data-lucide="truck" style="width:18px;height:18px;"></i> Terrassement et Assainissement</a>
+            <a href="#"><i data-lucide="brick-wall" style="width:18px;height:18px;"></i> Maconnerie / Gros Oeuvre</a>
+            <a href="#"><i data-lucide="thermometer-snowflake" style="width:18px;height:18px;"></i> Isolation thermique par l'exterieur</a>
+          </div>
+        </li>
+        <li><a class="btn-cta" href="#">J'ai un projet !</a></li>
+      </ul>
+      <a href="tel:0170928129" class="nav-phone">
+        <i data-lucide="phone" style="width:16px;height:16px;"></i>
+        01 70 92 81 29
+      </a>
+      <button class="menu-toggle" aria-label="Menu">
+        <i data-lucide="menu" style="width:24px;height:24px;"></i>
+      </button>
+    </div>
+  </nav>
+  <div class="mobile-overlay" id="mobileOverlay"></div>
+
+  <!-- ========== HERO ========== -->
+  <section class="hero">
+    <div class="hero-video-wrap">
+      <iframe
+        src="https://www.youtube.com/embed/LfTC5ZFGlB8?controls=0&showinfo=0&rel=0&autoplay=1&mute=1&loop=1&playlist=LfTC5ZFGlB8&playsinline=1"
+        title="COGELAS - Construction" allow="autoplay; encrypted-media" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+      <div class="hero-label reveal"><span>25 ans d'excellence</span></div>
+      <h1 class="reveal reveal-delay-1">Construire l'excellence,<br><em>renover l'avenir</em></h1>
+      <p class="hero-sub reveal reveal-delay-2">Des solutions sur mesure en terrassement, maconnerie gros oeuvre, planchers techniques et bien plus. Professionnalisme et savoir-faire europeens.</p>
+      <div class="hero-actions reveal reveal-delay-3">
+        <a href="#" class="btn-hero-primary">
+          <i data-lucide="send" style="width:18px;height:18px;"></i>
+          Contactez-nous
+        </a>
+        <a href="#" class="btn-hero-secondary">
+          <i data-lucide="eye" style="width:18px;height:18px;"></i>
+          Nos Realisations
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-stats">
+      <div class="hero-stats-inner">
+        <div class="stat reveal">
+          <div class="stat-number" data-count="25">0</div>
+          <div class="stat-label">Annees d'experience</div>
+        </div>
+        <div class="stat reveal reveal-delay-1">
+          <div class="stat-number" data-count="500">0</div>
+          <div class="stat-label">Projets realises</div>
+        </div>
+        <div class="stat reveal reveal-delay-2">
+          <div class="stat-number" data-count="6">0</div>
+          <div class="stat-label">Corps de metier</div>
+        </div>
+        <div class="stat reveal reveal-delay-3">
+          <div class="stat-number" data-count="100">0</div>
+          <div class="stat-label">Clients satisfaits %</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SERVICES WORKFLOW + INTRO ========== -->
+  <section class="workflow-section">
+    <div class="workflow-header reveal">
+      <div class="section-label">Nos Expertises</div>
+      <h1>COGELAS, construction, renovation en Ile-de-France</h1>
+    </div>
+
+    <div class="workflow-body">
+      <!-- Left: Wheel visual -->
+      <div class="workflow-wheel-col reveal">
+        <div class="wf-wheel-wrap">
+          <svg class="wf-wheel-svg" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <!-- Segment gradients -->
+              <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#F97316"/><stop offset="100%" stop-color="#EA580C"/></linearGradient>
+              <linearGradient id="g2" x1="100%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#6B7280"/><stop offset="100%" stop-color="#44403C"/></linearGradient>
+              <linearGradient id="g3" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" stop-color="#D4A55A"/><stop offset="100%" stop-color="#B8862D"/></linearGradient>
+              <linearGradient id="g4" x1="100%" y1="100%" x2="0%" y2="0%"><stop offset="0%" stop-color="#44403C"/><stop offset="100%" stop-color="#1C1917"/></linearGradient>
+              <linearGradient id="g5" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#A8A29E"/><stop offset="100%" stop-color="#78716C"/></linearGradient>
+              <linearGradient id="g6" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" stop-color="#DC4E04"/><stop offset="100%" stop-color="#9A3412"/></linearGradient>
+              <!-- Center shadow -->
+              <filter id="centerShadow"><feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="rgba(0,0,0,0.1)"/></filter>
+            </defs>
+
+            <!-- Rotating donut segments -->
+            <g class="wheel-segments">
+              <!-- Segment 1: Orange (top-right) -->
+              <path d="M153.1,32 A118,118 0 0,1 250.6,88.3 L211.4,112.4 A72,72 0 0,0 151.9,78 Z" fill="url(#g1)"/>
+              <!-- Segment 2: Charcoal (right) -->
+              <path d="M253.7,93.7 A118,118 0 0,1 253.7,206.3 L213.3,184.4 A72,72 0 0,0 213.3,115.6 Z" fill="url(#g2)"/>
+              <!-- Segment 3: Gold (bottom-right) -->
+              <path d="M250.6,211.7 A118,118 0 0,1 153.1,268 L151.9,222 A72,72 0 0,0 211.4,187.6 Z" fill="url(#g3)"/>
+              <!-- Segment 4: Dark (bottom-left) -->
+              <path d="M146.9,268 A118,118 0 0,1 49.4,211.7 L88.6,187.6 A72,72 0 0,0 148.1,222 Z" fill="url(#g4)"/>
+              <!-- Segment 5: Stone (left) -->
+              <path d="M46.3,206.3 A118,118 0 0,1 46.3,93.7 L86.7,115.6 A72,72 0 0,0 86.7,184.4 Z" fill="url(#g5)"/>
+              <!-- Segment 6: Deep orange (top-left) -->
+              <path d="M49.4,88.3 A118,118 0 0,1 146.9,32 L148.1,78 A72,72 0 0,0 88.6,112.4 Z" fill="url(#g6)"/>
+            </g>
+
+            <!-- Static center circle -->
+            <circle cx="150" cy="150" r="68" fill="#FFFBF5" filter="url(#centerShadow)"/>
+            <circle cx="150" cy="150" r="68" fill="none" stroke="rgba(231,229,228,0.4)" stroke-width="1"/>
+            <text x="150" y="140" font-family="Bitter, serif" font-size="24" fill="#EA580C" text-anchor="middle" font-weight="800">+</text>
+            <text x="150" y="160" font-family="Bitter, serif" font-size="13" fill="#1C1917" text-anchor="middle" font-weight="700" letter-spacing="2">COGELAS</text>
+            <text x="150" y="176" font-family="Cabin, sans-serif" font-size="8" fill="#A8A29E" text-anchor="middle" font-weight="500" letter-spacing="1.5">WORKFLOW</text>
+          </svg>
+        </div>
+        <span class="wheel-caption">Services Workflow</span>
+      </div>
+
+      <!-- Right: 6 service cards -->
+      <div class="wf-services-grid">
+        <div class="wf-service-card wf-card-color-1 reveal">
+          <div class="wf-service-photo"><img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=140&h=140&fit=crop&crop=center" alt="Maconnerie" loading="lazy"></div>
+          <div class="wf-service-info">
+            <h3>Maconnerie generale</h3>
+            <p>Vos projets de construction et de renovation, realises avec une touche sur mesure</p>
+          </div>
+        </div>
+        <div class="wf-service-card wf-card-color-2 reveal reveal-delay-1">
+          <div class="wf-service-photo"><img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=140&h=140&fit=crop&crop=center" alt="Gros oeuvre" loading="lazy"></div>
+          <div class="wf-service-info">
+            <h3>Gros oeuvre</h3>
+            <p>Fondations solides, structures beton et travaux durables</p>
+          </div>
+        </div>
+        <div class="wf-service-card wf-card-color-3 reveal reveal-delay-2">
+          <div class="wf-service-photo"><img src="https://images.unsplash.com/photo-1503594384566-461fe158e797?w=140&h=140&fit=crop&crop=center" alt="Planchers" loading="lazy"></div>
+          <div class="wf-service-info">
+            <h3>Planchers sureleves</h3>
+            <p>Planchers sureleves robustes, designs et sur mesure</p>
+          </div>
+        </div>
+        <div class="wf-service-card wf-card-color-4 reveal reveal-delay-3">
+          <div class="wf-service-photo"><img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=140&h=140&fit=crop&crop=center" alt="Isolation" loading="lazy"></div>
+          <div class="wf-service-info">
+            <h3>Isolation thermique</h3>
+            <p>Isolation exterieure performante et aides MaPrimeRenov</p>
+          </div>
+        </div>
+        <div class="wf-service-card wf-card-color-5 reveal">
+          <div class="wf-service-photo"><img src="https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=140&h=140&fit=crop&crop=center" alt="Terrassement" loading="lazy"></div>
+          <div class="wf-service-info">
+            <h3>Terrassement</h3>
+            <p>Travaux de terrassement precis et assainissement fiable</p>
+          </div>
+        </div>
+        <div class="wf-service-card wf-card-color-6 reveal reveal-delay-1">
+          <div class="wf-service-photo"><img src="https://images.unsplash.com/photo-1562259949-e8e7689d7828?w=140&h=140&fit=crop&crop=center" alt="Revetement" loading="lazy"></div>
+          <div class="wf-service-info">
+            <h3>Revetement de sol</h3>
+            <p>Revetements elegants et resistants, carrelage ou cuvelage</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- About block below -->
+    <div class="workflow-about">
+      <div class="about-text reveal">
+        <p>
+          Fort de 25 ans d'experience dans la construction, nos equipes excellent dans le
+          <a href="#">terrassement</a>, la <a href="#">maconnerie gros oeuvre</a>, les
+          <a href="#">planchers techniques sureleves</a> et bien plus encore, couvrant tous les corps d'etat.
+          Bases en Ile de France, nous etendons nos services a travers le territoire
+          europeen, offrant des solutions de construction, renovation et
+          amenagement avec professionnalisme et savoir-faire.
+        </p>
+        <p>
+          Chaque defi est une opportunite d'innover et de depasser les attentes,
+          offrant des solutions personnalisees et adaptees a vos besoins specifiques.
+        </p>
+      </div>
+      <div class="about-cta reveal reveal-delay-1">
+        <div class="section-label">A propos</div>
+        <h2 class="section-title">L'equipe COGELAS</h2>
+        <p>Que vous cherchiez a renover un espace existant ou a concevoir de nouvelles installations, nous sommes prets a transformer vos idees en realite.</p>
+        <a href="#" class="team-link">Decouvrir l'equipe <i data-lucide="arrow-right"></i></a>
+        <div style="margin-top:20px;">
+          <a href="#" class="btn-cta"><i data-lucide="send" style="width:16px;height:16px;"></i> Contactez-nous</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== EXPERTISE (Planchers) ========== -->
+  <section class="expertise-section reveal">
+    <div class="expertise-card">
+      <div class="expertise-text">
+        <div class="section-label">Expertise</div>
+        <h2 class="section-title"><strong>Revolutionnez votre espace</strong> avec les planchers techniques en sulfate de calcium</h2>
+        <p>Repoussez les limites de l'architecture moderne avec nos planchers techniques en sulfate de calcium. Esthetique raffinee, fonctionnalite optimale et durabilite exceptionnelle.</p>
+        <p>Performance acoustique superieure, resistance maximale au feu et modularite qui soutient l'evolution technologique des batiments.</p>
+        <a href="#" class="btn-expertise">Decouvrir l'entreprise <i data-lucide="arrow-right" style="width:16px;height:16px;"></i></a>
+      </div>
+      <div class="expertise-image">
+        <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&h=600&fit=crop&q=90" alt="Planchers techniques en sulfate de calcium" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== PROJECTS ========== -->
+  <section class="projects-section">
+    <div class="projects-inner">
+      <div class="projects-header">
+        <div class="section-header reveal">
+          <div class="section-label">Portfolio</div>
+          <h2 class="section-title">Projets en cours</h2>
+        </div>
+        <a href="#" class="btn-projects reveal">Tous nos projets <i data-lucide="arrow-right" style="width:16px;height:16px;"></i></a>
+      </div>
+      <div class="projects-grid">
+        <div class="project-card reveal">
+          <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=700&h=600&fit=crop&q=85" alt="Pandion Rise" loading="lazy">
+          <span class="project-card-num">01</span>
+          <div class="project-card-overlay">
+            <div class="project-card-info">
+              <h3>Pandion Rise</h3>
+              <span>Construction neuve</span>
+            </div>
+            <div class="project-card-arrow"><i data-lucide="arrow-up-right" style="width:18px;height:18px;"></i></div>
+          </div>
+        </div>
+        <div class="project-card reveal reveal-delay-1">
+          <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=500&h=300&fit=crop&q=85" alt="Centre Socio-Culturel Sarcelles" loading="lazy">
+          <span class="project-card-num">02</span>
+          <div class="project-card-overlay">
+            <div class="project-card-info">
+              <h3>Centre Socio-Culturel Sarcelles</h3>
+              <span>Rehabilitation</span>
+            </div>
+            <div class="project-card-arrow"><i data-lucide="arrow-up-right" style="width:18px;height:18px;"></i></div>
+          </div>
+        </div>
+        <div class="project-card reveal reveal-delay-1">
+          <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=500&h=300&fit=crop&q=85" alt="Cube-Central-378" loading="lazy">
+          <span class="project-card-num">03</span>
+          <div class="project-card-overlay">
+            <div class="project-card-info">
+              <h3>Cube-Central-378</h3>
+              <span>Gros oeuvre</span>
+            </div>
+            <div class="project-card-arrow"><i data-lucide="arrow-up-right" style="width:18px;height:18px;"></i></div>
+          </div>
+        </div>
+        <div class="project-card reveal reveal-delay-2">
+          <img src="https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=800&h=300&fit=crop&q=85" alt="Trium Bochum" loading="lazy">
+          <span class="project-card-num">04</span>
+          <div class="project-card-overlay">
+            <div class="project-card-info">
+              <h3>Trium Bochum</h3>
+              <span>Amenagement</span>
+            </div>
+            <div class="project-card-arrow"><i data-lucide="arrow-up-right" style="width:18px;height:18px;"></i></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== DOMAINES ========== -->
+  <section class="domaines-section">
+    <div class="domaines-inner">
+      <div class="domaines-header reveal">
+        <div class="section-label">Secteurs</div>
+        <h2 class="section-title">Nos domaines d'activite</h2>
+        <p class="section-desc">Construction &amp; Rehabilitation</p>
+      </div>
+      <div class="domaines-grid">
+        <div class="domaine-card reveal">
+          <div class="domaine-card-icon"><img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=200&h=200&fit=crop&crop=center" alt="Maisons individuelles" loading="lazy"></div>
+          <h3>Maisons individuelles</h3>
+        </div>
+        <div class="domaine-card reveal reveal-delay-1">
+          <div class="domaine-card-icon"><img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=200&h=200&fit=crop&crop=center" alt="Batiments ERP" loading="lazy"></div>
+          <h3>Batiments ERP</h3>
+        </div>
+        <div class="domaine-card reveal reveal-delay-2">
+          <div class="domaine-card-icon"><img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=200&h=200&fit=crop&crop=center" alt="Entrepots d'entreprises" loading="lazy"></div>
+          <h3>Entrepots d'entreprises</h3>
+        </div>
+        <div class="domaine-card reveal reveal-delay-3">
+          <div class="domaine-card-icon"><img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=200&h=200&fit=crop&crop=center" alt="Etablissements publics" loading="lazy"></div>
+          <h3>Etablissements publics</h3>
+        </div>
+        <div class="domaine-card reveal reveal-delay-4">
+          <div class="domaine-card-icon"><img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=200&h=200&fit=crop&crop=center" alt="Espaces commerciaux" loading="lazy"></div>
+          <h3>Espaces commerciaux</h3>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CTA ========== -->
+  <section class="cta-section">
+    <div class="cta-card reveal">
+      <div class="section-label">Devis gratuit</div>
+      <h2 class="section-title">Obtenir une offre maintenant</h2>
+      <p class="section-desc">Votre devis gratuit en un clic - rapide et sans engagement !</p>
+      <a href="#" class="btn-cta-large">
+        Obtenir votre devis
+        <i data-lucide="arrow-right" style="width:18px;height:18px;"></i>
+      </a>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="/" class="logo">
+          <div class="logo-mark">+</div>
+          COGELAS
+        </a>
+        <p>Pour vous, nous amenageons le meilleur. Fort de 25 ans d'experience en construction et renovation en Ile-de-France.</p>
+      </div>
+      <div>
+        <h4>Navigation</h4>
+        <ul class="footer-links">
+          <li><a href="#">Accueil</a></li>
+          <li><a href="#">Realisations</a></li>
+          <li><a href="#">Qui sommes-nous ?</a></li>
+          <li><a href="#">Expertises</a></li>
+          <li><a href="#">J'ai un projet !</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <ul class="footer-links">
+          <li><a href="#">Plan du site</a></li>
+          <li><a href="#">Mentions legales</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <div class="footer-contact-item">
+          <i data-lucide="map-pin"></i>
+          <span>17 rue Parmentier<br>95190 Goussainville</span>
+        </div>
+        <div class="footer-contact-item">
+          <i data-lucide="phone"></i>
+          <a href="tel:0170928129">01 70 92 81 29</a>
+        </div>
+        <div class="footer-contact-item">
+          <i data-lucide="mail"></i>
+          <a href="mailto:info@cogelas.fr">info@cogelas.fr</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>Creation et referencement du site par Simplebo</span>
+      <a href="#">Connexion</a>
+    </div>
+  </footer>
+
+  <script>
+    lucide.createIcons();
+
+    // Navbar scroll effect
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    // Mobile menu toggle
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.getElementById('navLinks');
+    const mobileOverlay = document.getElementById('mobileOverlay');
+    const menuClose = document.getElementById('menuClose');
+
+    function openMenu() {
+      navLinks.classList.add('open');
+      mobileOverlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeMenu() {
+      navLinks.classList.remove('open');
+      mobileOverlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    menuToggle.addEventListener('click', openMenu);
+    menuClose.addEventListener('click', closeMenu);
+    mobileOverlay.addEventListener('click', closeMenu);
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', closeMenu);
+    });
+
+    // Scroll Reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Counter animation
+    const countObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          const target = parseInt(el.dataset.count);
+          let current = 0;
+          const step = Math.max(1, Math.floor(target / 40));
+          const timer = setInterval(() => {
+            current += step;
+            if (current >= target) {
+              current = target;
+              clearInterval(timer);
+            }
+            el.textContent = current + (target > 10 ? '+' : '');
+          }, 30);
+          countObserver.unobserve(el);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    document.querySelectorAll('[data-count]').forEach(el => countObserver.observe(el));
+  </script>
+</body>
+</html>
