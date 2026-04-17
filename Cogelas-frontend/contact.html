@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+  <title>Contactez-nous &bull; Cogelas</title>
+  <meta name="description" content="Contactez COGELAS, votre entreprise de construction dans le Val d'Oise. 17 rue Parmentier, 95190 Goussainville — 01 70 92 81 29.">
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <a href="#main-content" class="skip-link">Aller au contenu principal</a>
+
+  <header class="header scrolled" id="header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <img src="media/logo.png" alt="Cogelas">
+      </a>
+      <nav class="nav-menu" id="navMenu">
+        <a href="index.html" class="nav-link">Accueil</a>
+        <a href="realisations.html" class="nav-link">Réalisations</a>
+        <a href="qui-sommes-nous.html" class="nav-link">Qui sommes-nous ?</a>
+        <div class="nav-dropdown">
+          <button class="nav-link nav-dropdown-toggle" aria-haspopup="true" aria-expanded="false">Expertises</button>
+          <div class="nav-dropdown-menu">
+            <a href="planchers-techniques.html">Planchers techniques surélevés</a>
+            <a href="revetement-de-sol.html">Revêtement de sol</a>
+            <a href="terrassement.html">Terrassement et Assainissement</a>
+            <a href="maconnerie.html">Maçonnerie / Gros Œuvre</a>
+            <a href="isolation-thermique.html">Isolation thermique par l'extérieur</a>
+          </div>
+        </div>
+        <a href="contact.html" class="nav-cta" aria-current="page">J'ai un projet !</a>
+      </nav>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <nav class="mobile-nav" id="mobileNav">
+    <a href="index.html">Accueil</a>
+    <a href="realisations.html">Réalisations</a>
+    <a href="qui-sommes-nous.html">Qui sommes-nous ?</a>
+    <button class="mobile-folder-toggle" aria-expanded="false">Expertises</button>
+    <a href="planchers-techniques.html" class="mobile-sub-link">Planchers techniques surélevés</a>
+    <a href="revetement-de-sol.html" class="mobile-sub-link">Revêtement de sol</a>
+    <a href="terrassement.html" class="mobile-sub-link">Terrassement et Assainissement</a>
+    <a href="maconnerie.html" class="mobile-sub-link">Maçonnerie / Gros Œuvre</a>
+    <a href="isolation-thermique.html" class="mobile-sub-link">Isolation thermique par l'extérieur</a>
+    <a href="contact.html" style="color: var(--accent);" aria-current="page">J'ai un projet !</a>
+  </nav>
+
+  <main id="main-content">
+
+    <section class="page-hero" style="background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1920&h=800&fit=crop&crop=center');">
+      <div class="page-hero-overlay"></div>
+      <div class="page-hero-content">
+        <p class="breadcrumb"><a href="index.html">Accueil</a> › Contact</p>
+        <h1>Contactez-nous</h1>
+        <p>Contactez COGELAS, votre entreprise de construction dans le Val d'Oise</p>
+      </div>
+    </section>
+
+    <div class="contact-layout">
+
+      <div id="contactFormWrapper" class="contact-form">
+        <h2>Écrivez-nous</h2>
+        <p>Envie de discuter de votre projet avec nous, de partager vos idées ou de nous faire part de vos commentaires ? Contactez-nous ! Nous sommes impatients de vous écouter et de collaborer avec vous pour concrétiser vos projets.</p>
+        <form id="contactForm" action="https://formsubmit.co/info@cogelas.fr" method="POST" novalidate>
+          <input type="hidden" name="_subject" value="Nouveau message depuis cogelas.fr">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_template" value="table">
+          <input type="text" name="_honey" style="display:none">
+          <input type="hidden" name="_next" value="contact.html?sent=1">
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="nom">Nom</label>
+              <input type="text" id="nom" name="nom" required>
+              <p class="field-error">Ce champ est requis</p>
+            </div>
+            <div class="form-group">
+              <label for="prenom">Prénom</label>
+              <input type="text" id="prenom" name="prenom" required>
+              <p class="field-error">Ce champ est requis</p>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" required>
+              <p class="field-error">Veuillez entrer un email valide</p>
+            </div>
+            <div class="form-group">
+              <label for="telephone">Téléphone</label>
+              <input type="tel" id="telephone" name="telephone">
+              <p class="field-error">Ce champ est requis</p>
+            </div>
+            <div class="form-group full-width">
+              <label for="sujet">Sujet</label>
+              <input type="text" id="sujet" name="sujet" required>
+              <p class="field-error">Ce champ est requis</p>
+            </div>
+            <div class="form-group full-width">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" required></textarea>
+              <p class="field-error">Ce champ est requis</p>
+            </div>
+          </div>
+          <button type="submit" class="form-submit">Envoyer</button>
+        </form>
+      </div>
+
+      <div class="contact-info">
+        <h3>Adresse</h3>
+        <p>17 rue Parmentier,<br>95190 Goussainville</p>
+        <h3>Téléphone</h3>
+        <p><a href="tel:+33170928129">01 70 92 81 29</a></p>
+        <h3>Email</h3>
+        <p><a href="mailto:info@cogelas.fr">info@cogelas.fr</a></p>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2617.5!2d2.4636!3d49.0328!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDnCsDAyJzEwLjAiTiAywrAyNyc0OS4wIkU!5e0!3m2!1sfr!2sfr!4v1" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Cogelas — Goussainville"></iframe>
+      </div>
+
+    </div>
+
+  </main>
+
+  <footer class="footer" id="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="index.html" class="logo">
+          <img src="media/logo.png" alt="Cogelas">
+        </a>
+        <p>Pour vous, nous aménageons le meilleur.</p>
+      </div>
+      <div>
+        <div class="footer-social">
+          <span>Nous suivre</span>
+          <a href="#" aria-label="LinkedIn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D9000D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+          <a href="#" aria-label="Facebook">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D9000D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+        </div>
+        <div class="footer-details">
+          <div>
+            <p class="detail-label">Adresse</p>
+            <p class="detail-value">17 rue Parmentier,<br>95190 Goussainville</p>
+          </div>
+          <div>
+            <p class="detail-label">Email</p>
+            <p class="detail-value"><a href="mailto:info@cogelas.fr">info@cogelas.fr</a></p>
+          </div>
+          <div>
+            <p class="detail-label">Téléphone</p>
+            <p class="detail-value"><a href="tel:+33170928129">01 70 92 81 29</a></p>
+          </div>
+        </div>
+        <div class="footer-links">
+          <a href="#">Mentions légales</a>
+          <a href="#">Politique de confidentialité</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Cogelas. Tous droits réservés.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
