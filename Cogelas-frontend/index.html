@@ -10,28 +10,29 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<a href="#main-content" class="skip-link">Aller au contenu principal</a>
 
   <!-- ========== HEADER ========== -->
   <header class="header transparent" id="header">
     <div class="header-inner">
-      <a href="#" class="logo">
+      <a href="index.html" class="logo">
         <img src="media/logo.png" alt="Cogelas">
       </a>
       <nav class="nav-menu" id="navMenu">
-        <a href="#" class="nav-link">Accueil</a>
-        <a href="#projects" class="nav-link">Realisations</a>
-        <a href="#company" class="nav-link">Qui sommes-nous ?</a>
+        <a href="index.html" class="nav-link" aria-current="page">Accueil</a>
+        <a href="realisations.html" class="nav-link">Réalisations</a>
+        <a href="qui-sommes-nous.html" class="nav-link">Qui sommes-nous ?</a>
         <div class="nav-dropdown">
-          <a href="#expertises" class="nav-link">Expertises</a>
+          <button class="nav-link nav-dropdown-toggle" aria-haspopup="true" aria-expanded="false">Expertises</button>
           <div class="nav-dropdown-menu">
-            <a href="#expertises">Planchers techniques sureleves</a>
-            <a href="#expertises">Revetement de sol</a>
-            <a href="#expertises">Terrassement et Assainissement</a>
-            <a href="#expertises">Maconnerie / Gros Oeuvre</a>
-            <a href="#expertises">Isolation thermique par l'exterieur</a>
+            <a href="planchers-techniques.html">Planchers techniques surélevés</a>
+            <a href="revetement-de-sol.html">Revêtement de sol</a>
+            <a href="terrassement.html">Terrassement et Assainissement</a>
+            <a href="maconnerie.html">Maçonnerie / Gros Œuvre</a>
+            <a href="isolation-thermique.html">Isolation thermique par l'extérieur</a>
           </div>
         </div>
-        <a href="#contact" class="nav-cta">J'ai un projet !</a>
+        <a href="contact.html" class="nav-cta">J'ai un projet !</a>
       </nav>
       <button class="hamburger" id="hamburger" aria-label="Menu">
         <span></span><span></span><span></span>
@@ -41,19 +42,19 @@
 
   <!-- Mobile nav -->
   <nav class="mobile-nav" id="mobileNav">
-    <a href="#">Accueil</a>
-    <a href="#projects">Realisations</a>
-    <a href="#company">Qui sommes-nous ?</a>
-    <a href="#expertises">Expertises</a>
-    <a href="#expertises" class="mobile-sub-link">Planchers techniques sureleves</a>
-    <a href="#expertises" class="mobile-sub-link">Revetement de sol</a>
-    <a href="#expertises" class="mobile-sub-link">Terrassement et Assainissement</a>
-    <a href="#expertises" class="mobile-sub-link">Maconnerie / Gros Oeuvre</a>
-    <a href="#expertises" class="mobile-sub-link">Isolation thermique par l'exterieur</a>
-    <a href="#contact" style="color: var(--accent);">J'ai un projet !</a>
+    <a href="index.html" aria-current="page">Accueil</a>
+    <a href="realisations.html">Réalisations</a>
+    <a href="qui-sommes-nous.html">Qui sommes-nous ?</a>
+    <button class="mobile-folder-toggle" aria-expanded="false">Expertises</button>
+    <a href="planchers-techniques.html" class="mobile-sub-link">Planchers techniques surélevés</a>
+    <a href="revetement-de-sol.html" class="mobile-sub-link">Revêtement de sol</a>
+    <a href="terrassement.html" class="mobile-sub-link">Terrassement et Assainissement</a>
+    <a href="maconnerie.html" class="mobile-sub-link">Maçonnerie / Gros Œuvre</a>
+    <a href="isolation-thermique.html" class="mobile-sub-link">Isolation thermique par l'extérieur</a>
+    <a href="contact.html" style="color: var(--accent);">J'ai un projet !</a>
   </nav>
 
-  <main>
+  <main id="main-content">
 
     <!-- ========== HERO ========== -->
     <section class="hero">
