@@ -59,7 +59,7 @@
     <!-- ========== HERO ========== -->
     <section class="hero">
       <div class="hero-video">
-        <iframe src="https://www.youtube.com/embed/LfTC5ZFGlB8?controls=0&showinfo=0&rel=0&autoplay=1&mute=1&loop=1&playlist=LfTC5ZFGlB8&playsinline=1" title="COGELAS - Construction" allow="autoplay; encrypted-media" allowfullscreen loading="lazy"></iframe>
+        <iframe id="hero-video-iframe" src="https://www.youtube.com/embed/LfTC5ZFGlB8?controls=0&showinfo=0&rel=0&autoplay=1&mute=1&loop=1&playlist=LfTC5ZFGlB8&playsinline=1&modestbranding=1&disablekb=1&iv_load_policy=3&fs=0&cc_load_policy=0&enablejsapi=1" title="COGELAS - Construction" allow="autoplay; encrypted-media" loading="lazy" aria-hidden="true" tabindex="-1"></iframe>
       </div>
       <div class="hero-overlay"></div>
       <div class="hero-content">
@@ -117,13 +117,45 @@
       <div class="prestations-card reveal">
         <h2>Nos prestations</h2>
         <nav>
-          <a href="#" class="prestation-link"><h3>Construction neuve <svg class="svg-arrow" xmlns="http://www.w3.org/2000/svg" width="28" height="22" viewBox="0 0 41 33"><polygon fill="#D9000D" points="32.255 24.945 29.115 21.747 18.491 32.412 18.491 0 14.019 0 14.019 32.412 3.395 21.747 .255 24.945 16.256 41" transform="rotate(-90 16.5 16.5)"/></svg></h3></a>
-          <a href="#" class="prestation-link"><h3>Rehabilitation <svg class="svg-arrow" xmlns="http://www.w3.org/2000/svg" width="28" height="22" viewBox="0 0 41 33"><polygon fill="#D9000D" points="32.255 24.945 29.115 21.747 18.491 32.412 18.491 0 14.019 0 14.019 32.412 3.395 21.747 .255 24.945 16.256 41" transform="rotate(-90 16.5 16.5)"/></svg></h3></a>
-          <a href="#" class="prestation-link"><h3>Amenagement interieur <svg class="svg-arrow" xmlns="http://www.w3.org/2000/svg" width="28" height="22" viewBox="0 0 41 33"><polygon fill="#D9000D" points="32.255 24.945 29.115 21.747 18.491 32.412 18.491 0 14.019 0 14.019 32.412 3.395 21.747 .255 24.945 16.256 41" transform="rotate(-90 16.5 16.5)"/></svg></h3></a>
-          <a href="#" class="prestation-link"><h3>Renovation energetique <svg class="svg-arrow" xmlns="http://www.w3.org/2000/svg" width="28" height="22" viewBox="0 0 41 33"><polygon fill="#D9000D" points="32.255 24.945 29.115 21.747 18.491 32.412 18.491 0 14.019 0 14.019 32.412 3.395 21.747 .255 24.945 16.256 41" transform="rotate(-90 16.5 16.5)"/></svg></h3></a>
-          <a href="#" class="prestation-link"><h3>Gros oeuvre <svg class="svg-arrow" xmlns="http://www.w3.org/2000/svg" width="28" height="22" viewBox="0 0 41 33"><polygon fill="#D9000D" points="32.255 24.945 29.115 21.747 18.491 32.412 18.491 0 14.019 0 14.019 32.412 3.395 21.747 .255 24.945 16.256 41" transform="rotate(-90 16.5 16.5)"/></svg></h3></a>
-          <a href="#" class="prestation-link"><h3>Planchers techniques <svg class="svg-arrow" xmlns="http://www.w3.org/2000/svg" width="28" height="22" viewBox="0 0 41 33"><polygon fill="#D9000D" points="32.255 24.945 29.115 21.747 18.491 32.412 18.491 0 14.019 0 14.019 32.412 3.395 21.747 .255 24.945 16.256 41" transform="rotate(-90 16.5 16.5)"/></svg></h3></a>
+          <a href="realisations.html" class="prestation-link"><h3>Construction neuve <svg class="svg-arrow" xmlns="http://www.w3.org/2000/svg" width="28" height="22" viewBox="0 0 41 33"><polygon fill="#D9000D" points="32.255 24.945 29.115 21.747 18.491 32.412 18.491 0 14.019 0 14.019 32.412 3.395 21.747 .255 24.945 16.256 41" transform="rotate(-90 16.5 16.5)"/></svg></h3></a>
+          <a href="realisations.html" class="prestation-link"><h3>Rehabilitation <svg class="svg-arrow" xmlns="http://www.w3.org/2000/svg" width="28" height="22" viewBox="0 0 41 33"><polygon fill="#D9000D" points="32.255 24.945 29.115 21.747 18.491 32.412 18.491 0 14.019 0 14.019 32.412 3.395 21.747 .255 24.945 16.256 41" transform="rotate(-90 16.5 16.5)"/></svg></h3></a>
+          <a href="revetement-de-sol.html" class="prestation-link"><h3>Amenagement interieur <svg class="svg-arrow" xmlns="http://www.w3.org/2000/svg" width="28" height="22" viewBox="0 0 41 33"><polygon fill="#D9000D" points="32.255 24.945 29.115 21.747 18.491 32.412 18.491 0 14.019 0 14.019 32.412 3.395 21.747 .255 24.945 16.256 41" transform="rotate(-90 16.5 16.5)"/></svg></h3></a>
+          <a href="isolation-thermique.html" class="prestation-link"><h3>Renovation energetique <svg class="svg-arrow" xmlns="http://www.w3.org/2000/svg" width="28" height="22" viewBox="0 0 41 33"><polygon fill="#D9000D" points="32.255 24.945 29.115 21.747 18.491 32.412 18.491 0 14.019 0 14.019 32.412 3.395 21.747 .255 24.945 16.256 41" transform="rotate(-90 16.5 16.5)"/></svg></h3></a>
+          <a href="maconnerie.html" class="prestation-link"><h3>Gros oeuvre <svg class="svg-arrow" xmlns="http://www.w3.org/2000/svg" width="28" height="22" viewBox="0 0 41 33"><polygon fill="#D9000D" points="32.255 24.945 29.115 21.747 18.491 32.412 18.491 0 14.019 0 14.019 32.412 3.395 21.747 .255 24.945 16.256 41" transform="rotate(-90 16.5 16.5)"/></svg></h3></a>
+          <a href="planchers-techniques.html" class="prestation-link"><h3>Planchers techniques <svg class="svg-arrow" xmlns="http://www.w3.org/2000/svg" width="28" height="22" viewBox="0 0 41 33"><polygon fill="#D9000D" points="32.255 24.945 29.115 21.747 18.491 32.412 18.491 0 14.019 0 14.019 32.412 3.395 21.747 .255 24.945 16.256 41" transform="rotate(-90 16.5 16.5)"/></svg></h3></a>
         </nav>
+      </div>
+    </section>
+
+    <!-- ========== CHIFFRES ========== -->
+    <section class="figures" aria-labelledby="chiffres-title">
+      <img class="figures-bg" src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1920&h=800&fit=crop&crop=center" alt="">
+      <div class="figures-overlay"></div>
+      <div class="figures-content">
+        <h2 id="chiffres-title">Cogelas en quelques chiffres</h2>
+        <p>La construction responsable au service de vos projets</p>
+        <div class="figures-grid">
+          <div class="figure-item reveal">
+            <p class="label">Plus de</p>
+            <p class="number" data-target="25">0</p>
+            <p class="desc">années d'experience</p>
+          </div>
+          <div class="figure-item reveal reveal-delay-1">
+            <p class="label">Present dans</p>
+            <p class="number" data-target="3">0</p>
+            <p class="desc">pays</p>
+          </div>
+          <div class="figure-item reveal reveal-delay-2">
+            <p class="label">Plus de</p>
+            <p class="number" data-target="21">0</p>
+            <p class="desc">partenariats actifs</p>
+          </div>
+          <div class="figure-item reveal reveal-delay-3">
+            <p class="label">Plus de</p>
+            <p class="number" data-target="48">0</p>
+            <p class="desc">projets realises</p>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -135,7 +167,7 @@
             <h2>Projets en cours</h2>
             <p>Decouvrez les derniers chantiers de construction et renovation realises par Cogelas</p>
           </div>
-          <a href="#">Tous nos projets</a>
+          <a href="realisations.html">Tous nos projets</a>
         </div>
         <div class="projects-grid">
           <article class="project-card reveal">
@@ -232,7 +264,42 @@
       </div>
     </section>
 
-    <!-- ========== COMPANY TEXT ========== -->
+    <!-- ========== PARTNERS ========== -->
+    <section class="partners" aria-labelledby="partners-title">
+      <div class="container">
+        <h2 id="partners-title" class="partners-title">Ils nous font confiance</h2>
+        <div class="partners-viewport">
+          <ul class="partners-track" role="list">
+            <li class="partner-logo"><img src="https://d3scdyhm3l4ak2.cloudfront.net/Logo/ANAH.png" alt="ANAH" loading="lazy"></li>
+            <li class="partner-logo"><img src="https://d3scdyhm3l4ak2.cloudfront.net/Logo/3F+Groupe.jpg" alt="3F Groupe Action Logement" loading="lazy"></li>
+            <li class="partner-logo"><img src="https://d3scdyhm3l4ak2.cloudfront.net/Logo/Centre+bethel.png" alt="Centre Bethel AEFPC" loading="lazy"></li>
+            <li class="partner-logo"><img src="https://d3scdyhm3l4ak2.cloudfront.net/Logo/Consistoire+Paris.jpg" alt="Consistoire de Paris Ile-de-France" loading="lazy"></li>
+            <li class="partner-logo"><img src="https://d3scdyhm3l4ak2.cloudfront.net/Logo/Fayolle.png" alt="Fayolle" loading="lazy"></li>
+            <li class="partner-logo"><img src="https://d3scdyhm3l4ak2.cloudfront.net/Logo/nexity.png" alt="Nexity" loading="lazy"></li>
+            <li class="partner-logo"><img src="https://d3scdyhm3l4ak2.cloudfront.net/Logo/Region+haut+de+france.jpg" alt="Region Hauts-de-France" loading="lazy"></li>
+            <li class="partner-logo"><img src="https://d3scdyhm3l4ak2.cloudfront.net/Logo/saur.png" alt="Saur" loading="lazy"></li>
+            <li class="partner-logo"><img src="https://d3scdyhm3l4ak2.cloudfront.net/Logo/Ville+Arras.jpg" alt="Ville d'Arras" loading="lazy"></li>
+            <li class="partner-logo"><img src="https://d3scdyhm3l4ak2.cloudfront.net/Logo/Ville+Sarcelles.png" alt="Ville de Sarcelles" loading="lazy"></li>
+            <li class="partner-logo"><img src="https://d3scdyhm3l4ak2.cloudfront.net/Logo/villedeparis.jpg" alt="Ville de Paris" loading="lazy"></li>
+            <li class="partner-logo" aria-hidden="true"><img src="https://d3scdyhm3l4ak2.cloudfront.net/Logo/ANAH.png" alt="" loading="lazy"></li>
+            <li class="partner-logo" aria-hidden="true"><img src="https://d3scdyhm3l4ak2.cloudfront.net/Logo/3F+Groupe.jpg" alt="" loading="lazy"></li>
+            <li class="partner-logo" aria-hidden="true"><img src="https://d3scdyhm3l4ak2.cloudfront.net/Logo/Centre+bethel.png" alt="" loading="lazy"></li>
+            <li class="partner-logo" aria-hidden="true"><img src="https://d3scdyhm3l4ak2.cloudfront.net/Logo/Consistoire+Paris.jpg" alt="" loading="lazy"></li>
+            <li class="partner-logo" aria-hidden="true"><img src="https://d3scdyhm3l4ak2.cloudfront.net/Logo/Fayolle.png" alt="" loading="lazy"></li>
+            <li class="partner-logo" aria-hidden="true"><img src="https://d3scdyhm3l4ak2.cloudfront.net/Logo/nexity.png" alt="" loading="lazy"></li>
+            <li class="partner-logo" aria-hidden="true"><img src="https://d3scdyhm3l4ak2.cloudfront.net/Logo/Region+haut+de+france.jpg" alt="" loading="lazy"></li>
+            <li class="partner-logo" aria-hidden="true"><img src="https://d3scdyhm3l4ak2.cloudfront.net/Logo/saur.png" alt="" loading="lazy"></li>
+            <li class="partner-logo" aria-hidden="true"><img src="https://d3scdyhm3l4ak2.cloudfront.net/Logo/Ville+Arras.jpg" alt="" loading="lazy"></li>
+            <li class="partner-logo" aria-hidden="true"><img src="https://d3scdyhm3l4ak2.cloudfront.net/Logo/Ville+Sarcelles.png" alt="" loading="lazy"></li>
+            <li class="partner-logo" aria-hidden="true"><img src="https://d3scdyhm3l4ak2.cloudfront.net/Logo/villedeparis.jpg" alt="" loading="lazy"></li>
+          </ul>
+        </div>
+        <div class="partners-divider" aria-hidden="true"></div>
+        <div class="partners-brand">
+          <img src="media/logo.png" alt="Cogelas">
+        </div>
+      </div>
+    </section>
   </main>
 
   <!-- ========== FOOTER ========== -->
@@ -269,8 +336,8 @@
           </div>
         </div>
         <div class="footer-links">
-          <a href="#">Mentions legales</a>
-          <a href="#">Politique de confidentialite</a>
+          <a href="mentions-legales.html">Mentions legales</a>
+          <a href="politique-de-confidentialite.html">Politique de confidentialite</a>
         </div>
       </div>
     </div>
