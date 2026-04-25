@@ -381,13 +381,27 @@ img { max-width: 100%; height: auto; display: block; }
 
 .planchers-highlight-img {
   overflow: hidden;
+  aspect-ratio: 4 / 3;
 }
 
-.planchers-highlight-img img {
+.planchers-highlight-img img,
+.planchers-highlight-img video {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
+}
+
+.planchers-highlight-img video {
+  pointer-events: none;
+}
+
+.planchers-highlight-img video::-webkit-media-controls,
+.planchers-highlight-img video::-webkit-media-controls-panel,
+.planchers-highlight-img video::-webkit-media-controls-overlay-play-button,
+.planchers-highlight-img video::-internal-media-controls-overflow-button {
+  display: none !important;
+  -webkit-appearance: none;
 }
 
 .planchers-highlight-text h2 {
@@ -1631,7 +1645,7 @@ img { max-width: 100%; height: auto; display: block; }
   margin: 0;
   display: flex;
   align-items: center;
-  gap: 64px;
+  gap: 88px;
   width: max-content;
   animation: partners-scroll 48s linear infinite;
 }
@@ -1643,8 +1657,8 @@ img { max-width: 100%; height: auto; display: block; }
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 64px;
-  width: 140px;
+  height: 100px;
+  width: 200px;
 }
 
 .partner-logo img {
@@ -1679,7 +1693,7 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 .partners-brand img {
-  height: 56px;
+  height: 88px;
   width: auto;
 }
 
