@@ -340,18 +340,68 @@ counters.forEach(c => counterObserver.observe(c));
   });
 })();
 
-/* Hero video pause-when-offscreen — saves CPU/battery once the user scrolls past. */
-(function heroVideoLifecycle() {
-  var video = document.getElementById('hero-video');
-  if (!video) return;
-  var hero = document.querySelector('.hero');
-  if (!hero || !('IntersectionObserver' in window)) return;
-  new IntersectionObserver(function (entries) {
-    if (entries[0].isIntersecting && !document.hidden) {
+/* Background videos (hero + planchers): keep them playing when in view, pause
+   when offscreen, and auto-resume when the browser/OS pauses us against our
+   will (iOS Safari sometimes pauses background videos on scroll, tab return,
+   or under Low Power Mode — once paused, Safari shows a big play-button
+   overlay we can't reliably hide via CSS, so the fix is to never stay paused
+   while visible). */
+(function setupBackgroundVideos() {
+  function setup(video, container) {
+    if (!video || !container) return;
+    var manualPause = false;
+    var retries = 0;
+
+    function visible() {
+      var r = container.getBoundingClientRect();
+      return r.bottom > 0 && r.top < window.innerHeight;
+    }
+
+    function tryPlay() {
+      if (document.hidden || !visible()) return;
+      manualPause = false;
       var p = video.play();
-      if (p && p.catch) p.catch(function () {}); // ignore autoplay-block errors
-    } else {
+      if (p && p.then) {
+        p.then(function () { retries = 0; })
+         .catch(function () { retries++; }); // browser refused (Low Power Mode etc.)
+      }
+    }
+
+    function pause() {
+      manualPause = true;
       video.pause();
     }
-  }, { threshold: 0 }).observe(hero);
+
+    // Try to start playback as soon as the browser has data
+    video.addEventListener('loadedmetadata', tryPlay);
+    video.addEventListener('canplay', tryPlay);
+
+    // If the browser/OS pauses against our wishes, retry (cap at 3 to avoid loops)
+    video.addEventListener('pause', function () {
+      if (manualPause || video.ended || retries >= 3) return;
+      setTimeout(tryPlay, 200);
+    });
+
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (entries) {
+        if (entries[0].isIntersecting && !document.hidden) tryPlay();
+        else pause();
+      }, { threshold: 0 }).observe(container);
+    }
+
+    document.addEventListener('visibilitychange', function () {
+      if (document.hidden) pause();
+      else tryPlay();
+    });
+
+    // Best-effort initial kick (covers cases where autoplay was blocked
+    // before our handlers attached)
+    tryPlay();
+  }
+
+  setup(document.getElementById('hero-video'), document.querySelector('.hero'));
+  setup(
+    document.querySelector('.planchers-highlight-img video'),
+    document.querySelector('.planchers-highlight')
+  );
 })();
