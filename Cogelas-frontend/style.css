@@ -1274,6 +1274,13 @@ img { max-width: 100%; height: auto; display: block; }
   margin-bottom: 16px;
 }
 
+/* Centered variant: no image, narrower max-width, text centered */
+.content-section--centered {
+  grid-template-columns: 1fr;
+  max-width: 860px;
+  text-align: center;
+}
+
 /* Feature Cards (3-col grid) */
 .feature-cards {
   max-width: var(--container);
