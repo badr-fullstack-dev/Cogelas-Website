@@ -200,25 +200,21 @@ counters.forEach(c => counterObserver.observe(c));
   else if (mobileMQ.addListener) mobileMQ.addListener(resetDropdown);
 })();
 
-// Contact form validation
+// Contact form: client-side validation + async POST to /api/contact
 (function() {
   var form = document.getElementById('contactForm');
   if (!form) return;
 
-  // Check for success redirect
-  if (window.location.search.indexOf('sent=1') !== -1) {
-    var formWrapper = document.getElementById('contactFormWrapper');
-    if (formWrapper) {
-      formWrapper.innerHTML = '<div class="form-success"><p>Votre message a \u00e9t\u00e9 envoy\u00e9 avec succ\u00e8s !</p><p style="font-size:14px;font-weight:400;color:var(--gray-600);margin-top:8px;">Nous vous r\u00e9pondrons dans les plus brefs d\u00e9lais.</p></div>';
-    }
-    return;
-  }
+  // Stamp form-load time so the server can reject instant bot submissions
+  var ts = document.getElementById('contactTs');
+  if (ts) ts.value = String(Date.now());
 
   var submitted = false;
+  var submitting = false;
 
   function validateField(group) {
     var input = group.querySelector('input, textarea');
-    if (!input) return true;
+    if (!input || input.type === 'hidden') return true;
     var valid = true;
     if (input.hasAttribute('required') && !input.value.trim()) {
       valid = false;
@@ -226,27 +222,93 @@ counters.forEach(c => counterObserver.observe(c));
     if (input.type === 'email' && input.value.trim()) {
       valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value.trim());
     }
-    if (valid) {
-      group.classList.remove('has-error');
-    } else {
-      group.classList.add('has-error');
-    }
+    if (valid) group.classList.remove('has-error');
+    else group.classList.add('has-error');
     return valid;
   }
 
-  form.addEventListener('submit', function(e) {
+  function showSuccess() {
+    var wrapper = document.getElementById('contactFormWrapper');
+    if (!wrapper) return;
+    while (wrapper.firstChild) wrapper.removeChild(wrapper.firstChild);
+    var box = document.createElement('div');
+    box.className = 'form-success';
+    box.setAttribute('role', 'status');
+    box.setAttribute('aria-live', 'polite');
+    var p1 = document.createElement('p');
+    p1.textContent = 'Votre message a \u00e9t\u00e9 envoy\u00e9 avec succ\u00e8s !';
+    var p2 = document.createElement('p');
+    p2.style.fontSize = '14px';
+    p2.style.fontWeight = '400';
+    p2.style.color = 'var(--gray-600)';
+    p2.style.marginTop = '8px';
+    p2.textContent = 'Nous vous r\u00e9pondrons dans les plus brefs d\u00e9lais.';
+    box.appendChild(p1);
+    box.appendChild(p2);
+    wrapper.appendChild(box);
+    wrapper.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  function showError(msg) {
+    var existing = form.querySelector('.form-error-banner');
+    if (existing) existing.remove();
+    var banner = document.createElement('div');
+    banner.className = 'form-error-banner';
+    banner.setAttribute('role', 'alert');
+    banner.textContent = msg;
+    form.insertBefore(banner, form.firstChild);
+  }
+
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    if (submitting) return;
     submitted = true;
+
     var groups = form.querySelectorAll('.form-group');
     var allValid = true;
-    groups.forEach(function(g) {
-      if (!validateField(g)) allValid = false;
-    });
+    groups.forEach(function(g) { if (!validateField(g)) allValid = false; });
     if (!allValid) {
-      e.preventDefault();
+      var firstError = form.querySelector('.form-group.has-error input, .form-group.has-error textarea');
+      if (firstError) firstError.focus();
+      return;
+    }
+
+    var submitBtn = form.querySelector('.form-submit');
+    var originalLabel = submitBtn ? submitBtn.textContent : '';
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Envoi en cours...';
+    }
+    submitting = true;
+
+    var payload = {};
+    new FormData(form).forEach(function(v, k) { payload[k] = v; });
+
+    try {
+      var resp = await fetch(form.action, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      var data = {};
+      try { data = await resp.json(); } catch (_) {}
+      if (resp.ok && data.ok) {
+        showSuccess();
+        return;
+      }
+      var msg = (data && data.error) || 'Une erreur est survenue. Reessayez plus tard.';
+      showError(msg);
+    } catch (err) {
+      showError('Connexion impossible. Verifiez votre reseau et reessayez.');
+    } finally {
+      submitting = false;
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalLabel;
+      }
     }
   });
 
-  // Validate on blur after first submit attempt
   form.addEventListener('focusout', function(e) {
     if (!submitted) return;
     var group = e.target.closest('.form-group');

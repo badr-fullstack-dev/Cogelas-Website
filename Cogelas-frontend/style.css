@@ -1460,6 +1460,15 @@ img { max-width: 100%; height: auto; display: block; }
   font-weight: 600;
   color: #28a745;
 }
+.form-error-banner {
+  border-left: 4px solid var(--accent);
+  padding: 14px 20px;
+  background: rgba(217, 0, 13, 0.06);
+  color: var(--accent);
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 24px;
+}
 
 /* Contact Info Panel */
 .contact-info h3 {

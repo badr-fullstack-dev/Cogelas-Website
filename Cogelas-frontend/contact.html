@@ -69,12 +69,9 @@
       <div id="contactFormWrapper" class="contact-form">
         <h2>Écrivez-nous</h2>
         <p>Envie de discuter de votre projet avec nous, de partager vos idées ou de nous faire part de vos commentaires ? Contactez-nous ! Nous sommes impatients de vous écouter et de collaborer avec vous pour concrétiser vos projets.</p>
-        <form id="contactForm" action="https://formsubmit.co/info@cogelas.fr" method="POST" novalidate>
-          <input type="hidden" name="_subject" value="Nouveau message depuis cogelas.fr">
-          <input type="hidden" name="_captcha" value="false">
-          <input type="hidden" name="_template" value="table">
-          <input type="text" name="_honey" style="display:none">
-          <input type="hidden" name="_next" value="contact.html?sent=1">
+        <form id="contactForm" action="/api/contact" method="POST" novalidate>
+          <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;">
+          <input type="hidden" name="_ts" id="contactTs" value="">
           <div class="form-grid">
             <div class="form-group">
               <label for="nom">Nom</label>
