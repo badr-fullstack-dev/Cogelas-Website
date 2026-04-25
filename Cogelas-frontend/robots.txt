@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Block API endpoint from indexing — it's not user-facing content
+Disallow: /api/
+
+Sitemap: https://cogelas.fr/sitemap.xml
