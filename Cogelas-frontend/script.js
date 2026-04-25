@@ -15,17 +15,52 @@ updateHeader();
 // Hamburger menu
 const hamburger = document.getElementById('hamburger');
 const mobileNav = document.getElementById('mobileNav');
-hamburger.addEventListener('click', () => {
-  hamburger.classList.toggle('active');
-  mobileNav.classList.toggle('open');
-});
 
-mobileNav.querySelectorAll('a').forEach(link => {
-  link.addEventListener('click', () => {
-    hamburger.classList.remove('active');
-    mobileNav.classList.remove('open');
+if (hamburger && mobileNav) {
+  hamburger.setAttribute('aria-controls', 'mobileNav');
+  hamburger.setAttribute('aria-expanded', 'false');
+
+  function setMobileNav(open) {
+    hamburger.classList.toggle('active', open);
+    mobileNav.classList.toggle('open', open);
+    hamburger.setAttribute('aria-expanded', String(open));
+    document.body.classList.toggle('nav-open', open);
+  }
+
+  hamburger.addEventListener('click', () => {
+    setMobileNav(!mobileNav.classList.contains('open'));
   });
-});
+
+  mobileNav.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => setMobileNav(false));
+  });
+
+  // Close on Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && mobileNav.classList.contains('open')) {
+      setMobileNav(false);
+      hamburger.focus();
+    }
+  });
+
+  // Close when crossing back to desktop width / orientation change
+  const desktopMQ = window.matchMedia('(min-width: 993px)');
+  const closeOnDesktop = (e) => { if (e.matches) setMobileNav(false); };
+  if (desktopMQ.addEventListener) desktopMQ.addEventListener('change', closeOnDesktop);
+  else if (desktopMQ.addListener) desktopMQ.addListener(closeOnDesktop);
+}
+
+// Auto-expand mobile Expertises folder if current page is one of the sub-links
+(function() {
+  const toggle = document.querySelector('.mobile-folder-toggle');
+  if (!toggle) return;
+  const subLinks = document.querySelectorAll('.mobile-nav .mobile-sub-link');
+  const hasActive = Array.from(subLinks).some(a => a.hasAttribute('aria-current'));
+  if (hasActive) {
+    toggle.setAttribute('aria-expanded', 'true');
+    subLinks.forEach(l => l.classList.add('mobile-sub-visible'));
+  }
+})();
 
 // Scroll reveal
 const revealElements = document.querySelectorAll('.reveal');
@@ -150,6 +185,19 @@ counters.forEach(c => counterObserver.observe(c));
       dropdownToggle.focus();
     }
   });
+
+  // Clear any leaked inline styles when crossing back to mobile width
+  const mobileMQ = window.matchMedia('(max-width: 992px)');
+  const resetDropdown = function(e) {
+    if (e.matches) {
+      dropdownToggle.setAttribute('aria-expanded', 'false');
+      menu.style.opacity = '';
+      menu.style.visibility = '';
+      menu.style.transform = '';
+    }
+  };
+  if (mobileMQ.addEventListener) mobileMQ.addEventListener('change', resetDropdown);
+  else if (mobileMQ.addListener) mobileMQ.addListener(resetDropdown);
 })();
 
 // Contact form validation
@@ -206,7 +254,32 @@ counters.forEach(c => counterObserver.observe(c));
   });
 })();
 
-/* Hero video: auto-resume if YouTube ever enters a paused state (kills stray pause-button flash). */
+/* Pause partners marquee when offscreen or tab hidden — saves CPU/battery on mobile. */
+(function() {
+  const track = document.querySelector('.partners-track');
+  if (!track) return;
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduced) return; // already disabled by CSS
+  const setPaused = (paused) => track.setAttribute('data-paused', String(paused));
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver(([entry]) => {
+      setPaused(!entry.isIntersecting);
+    }, { threshold: 0 });
+    io.observe(track);
+  }
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) setPaused(true);
+    else {
+      // Resume only if track is in view
+      const rect = track.getBoundingClientRect();
+      const onScreen = rect.bottom > 0 && rect.top < window.innerHeight;
+      setPaused(!onScreen);
+    }
+  });
+})();
+
+/* Hero video: auto-resume if YouTube ever enters a paused state (kills stray pause-button flash).
+   Also pauses when offscreen / tab hidden — saves CPU/battery once the user has scrolled past. */
 (function heroVideoAutoplay() {
   var iframe = document.getElementById('hero-video-iframe');
   if (!iframe) return;
@@ -217,18 +290,32 @@ counters.forEach(c => counterObserver.observe(c));
     document.head.appendChild(tag);
   }
   window.onYouTubeIframeAPIReady = function () {
+    var inView = true;
     var player = new YT.Player('hero-video-iframe', {
       events: {
         onReady: function (e) { e.target.mute(); e.target.playVideo(); },
         onStateChange: function (e) {
-          if (e.data === YT.PlayerState.PAUSED || e.data === YT.PlayerState.ENDED) {
+          if (inView && !document.hidden &&
+              (e.data === YT.PlayerState.PAUSED || e.data === YT.PlayerState.ENDED)) {
             e.target.playVideo();
           }
         }
       }
     });
+    var hero = document.querySelector('.hero');
+    if (hero && 'IntersectionObserver' in window) {
+      new IntersectionObserver(function (entries) {
+        inView = entries[0].isIntersecting;
+        if (player && player.pauseVideo && player.playVideo) {
+          if (inView && !document.hidden) player.playVideo();
+          else player.pauseVideo();
+        }
+      }, { threshold: 0 }).observe(hero);
+    }
     document.addEventListener('visibilitychange', function () {
-      if (!document.hidden && player && player.playVideo) player.playVideo();
+      if (!player) return;
+      if (document.hidden) { if (player.pauseVideo) player.pauseVideo(); }
+      else if (inView && player.playVideo) player.playVideo();
     });
   };
 })();

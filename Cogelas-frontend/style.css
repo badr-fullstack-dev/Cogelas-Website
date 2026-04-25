@@ -1490,13 +1490,12 @@ img { max-width: 100%; height: auto; display: block; }
 }
 .contact-image {
   width: 100%;
-  aspect-ratio: 3 / 2;
+  height: 100%;
+  min-height: 480px;
   border-radius: 6px;
   overflow: hidden;
   background: var(--light);
-  align-self: start;
-  position: sticky;
-  top: 112px;
+  align-self: stretch;
 }
 .contact-image img {
   width: 100%;
@@ -1507,7 +1506,7 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 @media (max-width: 992px) {
-  .contact-image { position: static; aspect-ratio: 3 / 2; }
+  .contact-image { aspect-ratio: 3 / 2; height: auto; min-height: 0; }
 }
 /* Inner pages: projects grid wrapper for realisations (full page, not homepage) */
 .realisations-grid {
@@ -1648,9 +1647,10 @@ img { max-width: 100%; height: auto; display: block; }
   gap: 88px;
   width: max-content;
   animation: partners-scroll 48s linear infinite;
+  will-change: transform;
 }
 
-.partners:hover .partners-track { animation-play-state: paused; }
+.partners-track[data-paused="true"] { animation-play-state: paused; }
 
 .partner-logo {
   flex: 0 0 auto;
@@ -1665,14 +1665,6 @@ img { max-width: 100%; height: auto; display: block; }
   max-height: 100%;
   max-width: 100%;
   object-fit: contain;
-  filter: grayscale(100%);
-  opacity: 0.75;
-  transition: filter var(--transition), opacity var(--transition);
-}
-
-.partner-logo img:hover {
-  filter: grayscale(0);
-  opacity: 1;
 }
 
 @keyframes partners-scroll {
@@ -1772,3 +1764,315 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 .legal-container a:hover { color: var(--accent-hover); }
+
+/* ================================================================
+   MOBILE POLISH (≤992 / ≤768 / ≤576 / ≤380)
+   Shared, additive refinements layered on top of the base rules.
+   Goal: stable layouts, breathable spacing, no horizontal overflow,
+   first-class form ergonomics, resilient nav.
+   ================================================================ */
+
+/* Global resilience.
+   overflow-x: clip prevents stray horizontal scrolling without establishing a
+   scroll container — preserves position:sticky elsewhere (e.g. .contact-image
+   on desktop). Falls back gracefully to hidden in older browsers. */
+html, body { overflow-x: clip; }
+@supports not (overflow-x: clip) {
+  html, body { overflow-x: hidden; }
+}
+img, svg, video, iframe { max-width: 100%; }
+img { height: auto; }
+
+/* Lock body scroll while mobile menu is open (set by JS) */
+body.nav-open { overflow: hidden; }
+
+/* Hamburger: guarantee 44×44 tap target */
+.hamburger {
+  min-width: 44px;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Mobile nav: dynamic viewport, safe-area, scrollable, smooth */
+.mobile-nav {
+  height: 100vh;
+  height: 100dvh;
+  padding: calc(96px + env(safe-area-inset-top)) 28px calc(40px + env(safe-area-inset-bottom));
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  gap: 8px;
+}
+.mobile-nav a,
+.mobile-folder-toggle {
+  font-size: 18px;
+  padding: 14px 0;
+  min-height: 48px;
+}
+.mobile-nav .mobile-sub-link {
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
+  min-height: 40px;
+  font-size: 13px !important;
+}
+
+/* ===== HERO (homepage) — let content + CTAs flow on mobile ===== */
+@media (max-width: 768px) {
+  .hero {
+    height: auto;
+    min-height: 88vh;
+    min-height: 88svh;
+  }
+  .hero-content {
+    min-height: 88svh;
+    padding: 96px 20px 48px;
+    justify-content: center;
+  }
+  .hero-content h1 {
+    letter-spacing: 1.5px;
+    margin-bottom: 14px;
+  }
+  /* CTA cards leave the hero on phones so nothing competes for vertical space */
+  .cta-cards {
+    position: static;
+    padding: 0 16px 48px;
+    background: var(--primary);
+  }
+  .cta-cards-inner {
+    gap: 14px;
+  }
+  .cta-tile {
+    min-height: 0;
+    padding: 24px 24px 22px;
+  }
+  .cta-tile-arrow {
+    right: 22px;
+    bottom: 20px;
+  }
+  /* Hero video coverage on portrait phones — 320% width × 100% height fully covers
+     a portrait viewport without the black bars that 220%×220% produced (the prior
+     value oversized the iframe AND letterboxed inside it, wasting paint area). */
+  .hero-video iframe { width: 320%; height: 100%; }
+}
+
+@media (max-width: 992px) and (orientation: portrait) {
+  /* Tablet portrait fills cleanly too */
+  .hero-video iframe { width: 220%; height: 100%; }
+}
+
+/* ===== SECTION RHYTHM ===== */
+@media (max-width: 768px) {
+  .planchers-highlight { padding: 56px 0; }
+  .planchers-highlight-inner { gap: 24px; }
+  .figures { margin-top: 0; }
+  .figures-content { padding: 56px 20px; }
+  .figures-content > p { margin-bottom: 32px; }
+  .domaines { padding: 56px 0; }
+  .domaines-header { margin-bottom: 32px; }
+  .partners { padding: 48px 0 40px; }
+  .partners-title { margin-bottom: 28px; font-size: 22px; }
+  .projects { padding-bottom: 56px; }
+  .section-header { padding: 40px 0 24px; }
+  .realisations-grid { padding: 40px 16px 56px; }
+  .content-section { padding: 48px 20px; gap: 28px; }
+  .feature-cards { padding: 0 16px 56px; gap: 16px; }
+  .feature-card { padding: 28px 24px; }
+  .accent-block { padding: 0 16px 56px; }
+  .intro-centered { padding: 56px 0 0; }
+  .legal-content { padding: 48px 0 64px; }
+  .legal-container { padding: 0 20px; font-size: 15px; }
+  .legal-container h2 { margin-top: 36px; }
+}
+
+/* ===== FIGURES — keep 2 columns clean, never let numbers crowd ===== */
+@media (max-width: 576px) {
+  .figures-grid { gap: 24px; }
+  .figure-item .number { font-size: 34px; }
+}
+
+/* ===== DOMAINES — protect very narrow widths ===== */
+@media (max-width: 380px) {
+  .domaines-grid { grid-template-columns: 1fr; }
+  .domaine-item { padding: 24px 16px; }
+  .domaine-icon { width: 96px; height: 96px; }
+}
+
+/* ===== PARTNERS — readable on phones ===== */
+@media (max-width: 768px) {
+  .partner-logo { height: 70px; width: 140px; }
+  .partners-track { gap: 56px; }
+  .partners-divider { margin: 32px auto 24px; max-width: 280px; }
+  .partners-brand img { height: 64px; }
+}
+
+/* ===== PROJECT CARDS ===== */
+@media (max-width: 576px) {
+  .project-card-img { height: 200px; }
+  .project-card-body { padding: 20px 22px; }
+  .project-card-body h3 { font-size: 16px; }
+  .project-card-num { min-width: 38px; height: 38px; font-size: 13px; top: 12px; left: 12px; }
+}
+
+/* ===== INNER PAGE HERO — balanced on phones ===== */
+@media (max-width: 768px) {
+  .page-hero { min-height: 0; }
+  .page-hero-content {
+    padding: 112px 20px 36px;
+  }
+  .page-hero-content h1 {
+    letter-spacing: 1px;
+    word-break: break-word;
+    hyphens: auto;
+  }
+  .page-hero-content p { font-size: 13px; line-height: 1.7; }
+  .breadcrumb { font-size: 10px; letter-spacing: 1.5px; }
+}
+
+/* ===== CONTACT FORM — first-class on phones ===== */
+@media (max-width: 768px) {
+  .contact-layout { padding: 48px 20px; gap: 32px; }
+  .contact-form > p { margin-bottom: 24px; }
+  .form-grid { gap: 4px; }
+  .form-group { margin-bottom: 20px; }
+  /* 16px inputs prevent iOS zoom-on-focus */
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    font-size: 16px;
+    padding: 14px 0;
+  }
+  .form-group label { font-size: 11px; }
+  .form-submit {
+    width: 100%;
+    padding: 16px 24px;
+    min-height: 48px;
+  }
+  .contact-info p { font-size: 15px; margin-bottom: 24px; }
+  .contact-info iframe { height: 240px; }
+}
+
+/* ===== FOOTER — tighter, more readable ===== */
+@media (max-width: 768px) {
+  .footer { padding: 48px 0 0; }
+  .footer-inner { gap: 32px; padding: 0 20px; }
+  .footer-brand p { font-size: 12px; margin-top: 16px; }
+  .footer-brand .logo img { height: 38px; }
+  .footer-social { margin-top: 16px; gap: 12px; flex-wrap: wrap; }
+  .footer-details { grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 8px; }
+  .footer-details .detail-value { font-size: 13px; }
+  .footer-links { flex-wrap: wrap; gap: 16px; margin-top: 24px; }
+  .footer-bottom { margin-top: 32px; padding: 16px 20px env(safe-area-inset-bottom); }
+}
+@media (max-width: 380px) {
+  .footer-details { grid-template-columns: 1fr; gap: 20px; }
+}
+
+/* ===== HEADER — tighter on tiny screens ===== */
+@media (max-width: 576px) {
+  .header-inner { padding: 12px 16px; }
+  .header .logo img { height: 40px; }
+}
+
+/* ===== CONTAINERS — match body padding rhythm on phones ===== */
+@media (max-width: 576px) {
+  .container,
+  .header-inner,
+  .footer-inner,
+  .planchers-highlight-inner,
+  .expertises-grid,
+  .domaines-grid,
+  .feature-cards,
+  .accent-block,
+  .legal-container,
+  .contact-layout,
+  .figures-content,
+  .realisations-grid {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  .footer-bottom { padding-left: 16px; padding-right: 16px; }
+}
+
+/* ===== Reset desktop hover transforms on touch (avoids stuck states) ===== */
+@media (hover: none) {
+  .feature-card:hover,
+  .domaine-item:hover,
+  .project-card:hover,
+  .cta-tile:hover {
+    transform: none;
+  }
+  /* expertise / project image zooms — disable on touch */
+  .expertise-card:hover img,
+  .project-card:hover .project-card-img img {
+    transform: none;
+  }
+}
+
+/* ===== CTA BANNER (expertise pages + qui-sommes-nous) ===== */
+@media (max-width: 768px) {
+  .cta-banner { padding: 44px 20px; }
+  .cta-banner h2 { font-size: 18px; line-height: 1.3; }
+  .cta-banner p { font-size: 13px; margin-bottom: 20px; }
+  .cta-banner-btn {
+    display: inline-block;
+    width: 100%;
+    max-width: 320px;
+    padding: 14px 24px;
+    min-height: 48px;
+    box-sizing: border-box;
+  }
+}
+
+/* ===== COMPANY TEXT (multi-column copy block) ===== */
+@media (max-width: 768px) {
+  .company-text { padding: 56px 0; }
+  .company-text h2 { margin-bottom: 28px; }
+  .company-cols { gap: 24px; }
+}
+
+/* ===== EXPERTISES GRID — 1 col on small phones ===== */
+@media (max-width: 480px) {
+  .expertises-grid { grid-template-columns: 1fr; gap: 14px; }
+  .expertise-card { height: 260px; }
+  .expertise-card .slide-overlay { padding: 22px 20px; }
+}
+
+/* ===== Page hero stable min-height on mobile (no 40vh trap) ===== */
+@media (max-width: 768px) {
+  .page-hero { min-height: 220px; }
+}
+
+/* ===== LANDSCAPE PHONES (short-height viewports) =====
+   Phones in landscape (e.g. 800×360, 740×360, 667×375) fall into the 992
+   breakpoint where the hero forces `height: 100vh; min-height: 600px` and pins
+   CTA cards `position: absolute; bottom: 0`. On a 360-tall screen the user
+   sees ~60% of a 600-tall hero with the headline floated awkwardly and CTA
+   cards entirely below the fold. Collapse to flow when height ≤ 600 + landscape. */
+@media (max-height: 600px) and (orientation: landscape) {
+  .hero {
+    height: auto;
+    min-height: 0;
+  }
+  .hero-content {
+    min-height: 100svh;
+    padding: 88px 24px 32px;
+    justify-content: center;
+  }
+  .cta-cards {
+    position: static;
+    padding: 0 24px 32px;
+    background: var(--primary);
+  }
+  .cta-cards-inner {
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .cta-tile { min-height: 0; padding: 22px 24px 20px; }
+  /* Hero iframe: landscape phones already match 16:9, default 100% covers cleanly */
+  .hero-video iframe { width: 110%; height: 110%; }
+}
+
+/* ===== iOS / Safari TAP POLISH ===== */
+html { -webkit-tap-highlight-color: transparent; }
+button, a, [role="button"] { -webkit-tap-highlight-color: transparent; }
