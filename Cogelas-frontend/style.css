@@ -188,13 +188,22 @@ img { max-width: 100%; height: auto; display: block; }
   overflow: hidden;
 }
 
-.hero-video iframe {
+.hero-video video {
   position: absolute;
-  top: 50%; left: 50%;
-  width: 120%; height: 120%;
-  transform: translate(-50%, -50%);
-  border: none;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   pointer-events: none;
+}
+
+/* Hide native media controls if any browser surfaces them */
+.hero-video video::-webkit-media-controls,
+.hero-video video::-webkit-media-controls-panel,
+.hero-video video::-webkit-media-controls-overlay-play-button {
+  display: none !important;
+  -webkit-appearance: none;
 }
 
 .hero-overlay {
@@ -293,19 +302,6 @@ img { max-width: 100%; height: auto; display: block; }
 
 .cta-tile:focus-visible::before {
   transform: scaleY(1);
-}
-
-.cta-tile-num {
-  position: absolute;
-  top: 24px;
-  right: 32px;
-  font-size: 88px;
-  font-weight: 800;
-  line-height: 1;
-  color: rgba(255, 255, 255, 0.06);
-  letter-spacing: -2px;
-  user-select: none;
-  pointer-events: none;
 }
 
 .cta-tile-label {
@@ -1026,7 +1022,6 @@ img { max-width: 100%; height: auto; display: block; }
 
   .cta-cards-inner { grid-template-columns: 1fr; gap: 16px; }
   .cta-tile { padding: 36px 40px 32px; min-height: 180px; }
-  .cta-tile-num { font-size: 72px; top: 20px; right: 24px; }
   .hero-content { padding-bottom: 420px; }
 
   .figures-grid { grid-template-columns: repeat(2, 1fr); gap: 32px; }
@@ -1053,16 +1048,9 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 @media (max-width: 768px) {
-  .hero { min-height: 600px; }
-
-  .hero-video iframe { width: 300%; height: 300%; }
-  .hero-content { padding-bottom: 280px; }
-
-  .cta-cards { padding-bottom: 24px; }
-  .cta-tile { padding: 28px 28px 24px; min-height: 160px; }
-  .cta-tile-num { font-size: 60px; top: 16px; right: 20px; }
+  /* Hero rules consolidated into the MOBILE POLISH block below — kept here
+     are only the non-hero refinements that don't interfere. */
   .cta-tile-title { font-size: 18px; }
-  .cta-tile-arrow { right: 24px; bottom: 22px; }
 
   .planchers-highlight-inner {
     grid-template-columns: 1fr;
@@ -1828,46 +1816,45 @@ body.nav-open { overflow: hidden; }
 
 /* ===== HERO (homepage) — let content + CTAs flow on mobile ===== */
 @media (max-width: 768px) {
+  /* Hero is one viewport tall as a flex column. The video + overlay sit
+     absolutely behind everything; the title fills the remaining space and
+     the CTA cards anchor to the bottom of the fold — visible without scrolling. */
   .hero {
+    display: flex;
+    flex-direction: column;
     height: auto;
-    min-height: 88vh;
-    min-height: 88svh;
+    min-height: 100vh;
+    min-height: 100svh;
   }
   .hero-content {
-    min-height: 88svh;
-    padding: 96px 20px 48px;
+    flex: 1;
+    min-height: 0;
+    padding: 88px 20px 16px;
     justify-content: center;
   }
   .hero-content h1 {
     letter-spacing: 1.5px;
-    margin-bottom: 14px;
+    margin-bottom: 0;
   }
-  /* CTA cards leave the hero on phones so nothing competes for vertical space */
+  /* CTA cards: in-flow flex item, dark tile bg shows over the video without
+     a hard color break (transparent wrapper, opaque tiles). */
   .cta-cards {
     position: static;
-    padding: 0 16px 48px;
-    background: var(--primary);
+    padding: 0 16px 28px;
+    background: transparent;
   }
   .cta-cards-inner {
-    gap: 14px;
+    gap: 12px;
   }
   .cta-tile {
     min-height: 0;
-    padding: 24px 24px 22px;
+    padding: 22px 22px 20px;
   }
   .cta-tile-arrow {
     right: 22px;
     bottom: 20px;
   }
-  /* Hero video coverage on portrait phones — 320% width × 100% height fully covers
-     a portrait viewport without the black bars that 220%×220% produced (the prior
-     value oversized the iframe AND letterboxed inside it, wasting paint area). */
-  .hero-video iframe { width: 320%; height: 100%; }
-}
-
-@media (max-width: 992px) and (orientation: portrait) {
-  /* Tablet portrait fills cleanly too */
-  .hero-video iframe { width: 220%; height: 100%; }
+  /* Native <video> uses object-fit: cover — no per-breakpoint scaling needed */
 }
 
 /* ===== SECTION RHYTHM ===== */
@@ -2059,27 +2046,31 @@ body.nav-open { overflow: hidden; }
    sees ~60% of a 600-tall hero with the headline floated awkwardly and CTA
    cards entirely below the fold. Collapse to flow when height ≤ 600 + landscape. */
 @media (max-height: 600px) and (orientation: landscape) {
+  /* Same flex pattern as portrait phones: hero fills the (short) viewport,
+     content takes remaining space, CTA cards anchor at the bottom in 2 columns. */
   .hero {
+    display: flex;
+    flex-direction: column;
     height: auto;
-    min-height: 0;
+    min-height: 100svh;
   }
   .hero-content {
-    min-height: 100svh;
-    padding: 88px 24px 32px;
+    flex: 1;
+    min-height: 0;
+    padding: 80px 24px 12px;
     justify-content: center;
   }
   .cta-cards {
     position: static;
-    padding: 0 24px 32px;
-    background: var(--primary);
+    padding: 0 24px 20px;
+    background: transparent;
   }
   .cta-cards-inner {
     grid-template-columns: 1fr 1fr;
-    gap: 16px;
+    gap: 12px;
   }
-  .cta-tile { min-height: 0; padding: 22px 24px 20px; }
-  /* Hero iframe: landscape phones already match 16:9, default 100% covers cleanly */
-  .hero-video iframe { width: 110%; height: 110%; }
+  .cta-tile { min-height: 0; padding: 16px 20px; }
+  /* Native <video> + object-fit: cover handles all orientations — no media-specific rules */
 }
 
 /* ===== iOS / Safari TAP POLISH ===== */

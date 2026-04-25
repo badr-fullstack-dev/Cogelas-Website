@@ -340,44 +340,18 @@ counters.forEach(c => counterObserver.observe(c));
   });
 })();
 
-/* Hero video: auto-resume if YouTube ever enters a paused state (kills stray pause-button flash).
-   Also pauses when offscreen / tab hidden — saves CPU/battery once the user has scrolled past. */
-(function heroVideoAutoplay() {
-  var iframe = document.getElementById('hero-video-iframe');
-  if (!iframe) return;
-  if (!document.querySelector('script[data-yt-api]')) {
-    var tag = document.createElement('script');
-    tag.src = 'https://www.youtube.com/iframe_api';
-    tag.setAttribute('data-yt-api', '');
-    document.head.appendChild(tag);
-  }
-  window.onYouTubeIframeAPIReady = function () {
-    var inView = true;
-    var player = new YT.Player('hero-video-iframe', {
-      events: {
-        onReady: function (e) { e.target.mute(); e.target.playVideo(); },
-        onStateChange: function (e) {
-          if (inView && !document.hidden &&
-              (e.data === YT.PlayerState.PAUSED || e.data === YT.PlayerState.ENDED)) {
-            e.target.playVideo();
-          }
-        }
-      }
-    });
-    var hero = document.querySelector('.hero');
-    if (hero && 'IntersectionObserver' in window) {
-      new IntersectionObserver(function (entries) {
-        inView = entries[0].isIntersecting;
-        if (player && player.pauseVideo && player.playVideo) {
-          if (inView && !document.hidden) player.playVideo();
-          else player.pauseVideo();
-        }
-      }, { threshold: 0 }).observe(hero);
+/* Hero video pause-when-offscreen — saves CPU/battery once the user scrolls past. */
+(function heroVideoLifecycle() {
+  var video = document.getElementById('hero-video');
+  if (!video) return;
+  var hero = document.querySelector('.hero');
+  if (!hero || !('IntersectionObserver' in window)) return;
+  new IntersectionObserver(function (entries) {
+    if (entries[0].isIntersecting && !document.hidden) {
+      var p = video.play();
+      if (p && p.catch) p.catch(function () {}); // ignore autoplay-block errors
+    } else {
+      video.pause();
     }
-    document.addEventListener('visibilitychange', function () {
-      if (!player) return;
-      if (document.hidden) { if (player.pauseVideo) player.pauseVideo(); }
-      else if (inView && player.playVideo) player.playVideo();
-    });
-  };
+  }, { threshold: 0 }).observe(hero);
 })();
