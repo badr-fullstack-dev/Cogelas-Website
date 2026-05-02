@@ -8,7 +8,9 @@
   <meta name="robots" content="noindex,nofollow">
   <link rel="canonical" href="https://cogelas.fr/planchers-techniques.html">
   <link rel="icon" type="image/png" sizes="32x32" href="media/favicon.png">
-  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;900&family=Oswald:wght@500;700&display=swap">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;900&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <style>
@@ -22,11 +24,12 @@
       --ink-mute: #5a5f6a;
       --rule: #e2e0db;
       --red: #D9000D;
+      --white: #fefcfb;
       background: var(--paper);
       color: var(--ink);
       font-family: "Montserrat", sans-serif;
     }
-    .st3 *::selection { background: var(--red); color: #fff; }
+    .st3 *::selection { background: var(--red); color: var(--white); }
 
     /* Hero */
     .st3-hero {
@@ -36,6 +39,7 @@
       min-height: 640px;
       overflow: hidden;
     }
+    .st3-hero-picture { display: contents; }
     .st3-hero-img {
       position: absolute;
       inset: 0;
@@ -62,7 +66,7 @@
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
-      color: #fff;
+      color: var(--white);
     }
     .st3-eyebrow {
       display: inline-flex;
@@ -90,7 +94,7 @@
       letter-spacing: 1px;
       text-transform: uppercase;
       margin: 0 0 28px;
-      color: #fff;
+      color: var(--white);
       max-width: 1100px;
     }
     .st3-hero h1 .accent {
@@ -124,7 +128,7 @@
       font-size: 22px;
       font-weight: 700;
       letter-spacing: 1px;
-      color: #fff;
+      color: var(--white);
     }
     .st3-hero-meta-value .accent { color: var(--red); }
 
@@ -456,7 +460,13 @@
   <main id="main-content">
 
     <section class="st3-hero" aria-labelledby="st3-h1">
-      <img class="st3-hero-img" src="media/plancher-surelve/plancher-sureleve.png" alt="" aria-hidden="true" fetchpriority="high" decoding="async">
+      <picture class="st3-hero-picture" aria-hidden="true">
+        <source type="image/webp" srcset="
+          media/plancher-surelve/plancher-sureleve-800.webp 800w,
+          media/plancher-surelve/plancher-sureleve-1200.webp 1200w,
+          media/plancher-surelve/plancher-sureleve-1600.webp 1600w" sizes="100vw">
+        <img class="st3-hero-img" src="media/plancher-surelve/plancher-sureleve.png" alt="" fetchpriority="high" decoding="async">
+      </picture>
       <div class="st3-hero-inner">
         <p class="st3-eyebrow">Expertise · Sulfate de calcium</p>
         <h1 id="st3-h1">Planchers techniques <span class="accent">surélevés.</span></h1>

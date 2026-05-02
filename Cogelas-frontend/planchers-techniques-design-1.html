@@ -8,15 +8,17 @@
   <meta name="robots" content="noindex,nofollow">
   <link rel="canonical" href="https://cogelas.fr/planchers-techniques.html">
   <link rel="icon" type="image/png" sizes="32x32" href="media/favicon.png">
-  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;900&family=Oswald:wght@700&family=Fraunces:opsz,wght,SOFT@9..144,300..900,0..100&display=swap">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;900&family=Oswald:wght@700&family=Fraunces:opsz,wght,SOFT@9..144,300..900,0..100&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <style>
     /* === VARIANTE 1 — MAGAZINE ÉDITORIAL ===
        Scoped under .ed1 to avoid colliding with global styles. */
-    .ed1 { --ink: #0a0d12; --ink-soft: #2a2f38; --paper: #faf7f2; --rule: #e6dfd2; --red: #D9000D; }
+    .ed1 { --ink: #0a0d12; --ink-soft: #2a2f38; --paper: #faf7f2; --rule: #e6dfd2; --red: #D9000D; --white: #fefcfb; }
     .ed1 { background: var(--paper); color: var(--ink); }
-    .ed1 *::selection { background: var(--red); color: #fff; }
+    .ed1 *::selection { background: var(--red); color: var(--white); }
 
     .ed1-issue {
       max-width: 1240px;
@@ -94,6 +96,7 @@
       overflow: hidden;
       background: var(--ink);
     }
+    .ed1-hero-image picture { display: contents; }
     .ed1-hero-image img {
       width: 100%;
       height: 100%;
@@ -109,7 +112,7 @@
       font-family: "Montserrat", sans-serif;
       font-size: 11px;
       letter-spacing: 3px;
-      color: #ffffff;
+      color: var(--white);
       text-transform: uppercase;
       text-shadow: 0 1px 6px rgba(0, 0, 0, 0.55);
     }
@@ -184,22 +187,25 @@
       border-bottom: 1px solid var(--rule);
       text-align: center;
     }
-    .ed1-pull q {
+    .ed1-pull-quote {
+      margin: 0;
+    }
+    .ed1-pull-quote p {
       font-family: "Fraunces", serif;
       font-size: clamp(28px, 3.6vw, 52px);
       line-height: 1.15;
       color: var(--ink);
       font-weight: 300;
       font-style: italic;
-      quotes: "\00ab\00a0" "\00a0\00bb";
       letter-spacing: -0.01em;
+      margin: 0;
     }
-    .ed1-pull q::before, .ed1-pull q::after {
+    .ed1-pull-quote .accent { color: var(--red); }
+    .ed1-pull-quote .guillemet {
       color: var(--red);
-      font-style: normal;
       opacity: 0.55;
+      font-style: normal;
     }
-    .ed1-pull q .accent { color: var(--red); }
     .ed1-pull-attr {
       display: block;
       margin-top: 28px;
@@ -374,7 +380,13 @@
         <p class="ed1-deck">Révolutionner l'espace de travail moderne grâce à un matériau d'exception, conçu pour les bâtiments les plus exigeants.</p>
       </div>
       <div class="ed1-hero-image">
-        <img src="media/plancher-surelve/plancher-sureleve.png" alt="" fetchpriority="high" decoding="async">
+        <picture>
+          <source type="image/webp" srcset="
+            media/plancher-surelve/plancher-sureleve-800.webp 800w,
+            media/plancher-surelve/plancher-sureleve-1200.webp 1200w,
+            media/plancher-surelve/plancher-sureleve-1600.webp 1600w" sizes="(max-width: 992px) 100vw, 42vw">
+          <img src="media/plancher-surelve/plancher-sureleve.png" alt="" fetchpriority="high" decoding="async">
+        </picture>
         <span class="ed1-hero-credit">Chantier · Cogelas</span>
       </div>
     </section>
@@ -401,8 +413,10 @@
     </section>
 
     <section class="ed1-pull">
-      <q>Une dalle qui ne brûle pas, qui ne gonfle pas, qui ne <span class="accent">vibre</span> pas. Voilà la base d'un bâtiment intelligent.</q>
-      <span class="ed1-pull-attr">Bureau d'études · Cogelas</span>
+      <blockquote class="ed1-pull-quote">
+        <p><span class="guillemet" aria-hidden="true">«&#x202F;</span>Une dalle qui ne brûle pas, qui ne gonfle pas, qui ne <span class="accent">vibre</span> pas. Voilà la base d'un bâtiment intelligent.<span class="guillemet" aria-hidden="true">&#x202F;»</span></p>
+        <footer class="ed1-pull-attr">Bureau d'études · Cogelas</footer>
+      </blockquote>
     </section>
 
     <section class="ed1-chapters" aria-labelledby="ch-head">

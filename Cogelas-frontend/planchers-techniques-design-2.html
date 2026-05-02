@@ -8,7 +8,9 @@
   <meta name="robots" content="noindex,nofollow">
   <link rel="canonical" href="https://cogelas.fr/planchers-techniques.html">
   <link rel="icon" type="image/png" sizes="32x32" href="media/favicon.png">
-  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;900&family=Oswald:wght@700&family=JetBrains+Mono:wght@400;500;700&display=swap">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;900&family=Oswald:wght@700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <style>
@@ -17,7 +19,8 @@
       --ink: #0a0d12;
       --ink-soft: #4a5260;
       --bg: #f4f5f7;
-      --card: #ffffff;
+      --white: #fefcfb;
+      --card: var(--white);
       --line: #e6e8ec;
       --red: #D9000D;
       --red-soft: #fff1f1;
@@ -41,7 +44,7 @@
     }
     .bn2-hero-text {
       background: var(--ink);
-      color: #fff;
+      color: var(--white);
       border-radius: 24px;
       padding: 56px 48px;
       position: relative;
@@ -62,7 +65,7 @@
       font-size: 12px;
       font-weight: 500;
       letter-spacing: 1.2px;
-      color: #ffffff;
+      color: var(--white);
       background: var(--red);
       padding: 8px 16px;
       border-radius: 999px;
@@ -73,7 +76,7 @@
       content: "";
       display: inline-block;
       width: 6px; height: 6px;
-      background: #ffffff;
+      background: var(--white);
       border-radius: 50%;
       margin-right: 10px;
       vertical-align: middle;
@@ -154,7 +157,7 @@
     }
     .bn2-layer:hover { transform: translateX(4px); }
     .bn2-layer.l1 { background: #e9ebef; }
-    .bn2-layer.l2 { background: #fff; border: 1.5px solid var(--ink); height: 36px; }
+    .bn2-layer.l2 { background: var(--white); border: 1.5px solid var(--ink); height: 36px; }
     .bn2-layer.l3 { background: #d6dae0; height: 8px; padding: 0; }
     .bn2-layer.l4 { background: var(--card); border: 1px dashed var(--line); position: relative; padding: 18px 14px; }
     .bn2-layer-name { letter-spacing: 0.5px; }
@@ -212,10 +215,10 @@
     .bn2-card.span-2 { grid-column: span 2; }
     .bn2-card.span-4 { grid-column: span 4; }
     .bn2-card.span-6 { grid-column: span 6; }
-    .bn2-card.dark { background: var(--ink); color: #fff; border-color: var(--ink); }
+    .bn2-card.dark { background: var(--ink); color: var(--white); border-color: var(--ink); }
     .bn2-card.red {
       background: var(--red);
-      color: #fff;
+      color: var(--white);
       border-color: var(--red);
     }
 
@@ -227,7 +230,7 @@
       margin: 0 0 18px;
     }
     .bn2-card.dark .bn2-card-num { color: var(--red); }
-    .bn2-card.red .bn2-card-num { color: #ffffff; opacity: 0.95; }
+    .bn2-card.red .bn2-card-num { color: var(--white); opacity: 0.95; }
 
     .bn2-stat {
       font-family: "Oswald", "Montserrat", sans-serif;
@@ -273,9 +276,9 @@
       color: var(--ink-soft);
       margin: 8px 0 0;
     }
-    .bn2-card.dark .bn2-stat { color: #fff; }
+    .bn2-card.dark .bn2-stat { color: var(--white); }
     .bn2-card.dark .bn2-stat .unit { color: var(--red); }
-    .bn2-card.red .bn2-stat { color: #fff; }
+    .bn2-card.red .bn2-stat { color: var(--white); }
     .bn2-stat .unit {
       font-family: "JetBrains Mono", monospace;
       font-size: 0.32em;
@@ -370,7 +373,7 @@
       display: inline-flex;
       align-items: center;
       gap: 12px;
-      background: #fff;
+      background: var(--white);
       color: var(--red);
       font-weight: 700;
       font-size: 13px;

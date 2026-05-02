@@ -73,7 +73,7 @@
 
   <main id="main-content">
 
-    <section class="page-hero" style="background-image: url('media/plancher-surelve/plancher-sureleve.png');">
+    <section class="page-hero" style="background-image: image-set(url('media/plancher-surelve/plancher-sureleve-1600.webp') type('image/webp'), url('media/plancher-surelve/plancher-sureleve.png'));">
       <div class="page-hero-overlay"></div>
       <div class="page-hero-content">
         <p class="breadcrumb"><a href="index.html">Accueil</a> › <a href="planchers-techniques.html">Expertises</a> › Planchers techniques surélevés</p>
@@ -84,7 +84,13 @@
 
     <section class="content-section reveal">
       <div class="content-section-img">
-        <img src="media/plancher-surelve/plancher-sureleve.png" alt="Plancher technique surélevé en sulfate de calcium installé par Cogelas" loading="lazy">
+        <picture>
+          <source type="image/webp" srcset="
+            media/plancher-surelve/plancher-sureleve-800.webp 800w,
+            media/plancher-surelve/plancher-sureleve-1200.webp 1200w,
+            media/plancher-surelve/plancher-sureleve-1600.webp 1600w" sizes="(max-width: 992px) 100vw, 50vw">
+          <img src="media/plancher-surelve/plancher-sureleve.png" alt="Plancher technique surélevé en sulfate de calcium installé par Cogelas" loading="lazy" decoding="async">
+        </picture>
       </div>
       <div class="content-section-text">
         <h2>Une solution d'exception</h2>
