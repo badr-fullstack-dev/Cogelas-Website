@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
-  <title>Planchers techniques — Variante 2 (Bento) &bull; Cogelas</title>
-  <meta name="description" content="Aperçu de redesign — direction Bento technique. Cogelas, planchers techniques surélevés en sulfate de calcium.">
+  <title>Planchers techniques · Variante 2 (Bento) &bull; Cogelas</title>
+  <meta name="description" content="Aperçu de redesign : direction Bento technique. Cogelas, planchers techniques surélevés en sulfate de calcium.">
   <meta name="robots" content="noindex,nofollow">
   <link rel="canonical" href="https://cogelas.fr/planchers-techniques.html">
   <link rel="icon" type="image/png" sizes="32x32" href="media/favicon.png">
@@ -230,13 +230,48 @@
     .bn2-card.red .bn2-card-num { color: #ffffff; opacity: 0.95; }
 
     .bn2-stat {
-      font-family: "Oswald", monospace;
+      font-family: "Oswald", "Montserrat", sans-serif;
       font-weight: 700;
       font-size: clamp(56px, 7vw, 96px);
       line-height: 1;
       margin: 0 0 16px;
       letter-spacing: -1px;
       color: var(--ink);
+    }
+    .bn2-acoustique-row {
+      display: flex;
+      align-items: baseline;
+      gap: 32px;
+      margin: 0 0 24px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--line);
+    }
+    .bn2-acoustique-item { flex: 1 1 0; }
+    .bn2-acoustique-num {
+      font-family: "Oswald", "Montserrat", sans-serif;
+      font-weight: 700;
+      font-size: 44px;
+      line-height: 1;
+      letter-spacing: -0.5px;
+      color: var(--ink);
+      margin: 0;
+    }
+    .bn2-acoustique-num .unit {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 14px;
+      letter-spacing: 1.5px;
+      color: var(--red);
+      margin-left: 4px;
+      font-weight: 500;
+      vertical-align: top;
+    }
+    .bn2-acoustique-label {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      margin: 8px 0 0;
     }
     .bn2-card.dark .bn2-stat { color: #fff; }
     .bn2-card.dark .bn2-stat .unit { color: var(--red); }
@@ -332,6 +367,9 @@
     .bn2-cta-card p { margin: 0; opacity: 0.92; }
     .bn2-cta-btn {
       flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
       background: #fff;
       color: var(--red);
       font-weight: 700;
@@ -341,10 +379,13 @@
       text-decoration: none;
       padding: 16px 28px;
       border-radius: 999px;
-      transition: transform 0.25s ease;
+      transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
     }
-    .bn2-cta-btn:hover { transform: translateX(6px); }
-    .bn2-cta-btn::after { content: " →"; }
+    .bn2-cta-btn:hover .bn2-cta-arrow { transform: translateX(4px); }
+    .bn2-cta-arrow { transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1); }
+    @media (prefers-reduced-motion: reduce) {
+      .bn2-cta-btn, .bn2-cta-arrow { transition: none; }
+    }
 
     @media (max-width: 992px) {
       .bn2-shell { padding: 100px 16px 48px; }
@@ -437,11 +478,11 @@
       <h2 id="bn2-grid-h2" class="visually-hidden">Avantages techniques</h2>
       <section class="bn2-grid" aria-labelledby="bn2-grid-h2">
 
-        <article class="bn2-card span-3 dark" aria-label="Avantage 01 — Résistance au feu">
+        <article class="bn2-card span-3 dark" aria-label="Avantage 01 : Résistance au feu">
           <p class="bn2-card-num">FEATURE / 01</p>
           <p class="bn2-stat" aria-label="Classe A1">A<span class="bn2-stat-accent">1</span><span class="unit">classe</span></p>
           <h3 class="bn2-card-title">Excellente résistance au feu</h3>
-          <p class="bn2-card-desc">Classification A1 selon les normes européennes (NF EN 13501-1). Substance non combustible — ne favorise pas la propagation, protège les occupants comme l'intégrité du bâtiment.</p>
+          <p class="bn2-card-desc">Classification A1 selon les normes européennes (NF EN 13501-1). Substance non combustible : ne favorise pas la propagation, protège les occupants comme l'intégrité du bâtiment.</p>
         </article>
 
         <article class="bn2-card span-3">
@@ -450,26 +491,24 @@
           </div>
           <p class="bn2-card-num">FEATURE / 02</p>
           <h3 class="bn2-card-title">Robustesse face à l'humidité</h3>
-          <p class="bn2-card-desc">Résistance naturelle aux environnements humides — sans gonflement ni déformation. Idéal pour data centers, espaces médicaux et bâtiments à forte contrainte technique.</p>
+          <p class="bn2-card-desc">Résistance naturelle aux environnements humides, sans gonflement ni déformation. Idéal pour data centers, espaces médicaux et bâtiments à forte contrainte technique.</p>
         </article>
 
-        <article class="bn2-card span-2">
-          <p class="bn2-card-num">IMPACT</p>
-          <p class="bn2-stat">66<span class="unit">dB</span></p>
-          <p class="bn2-card-desc" style="font-size: 13px;">Réduction des bruits d'impact (norme ISO 717-2)</p>
-        </article>
-
-        <article class="bn2-card span-2">
-          <p class="bn2-card-num">AÉRIEN</p>
-          <p class="bn2-stat">45<span class="unit">dB</span></p>
-          <p class="bn2-card-desc" style="font-size: 13px;">Isolation aérienne (norme ISO 717-1)</p>
-        </article>
-
-        <article class="bn2-card span-2">
+        <article class="bn2-card span-3">
           <div class="bn2-card-icon">
             <img src="media/plancher-surelve/son.png" alt="" aria-hidden="true">
           </div>
           <p class="bn2-card-num">FEATURE / 03</p>
+          <div class="bn2-acoustique-row">
+            <div class="bn2-acoustique-item">
+              <p class="bn2-acoustique-num">−66<span class="unit">dB</span></p>
+              <p class="bn2-acoustique-label">Impact · ISO 717-2</p>
+            </div>
+            <div class="bn2-acoustique-item">
+              <p class="bn2-acoustique-num">−45<span class="unit">dB</span></p>
+              <p class="bn2-acoustique-label">Aérien · ISO 717-1</p>
+            </div>
+          </div>
           <h3 class="bn2-card-title">Performance acoustique élevée</h3>
           <p class="bn2-card-desc">Confort optimal pour bureaux, santé et résidentiel exigeant.</p>
         </article>
@@ -487,13 +526,18 @@
           </table>
         </article>
 
-        <article class="bn2-card span-3 red bn2-cta-card">
+        <article class="bn2-card span-6 red bn2-cta-card">
           <div>
             <p class="bn2-card-num">SOLUTION D'EXCEPTION</p>
             <h3>Une dalle, trois performances.</h3>
-            <p>Feu, humidité, acoustique — vérifié sur chantier.</p>
+            <p>Feu, humidité, acoustique : vérifié sur chantier.</p>
           </div>
-          <a class="bn2-cta-btn" href="contact.html">Devis gratuit</a>
+          <a class="bn2-cta-btn" href="contact.html">
+            Devis gratuit
+            <svg class="bn2-cta-arrow" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+              <path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter"/>
+            </svg>
+          </a>
         </article>
 
       </section>

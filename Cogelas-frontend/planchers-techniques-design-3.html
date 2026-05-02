@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
-  <title>Planchers techniques — Variante 3 (Studio) &bull; Cogelas</title>
-  <meta name="description" content="Aperçu de redesign — direction Studio architectural. Cogelas, planchers techniques surélevés en sulfate de calcium.">
+  <title>Planchers techniques · Variante 3 (Studio) &bull; Cogelas</title>
+  <meta name="description" content="Aperçu de redesign : direction Studio architectural. Cogelas, planchers techniques surélevés en sulfate de calcium.">
   <meta name="robots" content="noindex,nofollow">
   <link rel="canonical" href="https://cogelas.fr/planchers-techniques.html">
   <link rel="icon" type="image/png" sizes="32x32" href="media/favicon.png">
@@ -19,7 +19,7 @@
       --paper: #fafaf8;
       --ink: #0a0d12;
       --ink-soft: #515761;
-      --ink-mute: #8a8f99;
+      --ink-mute: #5a5f6a;
       --rule: #e2e0db;
       --red: #D9000D;
       background: var(--paper);
@@ -39,9 +39,11 @@
     .st3-hero-img {
       position: absolute;
       inset: 0;
-      background-image: url('media/plancher-surelve/plancher-sureleve.png');
-      background-size: cover;
-      background-position: center;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
     }
     .st3-hero::after {
       content: "";
@@ -184,8 +186,9 @@
       font-weight: 600;
     }
     .st3-index-tag::before {
-      content: "— ";
+      content: "· ";
       color: var(--red);
+      font-weight: 900;
     }
     .st3-index h2 {
       font-family: "Oswald", sans-serif;
@@ -243,12 +246,28 @@
       border: 1px solid rgba(10,13,18,0.08);
       pointer-events: none;
     }
-    .st3-chapter-img::after {
+    /* Corner tick varies per chapter so the same mark doesn't read as a system stamp. */
+    .st3-chapter:nth-of-type(1) .st3-chapter-img::after {
       content: "";
       position: absolute;
       top: 24px; right: 24px;
       width: 32px; height: 1px;
       background: var(--red);
+    }
+    .st3-chapter:nth-of-type(2) .st3-chapter-img::after {
+      content: "";
+      position: absolute;
+      top: 24px; left: 24px;
+      width: 1px; height: 32px;
+      background: var(--red);
+    }
+    .st3-chapter:nth-of-type(3) .st3-chapter-img::after {
+      content: "";
+      position: absolute;
+      bottom: 24px; right: 24px;
+      width: 8px; height: 8px;
+      background: var(--red);
+      border-radius: 50%;
     }
     .st3-chapter-img img {
       width: 38%;
@@ -437,11 +456,11 @@
   <main id="main-content">
 
     <section class="st3-hero" aria-labelledby="st3-h1">
-      <div class="st3-hero-img" aria-hidden="true"></div>
+      <img class="st3-hero-img" src="media/plancher-surelve/plancher-sureleve.png" alt="" aria-hidden="true" fetchpriority="high" decoding="async">
       <div class="st3-hero-inner">
         <p class="st3-eyebrow">Expertise · Sulfate de calcium</p>
         <h1 id="st3-h1">Planchers techniques <span class="accent">surélevés.</span></h1>
-        <p class="st3-hero-deck">Révolutionnez votre espace avec une dalle qui résiste au feu, à l'humidité et aux nuisances acoustiques — la base technique des bâtiments tertiaires, médicaux et industriels exigeants.</p>
+        <p class="st3-hero-deck">Révolutionnez votre espace avec une dalle qui résiste au feu, à l'humidité et aux nuisances acoustiques. La base technique des bâtiments tertiaires, médicaux et industriels exigeants.</p>
         <dl class="st3-hero-meta">
           <div><dt>Réaction au feu</dt><dd class="st3-hero-meta-value"><span class="accent">A1</span></dd></div>
           <div><dt>Bruits d'impact</dt><dd class="st3-hero-meta-value">−66 dB</dd></div>
@@ -459,10 +478,10 @@
 
     <div class="st3-index">
       <div>
-        <p class="st3-index-tag">Trois avantages — Index</p>
+        <p class="st3-index-tag">Trois avantages · Index</p>
         <h2>Vérifiés <span class="accent">sur chantier.</span></h2>
       </div>
-      <p class="st3-index-desc">Trois réponses concrètes aux exigences techniques des bâtiments tertiaires, médicaux et industriels — certifiées par les normes européennes les plus strictes.</p>
+      <p class="st3-index-desc">Trois réponses concrètes aux exigences techniques des bâtiments tertiaires, médicaux et industriels, certifiées par les normes européennes les plus strictes.</p>
     </div>
 
     <section class="st3-chapters" aria-label="Avantages techniques">
@@ -473,7 +492,7 @@
         </figure>
         <div class="st3-chapter-content">
           <p class="st3-chapter-mark">
-            <span class="st3-chapter-num" aria-hidden="true">— 01</span>
+            <span class="st3-chapter-num" aria-hidden="true">№ 01</span>
             <span>Sécurité incendie</span>
           </p>
           <h3>Excellente résistance au feu.</h3>
@@ -491,7 +510,7 @@
         </figure>
         <div class="st3-chapter-content">
           <p class="st3-chapter-mark">
-            <span class="st3-chapter-num" aria-hidden="true">— 02</span>
+            <span class="st3-chapter-num" aria-hidden="true">№ 02</span>
             <span>Stabilité dimensionnelle</span>
           </p>
           <h3>Robustesse face à l'humidité.</h3>
@@ -509,11 +528,11 @@
         </figure>
         <div class="st3-chapter-content">
           <p class="st3-chapter-mark">
-            <span class="st3-chapter-num" aria-hidden="true">— 03</span>
+            <span class="st3-chapter-num" aria-hidden="true">№ 03</span>
             <span>Confort acoustique</span>
           </p>
           <h3>Performance acoustique élevée.</h3>
-          <p>Avec une réduction jusqu'à 66 dB des bruits d'impact et 45 dB d'isolation aérienne, nos planchers surélevés garantissent un confort acoustique optimal — idéal pour les bureaux ouverts, les établissements de santé et les bâtiments résidentiels exigeants.</p>
+          <p>Avec une réduction jusqu'à 66 dB des bruits d'impact et 45 dB d'isolation aérienne, nos planchers surélevés garantissent un confort acoustique optimal, idéal pour les bureaux ouverts, les établissements de santé et les bâtiments résidentiels exigeants.</p>
           <div class="st3-chapter-stat">
             <p class="st3-chapter-stat-label">Bruits d'impact<br>ISO 717-2</p>
             <p class="st3-chapter-stat-value">−<span class="accent">66</span><span class="unit">dB</span></p>
