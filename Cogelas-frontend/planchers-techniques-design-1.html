@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+  <title>Planchers techniques — Variante 1 (Magazine) &bull; Cogelas</title>
+  <meta name="description" content="Aperçu de redesign — direction Magazine éditorial. Cogelas, planchers techniques surélevés en sulfate de calcium.">
+  <meta name="robots" content="noindex,nofollow">
+  <link rel="canonical" href="https://cogelas.fr/planchers-techniques.html">
+  <link rel="icon" type="image/png" sizes="32x32" href="media/favicon.png">
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;900&family=Oswald:wght@700&family=Fraunces:opsz,wght,SOFT@9..144,300..900,0..100&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* === VARIANTE 1 — MAGAZINE ÉDITORIAL ===
+       Scoped under .ed1 to avoid colliding with global styles. */
+    .ed1 { --ink: #0a0d12; --ink-soft: #2a2f38; --paper: #faf7f2; --rule: #e6dfd2; --red: #D9000D; }
+    .ed1 { background: var(--paper); color: var(--ink); }
+    .ed1 *::selection { background: var(--red); color: #fff; }
+
+    .ed1-issue {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 80px 32px 0;
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--rule);
+      padding-bottom: 18px;
+      font-family: "Montserrat", sans-serif;
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+    }
+    .ed1-issue strong { color: var(--red); font-weight: 700; letter-spacing: 3px; }
+
+    .ed1-hero {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 72px 32px 96px;
+      display: grid;
+      grid-template-columns: 7fr 5fr;
+      gap: 64px;
+      align-items: end;
+    }
+    .ed1-hero-text { position: relative; }
+    .ed1-eyebrow {
+      font-family: "Montserrat", sans-serif;
+      font-size: 12px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--red);
+      font-weight: 700;
+      margin-bottom: 28px;
+    }
+    .ed1-eyebrow::before {
+      content: "";
+      display: inline-block;
+      width: 36px;
+      height: 1px;
+      background: var(--red);
+      vertical-align: middle;
+      margin-right: 14px;
+    }
+    .ed1-hero h1 {
+      font-family: "Fraunces", "Playfair Display", serif;
+      font-weight: 300;
+      font-size: clamp(48px, 7vw, 110px);
+      line-height: 0.96;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin: 0 0 28px;
+      font-variation-settings: "opsz" 144, "SOFT" 30;
+    }
+    .ed1-hero h1 em {
+      font-style: italic;
+      color: var(--red);
+      font-weight: 400;
+    }
+    .ed1-deck {
+      font-family: "Fraunces", serif;
+      font-size: clamp(18px, 1.6vw, 22px);
+      line-height: 1.45;
+      color: var(--ink-soft);
+      max-width: 520px;
+      margin: 0;
+      font-style: italic;
+      font-weight: 300;
+    }
+    .ed1-hero-image {
+      position: relative;
+      aspect-ratio: 3 / 4;
+      overflow: hidden;
+      background: var(--ink);
+    }
+    .ed1-hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: contrast(1.05) saturate(0.92);
+    }
+    .ed1-hero-credit {
+      position: absolute;
+      bottom: 16px;
+      left: 16px;
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      font-family: "Montserrat", sans-serif;
+      font-size: 10px;
+      letter-spacing: 3px;
+      color: rgba(255,255,255,0.85);
+      text-transform: uppercase;
+    }
+
+    .ed1-lede {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 32px 96px;
+      display: grid;
+      grid-template-columns: 1fr 7fr 4fr;
+      gap: 48px;
+    }
+    .ed1-lede-mark {
+      font-family: "Fraunces", serif;
+      font-size: 96px;
+      line-height: 1;
+      color: var(--red);
+      font-weight: 200;
+    }
+    .ed1-lede-body {
+      font-family: "Fraunces", serif;
+      font-size: clamp(18px, 1.4vw, 21px);
+      line-height: 1.7;
+      font-weight: 400;
+    }
+    .ed1-lede-body p { margin: 0 0 1.2em; }
+    .ed1-lede-body p:first-child::first-letter {
+      font-family: "Fraunces", serif;
+      float: left;
+      font-size: 86px;
+      line-height: 0.85;
+      padding: 6px 12px 0 0;
+      color: var(--red);
+      font-weight: 600;
+    }
+    .ed1-fiche {
+      border-top: 2px solid var(--ink);
+      padding-top: 16px;
+      font-family: "Montserrat", sans-serif;
+    }
+    .ed1-fiche-title {
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      margin: 0 0 18px;
+    }
+    .ed1-fiche dl { margin: 0; display: grid; gap: 12px; }
+    .ed1-fiche dt {
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+    }
+    .ed1-fiche dd {
+      margin: 0 0 10px;
+      font-family: "Fraunces", serif;
+      font-size: 22px;
+      font-weight: 500;
+      color: var(--ink);
+      border-bottom: 1px solid var(--rule);
+      padding-bottom: 10px;
+    }
+    .ed1-fiche dd:last-child { border-bottom: none; }
+    .ed1-fiche dd em { color: var(--red); font-style: normal; }
+
+    .ed1-pull {
+      max-width: 1080px;
+      margin: 0 auto 96px;
+      padding: 64px 32px;
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+      text-align: center;
+    }
+    .ed1-pull q {
+      font-family: "Fraunces", serif;
+      font-size: clamp(28px, 3.6vw, 52px);
+      line-height: 1.15;
+      color: var(--ink);
+      font-weight: 300;
+      font-style: italic;
+      quotes: "« " " »";
+      letter-spacing: -0.01em;
+    }
+    .ed1-pull q em { color: var(--red); font-style: italic; }
+    .ed1-pull-attr {
+      display: block;
+      margin-top: 28px;
+      font-family: "Montserrat", sans-serif;
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+    }
+
+    .ed1-chapters {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 32px 96px;
+    }
+    .ed1-chapters-head {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 48px;
+      align-items: end;
+      padding-bottom: 32px;
+      border-bottom: 2px solid var(--ink);
+      margin-bottom: 56px;
+    }
+    .ed1-chapters-head h2 {
+      font-family: "Fraunces", serif;
+      font-weight: 300;
+      font-size: clamp(36px, 5vw, 72px);
+      line-height: 1;
+      letter-spacing: -0.02em;
+      margin: 0;
+    }
+    .ed1-chapters-head p {
+      font-family: "Montserrat", sans-serif;
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--ink-soft);
+      max-width: 460px;
+      margin: 0;
+    }
+
+    .ed1-chapter {
+      display: grid;
+      grid-template-columns: 80px 1fr 5fr;
+      gap: 32px;
+      padding: 48px 0;
+      border-top: 1px solid var(--rule);
+      align-items: start;
+    }
+    .ed1-chapter:first-of-type { border-top: none; padding-top: 0; }
+    .ed1-chapter-num {
+      font-family: "Fraunces", serif;
+      font-size: 56px;
+      line-height: 0.85;
+      color: var(--red);
+      font-weight: 200;
+    }
+    .ed1-chapter-tag {
+      font-family: "Montserrat", sans-serif;
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      align-self: end;
+      padding-bottom: 8px;
+    }
+    .ed1-chapter-body h3 {
+      font-family: "Fraunces", serif;
+      font-weight: 400;
+      font-size: clamp(28px, 3vw, 40px);
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+      margin: 0 0 20px;
+      color: var(--ink);
+    }
+    .ed1-chapter-body p {
+      font-family: "Montserrat", sans-serif;
+      font-size: 15px;
+      line-height: 1.85;
+      color: var(--ink-soft);
+      max-width: 720px;
+      margin: 0;
+    }
+    .ed1-chapter-stat {
+      display: inline-block;
+      margin-top: 18px;
+      font-family: "Fraunces", serif;
+      font-size: 14px;
+      font-style: italic;
+      color: var(--red);
+      border-top: 1px solid var(--red);
+      padding-top: 6px;
+    }
+
+    @media (max-width: 992px) {
+      .ed1-issue { padding: 100px 20px 14px; gap: 16px; flex-wrap: wrap; }
+      .ed1-hero { grid-template-columns: 1fr; gap: 40px; padding: 40px 20px 64px; }
+      .ed1-hero-image { aspect-ratio: 4 / 3; }
+      .ed1-lede { grid-template-columns: 1fr; gap: 32px; padding: 0 20px 64px; }
+      .ed1-lede-mark { font-size: 64px; }
+      .ed1-pull { padding: 48px 20px; margin-bottom: 64px; }
+      .ed1-chapters { padding: 0 20px 64px; }
+      .ed1-chapters-head { grid-template-columns: 1fr; gap: 24px; }
+      .ed1-chapter { grid-template-columns: 64px 1fr; gap: 20px; padding: 32px 0; }
+      .ed1-chapter-tag { display: none; }
+    }
+  </style>
+</head>
+<body class="ed1">
+
+  <a href="#main-content" class="skip-link">Aller au contenu principal</a>
+
+  <header class="header scrolled" id="header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <img src="media/logo.png" alt="Cogelas">
+      </a>
+      <nav class="nav-menu" id="navMenu">
+        <a href="index.html" class="nav-link">Accueil</a>
+        <a href="realisations.html" class="nav-link">Réalisations</a>
+        <a href="qui-sommes-nous.html" class="nav-link">Qui sommes-nous ?</a>
+        <div class="nav-dropdown">
+          <button class="nav-link nav-dropdown-toggle nav-dropdown-active" aria-haspopup="true" aria-expanded="false">Expertises</button>
+          <div class="nav-dropdown-menu">
+            <a href="planchers-techniques.html" aria-current="page">Planchers techniques surélevés</a>
+            <a href="revetement-de-sol.html">Revêtement de sol</a>
+            <a href="terrassement.html">Terrassement et Assainissement</a>
+            <a href="maconnerie.html">Maçonnerie / Gros Œuvre</a>
+            <a href="isolation-thermique.html">Isolation thermique par l'extérieur</a>
+          </div>
+        </div>
+        <a href="contact.html" class="nav-cta">J'ai un projet !</a>
+      </nav>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <nav class="mobile-nav" id="mobileNav">
+    <a href="index.html">Accueil</a>
+    <a href="realisations.html">Réalisations</a>
+    <a href="qui-sommes-nous.html">Qui sommes-nous ?</a>
+    <button class="mobile-folder-toggle" aria-expanded="false">Expertises</button>
+    <a href="planchers-techniques.html" class="mobile-sub-link" aria-current="page">Planchers techniques surélevés</a>
+    <a href="revetement-de-sol.html" class="mobile-sub-link">Revêtement de sol</a>
+    <a href="terrassement.html" class="mobile-sub-link">Terrassement et Assainissement</a>
+    <a href="maconnerie.html" class="mobile-sub-link">Maçonnerie / Gros Œuvre</a>
+    <a href="isolation-thermique.html" class="mobile-sub-link">Isolation thermique par l'extérieur</a>
+    <a href="contact.html" style="color: var(--accent);">J'ai un projet !</a>
+  </nav>
+
+  <main id="main-content">
+
+    <div class="ed1-issue" aria-hidden="true">
+      <span>Cogelas — <strong>Cahier technique</strong></span>
+      <span>№ 01 — Planchers</span>
+      <span>2026</span>
+    </div>
+
+    <section class="ed1-hero">
+      <div class="ed1-hero-text">
+        <p class="ed1-eyebrow">Expertise — Sulfate de calcium</p>
+        <h1>Planchers techniques <em>surélevés.</em></h1>
+        <p class="ed1-deck">Révolutionner l'espace de travail moderne grâce à un matériau d'exception, conçu pour les bâtiments les plus exigeants.</p>
+      </div>
+      <div class="ed1-hero-image">
+        <img src="media/plancher-surelve/plancher-sureleve.png" alt="" loading="lazy">
+        <span class="ed1-hero-credit">Chantier — Cogelas</span>
+      </div>
+    </section>
+
+    <section class="ed1-lede">
+      <div class="ed1-lede-mark" aria-hidden="true">§</div>
+      <div class="ed1-lede-body">
+        <p>Repoussez les limites de l'architecture moderne avec nos planchers techniques en sulfate de calcium. Cette solution transforme les espaces de travail en alliant esthétique raffinée, fonctionnalité optimale et durabilité exceptionnelle.</p>
+        <p>Parfait pour les environnements exigeants, nos planchers techniques offrent une performance acoustique supérieure, une résistance maximale au feu et une modularité qui soutient l'évolution technologique des bâtiments.</p>
+      </div>
+      <aside class="ed1-fiche" aria-label="Fiche technique">
+        <p class="ed1-fiche-title">Fiche technique</p>
+        <dl>
+          <dt>Matériau</dt>
+          <dd>Sulfate de calcium</dd>
+          <dt>Réaction au feu</dt>
+          <dd>Classe <em>A1</em> (NF EN 13501-1)</dd>
+          <dt>Bruits d'impact</dt>
+          <dd>−<em>66 dB</em></dd>
+          <dt>Isolation aérienne</dt>
+          <dd>−<em>45 dB</em></dd>
+        </dl>
+      </aside>
+    </section>
+
+    <section class="ed1-pull">
+      <q>Une dalle qui ne brûle pas, qui ne gonfle pas, qui ne <em>vibre</em> pas — voilà la base d'un bâtiment intelligent.</q>
+      <span class="ed1-pull-attr">Bureau d'études — Cogelas</span>
+    </section>
+
+    <section class="ed1-chapters" aria-labelledby="ch-head">
+      <header class="ed1-chapters-head">
+        <h2 id="ch-head">Trois <em style="font-style:italic; color: var(--red);">avantages</em>.</h2>
+        <p>Trois réponses concrètes aux exigences techniques des bâtiments tertiaires, médicaux et industriels — vérifiées sur chantier.</p>
+      </header>
+
+      <article class="ed1-chapter">
+        <p class="ed1-chapter-num" aria-hidden="true">01</p>
+        <p class="ed1-chapter-tag">Sécurité incendie</p>
+        <div class="ed1-chapter-body">
+          <h3>Excellente résistance au feu.</h3>
+          <p>Nos dalles en sulfate de calcium bénéficient d'une classification A1 selon les normes européennes. Substance non combustible, elles ne favorisent pas la propagation du feu et contribuent à la sécurité des occupants comme à l'intégrité du bâtiment.</p>
+          <span class="ed1-chapter-stat">Classification A1 — NF EN 13501-1</span>
+        </div>
+      </article>
+
+      <article class="ed1-chapter">
+        <p class="ed1-chapter-num" aria-hidden="true">02</p>
+        <p class="ed1-chapter-tag">Stabilité dimensionnelle</p>
+        <div class="ed1-chapter-body">
+          <h3>Robustesse face à l'humidité.</h3>
+          <p>Le sulfate de calcium résiste naturellement aux environnements humides, sans gonflement ni déformation dans le temps. Une qualité particulièrement appréciée dans les data centers, les espaces médicaux et les bâtiments à forte contrainte technique.</p>
+          <span class="ed1-chapter-stat">Aucun gonflement à long terme</span>
+        </div>
+      </article>
+
+      <article class="ed1-chapter">
+        <p class="ed1-chapter-num" aria-hidden="true">03</p>
+        <p class="ed1-chapter-tag">Confort acoustique</p>
+        <div class="ed1-chapter-body">
+          <h3>Performance acoustique élevée.</h3>
+          <p>Avec une réduction jusqu'à 66 dB des bruits d'impact et 45 dB d'isolation aérienne, nos planchers surélevés garantissent un confort acoustique optimal — idéal pour les bureaux ouverts, les établissements de santé et les bâtiments résidentiels exigeants.</p>
+          <span class="ed1-chapter-stat">−66 dB impact · −45 dB aérien</span>
+        </div>
+      </article>
+    </section>
+
+    <div class="cta-banner">
+      <h2>J'ai un projet !</h2>
+      <p>Obtenez votre devis gratuit</p>
+      <a href="contact.html" class="cta-banner-btn">Nous contacter</a>
+    </div>
+
+  </main>
+
+  <footer class="footer" id="contact">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="index.html" class="logo"><img src="media/logo.png" alt="Cogelas"></a>
+        <p>Pour vous, nous aménageons le meilleur.</p>
+      </div>
+      <div>
+        <div class="footer-social">
+          <span>Nous suivre</span>
+          <a href="https://www.linkedin.com/company/lagny-construction/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (nouvel onglet)">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D9000D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+        </div>
+        <div class="footer-details">
+          <div><p class="detail-label">Adresse</p><p class="detail-value">17 rue Parmentier,<br>95190 Goussainville</p></div>
+          <div><p class="detail-label">Email</p><p class="detail-value"><a href="mailto:info@cogelas.fr">info@cogelas.fr</a></p></div>
+          <div><p class="detail-label">Téléphone</p><p class="detail-value"><a href="tel:+33170928129">01 70 92 81 29</a></p></div>
+        </div>
+        <div class="footer-links">
+          <a href="mentions-legales.html">Mentions légales</a>
+          <a href="politique-de-confidentialite.html">Politique de confidentialité</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom"><p>&copy; 2026 Cogelas. Tous droits réservés.</p></div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

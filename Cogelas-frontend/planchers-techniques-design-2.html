@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+  <title>Planchers techniques — Variante 2 (Bento) &bull; Cogelas</title>
+  <meta name="description" content="Aperçu de redesign — direction Bento technique. Cogelas, planchers techniques surélevés en sulfate de calcium.">
+  <meta name="robots" content="noindex,nofollow">
+  <link rel="canonical" href="https://cogelas.fr/planchers-techniques.html">
+  <link rel="icon" type="image/png" sizes="32x32" href="media/favicon.png">
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;900&family=Oswald:wght@700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* === VARIANTE 2 — BENTO TECHNIQUE === */
+    .bn2 {
+      --ink: #0a0d12;
+      --ink-soft: #4a5260;
+      --bg: #f4f5f7;
+      --card: #ffffff;
+      --line: #e6e8ec;
+      --red: #D9000D;
+      --red-soft: #fff1f1;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "Montserrat", sans-serif;
+    }
+
+    .bn2-shell {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 100px 24px 64px;
+    }
+
+    /* Hero strip */
+    .bn2-hero {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+    .bn2-hero-text {
+      background: var(--ink);
+      color: #fff;
+      border-radius: 24px;
+      padding: 56px 48px;
+      position: relative;
+      overflow: hidden;
+    }
+    .bn2-hero-text::before {
+      content: "";
+      position: absolute;
+      inset: auto -40px -40px auto;
+      width: 280px; height: 280px;
+      background: radial-gradient(circle, rgba(217,0,13,0.35), transparent 70%);
+      filter: blur(4px);
+    }
+    .bn2-tag {
+      display: inline-block;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 11px;
+      letter-spacing: 1px;
+      color: var(--red);
+      background: rgba(217,0,13,0.12);
+      padding: 6px 12px;
+      border-radius: 999px;
+      margin-bottom: 28px;
+      position: relative;
+    }
+    .bn2-tag::before {
+      content: "";
+      display: inline-block;
+      width: 6px; height: 6px;
+      background: var(--red);
+      border-radius: 50%;
+      margin-right: 8px;
+      vertical-align: middle;
+      animation: bn2pulse 2s ease-in-out infinite;
+    }
+    @keyframes bn2pulse {
+      0%,100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(1.4); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .bn2-tag::before { animation: none; }
+    }
+    .bn2-hero-text h1 {
+      font-family: "Oswald", "Montserrat", sans-serif;
+      font-weight: 700;
+      font-size: clamp(36px, 4.6vw, 64px);
+      line-height: 1.05;
+      letter-spacing: 0.5px;
+      margin: 0 0 24px;
+      text-transform: uppercase;
+      position: relative;
+    }
+    .bn2-hero-text h1 .accent {
+      color: var(--red);
+      display: inline-block;
+      position: relative;
+    }
+    .bn2-hero-text h1 .accent::after {
+      content: "";
+      position: absolute;
+      left: 0; right: 0;
+      bottom: -6px;
+      height: 4px;
+      background: var(--red);
+    }
+    .bn2-hero-text p {
+      font-size: 16px;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.78);
+      max-width: 460px;
+      margin: 0;
+      position: relative;
+    }
+
+    /* Cross-section diagram (CSS only) */
+    .bn2-diagram {
+      background: var(--card);
+      border-radius: 24px;
+      padding: 32px;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--line);
+    }
+    .bn2-diagram-title {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 11px;
+      letter-spacing: 1px;
+      color: var(--ink-soft);
+      text-transform: uppercase;
+      margin: 0 0 22px;
+    }
+    .bn2-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-bottom: 18px;
+    }
+    .bn2-layer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 12px;
+      color: var(--ink);
+      transition: transform 0.25s ease, background 0.25s ease;
+    }
+    .bn2-layer:hover { transform: translateX(4px); }
+    .bn2-layer.l1 { background: #e9ebef; }
+    .bn2-layer.l2 { background: #fff; border: 1.5px solid var(--ink); height: 36px; }
+    .bn2-layer.l3 { background: #d6dae0; height: 8px; padding: 0; }
+    .bn2-layer.l4 { background: var(--card); border: 1px dashed var(--line); position: relative; padding: 18px 14px; }
+    .bn2-layer-name { letter-spacing: 0.5px; }
+    .bn2-layer-spec { color: var(--ink-soft); font-size: 10px; }
+    .bn2-pillars {
+      display: flex;
+      justify-content: space-between;
+      padding: 0 30px;
+      height: 28px;
+      align-items: stretch;
+    }
+    .bn2-pillar {
+      width: 4px;
+      background: var(--ink);
+    }
+    .bn2-floor {
+      height: 6px;
+      background: var(--ink);
+      margin-top: 0;
+      border-radius: 0 0 6px 6px;
+    }
+    .bn2-diagram-cap {
+      margin-top: 14px;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 10px;
+      color: var(--red);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    /* Bento grid */
+    .bn2-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 24px;
+    }
+    .bn2-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 36px 32px;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    }
+    .bn2-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 24px 48px -16px rgba(10,13,18,0.12);
+      border-color: var(--ink);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .bn2-card:hover { transform: none; }
+    }
+    .bn2-card.span-3 { grid-column: span 3; }
+    .bn2-card.span-2 { grid-column: span 2; }
+    .bn2-card.span-4 { grid-column: span 4; }
+    .bn2-card.span-6 { grid-column: span 6; }
+    .bn2-card.dark { background: var(--ink); color: #fff; border-color: var(--ink); }
+    .bn2-card.red {
+      background: var(--red);
+      color: #fff;
+      border-color: var(--red);
+    }
+
+    .bn2-card-num {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 11px;
+      letter-spacing: 2px;
+      color: var(--red);
+      margin: 0 0 18px;
+    }
+    .bn2-card.dark .bn2-card-num { color: var(--red); }
+    .bn2-card.red .bn2-card-num { color: rgba(255,255,255,0.85); }
+
+    .bn2-stat {
+      font-family: "Oswald", monospace;
+      font-weight: 700;
+      font-size: clamp(56px, 7vw, 96px);
+      line-height: 1;
+      margin: 0 0 16px;
+      letter-spacing: -1px;
+      color: var(--ink);
+    }
+    .bn2-card.dark .bn2-stat { color: #fff; }
+    .bn2-card.dark .bn2-stat .unit { color: var(--red); }
+    .bn2-card.red .bn2-stat { color: #fff; }
+    .bn2-stat .unit {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.32em;
+      letter-spacing: 2px;
+      vertical-align: top;
+      margin-left: 8px;
+      color: var(--red);
+    }
+    .bn2-card-title {
+      font-family: "Montserrat", sans-serif;
+      font-weight: 700;
+      font-size: 18px;
+      line-height: 1.3;
+      margin: 0 0 12px;
+      letter-spacing: -0.01em;
+    }
+    .bn2-card-desc {
+      font-size: 14px;
+      line-height: 1.65;
+      color: var(--ink-soft);
+      margin: 0;
+      max-width: 380px;
+    }
+    .bn2-card.dark .bn2-card-desc { color: rgba(255,255,255,0.72); }
+    .bn2-card.red .bn2-card-desc { color: rgba(255,255,255,0.92); }
+
+    .bn2-card-icon {
+      width: 56px; height: 56px;
+      border-radius: 12px;
+      background: var(--red-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+    }
+    .bn2-card-icon img { width: 32px; height: 32px; object-fit: contain; }
+    .bn2-card.dark .bn2-card-icon { background: rgba(217,0,13,0.18); }
+
+    .bn2-spec-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 12px;
+    }
+    .bn2-spec-table th, .bn2-spec-table td {
+      padding: 14px 0;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+    }
+    .bn2-spec-table th {
+      color: var(--ink-soft);
+      font-weight: 500;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-size: 10px;
+    }
+    .bn2-spec-table td:last-child {
+      text-align: right;
+      color: var(--red);
+      font-weight: 700;
+    }
+
+    .bn2-cta-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .bn2-cta-card h3 {
+      font-family: "Oswald", sans-serif;
+      font-weight: 700;
+      font-size: clamp(28px, 3.4vw, 44px);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin: 0 0 8px;
+    }
+    .bn2-cta-card p { margin: 0; opacity: 0.92; }
+    .bn2-cta-btn {
+      flex-shrink: 0;
+      background: #fff;
+      color: var(--red);
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 16px 28px;
+      border-radius: 999px;
+      transition: transform 0.25s ease;
+    }
+    .bn2-cta-btn:hover { transform: translateX(6px); }
+    .bn2-cta-btn::after { content: " →"; }
+
+    @media (max-width: 992px) {
+      .bn2-shell { padding: 100px 16px 48px; }
+      .bn2-hero { grid-template-columns: 1fr; }
+      .bn2-hero-text { padding: 40px 28px; border-radius: 18px; }
+      .bn2-card { padding: 28px 24px; border-radius: 18px; }
+      .bn2-card.span-2, .bn2-card.span-3, .bn2-card.span-4, .bn2-card.span-6 { grid-column: span 6; }
+      .bn2-cta-card { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body class="bn2">
+
+  <a href="#main-content" class="skip-link">Aller au contenu principal</a>
+
+  <header class="header scrolled" id="header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <img src="media/logo.png" alt="Cogelas">
+      </a>
+      <nav class="nav-menu" id="navMenu">
+        <a href="index.html" class="nav-link">Accueil</a>
+        <a href="realisations.html" class="nav-link">Réalisations</a>
+        <a href="qui-sommes-nous.html" class="nav-link">Qui sommes-nous ?</a>
+        <div class="nav-dropdown">
+          <button class="nav-link nav-dropdown-toggle nav-dropdown-active" aria-haspopup="true" aria-expanded="false">Expertises</button>
+          <div class="nav-dropdown-menu">
+            <a href="planchers-techniques.html" aria-current="page">Planchers techniques surélevés</a>
+            <a href="revetement-de-sol.html">Revêtement de sol</a>
+            <a href="terrassement.html">Terrassement et Assainissement</a>
+            <a href="maconnerie.html">Maçonnerie / Gros Œuvre</a>
+            <a href="isolation-thermique.html">Isolation thermique par l'extérieur</a>
+          </div>
+        </div>
+        <a href="contact.html" class="nav-cta">J'ai un projet !</a>
+      </nav>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <nav class="mobile-nav" id="mobileNav">
+    <a href="index.html">Accueil</a>
+    <a href="realisations.html">Réalisations</a>
+    <a href="qui-sommes-nous.html">Qui sommes-nous ?</a>
+    <button class="mobile-folder-toggle" aria-expanded="false">Expertises</button>
+    <a href="planchers-techniques.html" class="mobile-sub-link" aria-current="page">Planchers techniques surélevés</a>
+    <a href="revetement-de-sol.html" class="mobile-sub-link">Revêtement de sol</a>
+    <a href="terrassement.html" class="mobile-sub-link">Terrassement et Assainissement</a>
+    <a href="maconnerie.html" class="mobile-sub-link">Maçonnerie / Gros Œuvre</a>
+    <a href="isolation-thermique.html" class="mobile-sub-link">Isolation thermique par l'extérieur</a>
+    <a href="contact.html" style="color: var(--accent);">J'ai un projet !</a>
+  </nav>
+
+  <main id="main-content">
+
+    <div class="bn2-shell">
+
+      <section class="bn2-hero">
+        <div class="bn2-hero-text">
+          <span class="bn2-tag">EXPERTISE / SULFATE DE CALCIUM</span>
+          <h1>Planchers techniques <span class="accent">surélevés</span></h1>
+          <p>Révolutionnez votre espace avec une solution qui allie résistance maximale au feu, robustesse à l'humidité et performance acoustique de référence.</p>
+        </div>
+
+        <div class="bn2-diagram" aria-hidden="true">
+          <p class="bn2-diagram-title">// COUPE TECHNIQUE</p>
+          <div class="bn2-stack">
+            <div class="bn2-layer l1">
+              <span class="bn2-layer-name">Revêtement</span>
+              <span class="bn2-layer-spec">finition</span>
+            </div>
+            <div class="bn2-layer l2">
+              <span class="bn2-layer-name">Dalle sulfate de calcium</span>
+              <span class="bn2-layer-spec">A1 / 30–40 mm</span>
+            </div>
+            <div class="bn2-layer l3"></div>
+          </div>
+          <div class="bn2-pillars">
+            <div class="bn2-pillar"></div><div class="bn2-pillar"></div>
+            <div class="bn2-pillar"></div><div class="bn2-pillar"></div>
+            <div class="bn2-pillar"></div><div class="bn2-pillar"></div>
+          </div>
+          <div class="bn2-floor"></div>
+          <p class="bn2-diagram-cap">↳ vide technique = câbles · réseaux · climatisation</p>
+        </div>
+      </section>
+
+      <section class="bn2-grid" aria-label="Avantages techniques">
+
+        <article class="bn2-card span-3 dark">
+          <p class="bn2-card-num">FEATURE / 01</p>
+          <p class="bn2-stat">A<span class="unit">classe</span><span style="display:block; font-size: 0.5em; color: var(--red); margin-top: -8px;">1</span></p>
+          <h3 class="bn2-card-title">Excellente résistance au feu</h3>
+          <p class="bn2-card-desc">Classification A1 selon les normes européennes (NF EN 13501-1). Substance non combustible — ne favorise pas la propagation, protège les occupants comme l'intégrité du bâtiment.</p>
+        </article>
+
+        <article class="bn2-card span-3">
+          <div class="bn2-card-icon">
+            <img src="media/plancher-surelve/eau.png" alt="" aria-hidden="true">
+          </div>
+          <p class="bn2-card-num">FEATURE / 02</p>
+          <h3 class="bn2-card-title">Robustesse face à l'humidité</h3>
+          <p class="bn2-card-desc">Résistance naturelle aux environnements humides — sans gonflement ni déformation. Idéal pour data centers, espaces médicaux et bâtiments à forte contrainte technique.</p>
+        </article>
+
+        <article class="bn2-card span-2">
+          <p class="bn2-card-num">IMPACT</p>
+          <p class="bn2-stat">66<span class="unit">dB</span></p>
+          <p class="bn2-card-desc" style="font-size: 13px;">Réduction des bruits d'impact (norme ISO 717-2)</p>
+        </article>
+
+        <article class="bn2-card span-2">
+          <p class="bn2-card-num">AÉRIEN</p>
+          <p class="bn2-stat">45<span class="unit">dB</span></p>
+          <p class="bn2-card-desc" style="font-size: 13px;">Isolation aérienne (norme ISO 717-1)</p>
+        </article>
+
+        <article class="bn2-card span-2">
+          <div class="bn2-card-icon">
+            <img src="media/plancher-surelve/son.png" alt="" aria-hidden="true">
+          </div>
+          <p class="bn2-card-num">FEATURE / 03</p>
+          <h3 class="bn2-card-title">Performance acoustique élevée</h3>
+          <p class="bn2-card-desc">Confort optimal pour bureaux, santé et résidentiel exigeant.</p>
+        </article>
+
+        <article class="bn2-card span-3">
+          <p class="bn2-card-num">FICHE TECHNIQUE</p>
+          <table class="bn2-spec-table">
+            <tbody>
+              <tr><th scope="row">Matériau</th><td>Sulfate de calcium</td></tr>
+              <tr><th scope="row">Réaction au feu</th><td>A1</td></tr>
+              <tr><th scope="row">Bruits d'impact</th><td>−66 dB</td></tr>
+              <tr><th scope="row">Isolation aérienne</th><td>−45 dB</td></tr>
+              <tr><th scope="row">Modularité</th><td>100%</td></tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="bn2-card span-3 red bn2-cta-card">
+          <div>
+            <p class="bn2-card-num">SOLUTION D'EXCEPTION</p>
+            <h3>Une dalle, trois performances.</h3>
+            <p>Feu, humidité, acoustique — vérifié sur chantier.</p>
+          </div>
+          <a class="bn2-cta-btn" href="contact.html">Devis gratuit</a>
+        </article>
+
+      </section>
+    </div>
+
+    <div class="cta-banner">
+      <h2>J'ai un projet !</h2>
+      <p>Obtenez votre devis gratuit</p>
+      <a href="contact.html" class="cta-banner-btn">Nous contacter</a>
+    </div>
+
+  </main>
+
+  <footer class="footer" id="contact">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="index.html" class="logo"><img src="media/logo.png" alt="Cogelas"></a>
+        <p>Pour vous, nous aménageons le meilleur.</p>
+      </div>
+      <div>
+        <div class="footer-social">
+          <span>Nous suivre</span>
+          <a href="https://www.linkedin.com/company/lagny-construction/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (nouvel onglet)">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D9000D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+        </div>
+        <div class="footer-details">
+          <div><p class="detail-label">Adresse</p><p class="detail-value">17 rue Parmentier,<br>95190 Goussainville</p></div>
+          <div><p class="detail-label">Email</p><p class="detail-value"><a href="mailto:info@cogelas.fr">info@cogelas.fr</a></p></div>
+          <div><p class="detail-label">Téléphone</p><p class="detail-value"><a href="tel:+33170928129">01 70 92 81 29</a></p></div>
+        </div>
+        <div class="footer-links">
+          <a href="mentions-legales.html">Mentions légales</a>
+          <a href="politique-de-confidentialite.html">Politique de confidentialité</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom"><p>&copy; 2026 Cogelas. Tous droits réservés.</p></div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
