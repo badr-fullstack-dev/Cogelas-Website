@@ -3,381 +3,380 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
-  <title>Planchers techniques — Variante 3 (Cinématique) &bull; Cogelas</title>
-  <meta name="description" content="Aperçu de redesign — direction Cinématique Dark. Cogelas, planchers techniques surélevés en sulfate de calcium.">
+  <title>Planchers techniques — Variante 3 (Studio) &bull; Cogelas</title>
+  <meta name="description" content="Aperçu de redesign — direction Studio architectural. Cogelas, planchers techniques surélevés en sulfate de calcium.">
   <meta name="robots" content="noindex,nofollow">
   <link rel="canonical" href="https://cogelas.fr/planchers-techniques.html">
   <link rel="icon" type="image/png" sizes="32x32" href="media/favicon.png">
   <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;900&family=Oswald:wght@700&family=Anton&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;900&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <style>
-    /* === VARIANTE 3 — CINÉMATIQUE DARK === */
-    .cn3 {
-      --ink: #04070b;
-      --ink-2: #0a0f16;
-      --ink-3: #11171f;
-      --rule: rgba(255,255,255,0.08);
-      --text: rgba(255,255,255,0.92);
-      --text-soft: rgba(255,255,255,0.62);
-      --text-mute: rgba(255,255,255,0.38);
+    /* === VARIANTE 3 — STUDIO ARCHITECTURAL ===
+       Light, photo-driven, restrained — premium construction-firm feel.
+       Scoped under .st3 to avoid colliding with global styles. */
+    .st3 {
+      --paper: #fafaf8;
+      --ink: #0a0d12;
+      --ink-soft: #515761;
+      --ink-mute: #8a8f99;
+      --rule: #e2e0db;
       --red: #D9000D;
-      background: var(--ink);
-      color: var(--text);
+      background: var(--paper);
+      color: var(--ink);
       font-family: "Montserrat", sans-serif;
     }
-    .cn3 *::selection { background: var(--red); color: #fff; }
-
-    /* Subtle film grain */
-    .cn3-grain {
-      pointer-events: none;
-      position: fixed;
-      inset: 0;
-      z-index: 1;
-      opacity: 0.06;
-      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='1'/></svg>");
-      mix-blend-mode: overlay;
-    }
-    @media (prefers-reduced-motion: reduce) {
-      .cn3-grain { display: none; }
-    }
+    .st3 *::selection { background: var(--red); color: #fff; }
 
     /* Hero */
-    .cn3-hero {
+    .st3-hero {
       position: relative;
-      min-height: 100vh;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      align-items: center;
+      width: 100%;
+      height: 92vh;
+      min-height: 640px;
       overflow: hidden;
     }
-    .cn3-hero::after {
-      content: "";
+    .st3-hero-img {
       position: absolute;
       inset: 0;
-      background: linear-gradient(90deg, var(--ink) 30%, rgba(4,7,11,0.4) 60%, transparent 100%);
-      pointer-events: none;
-    }
-    .cn3-hero-img {
-      position: absolute;
-      inset: 0 0 0 40%;
       background-image: url('media/plancher-surelve/plancher-sureleve.png');
       background-size: cover;
       background-position: center;
-      filter: contrast(1.1) brightness(0.7) saturate(0.85);
-      transform: scale(1.04);
     }
-    @media (prefers-reduced-motion: no-preference) {
-      .cn3-hero-img {
-        animation: cn3zoom 18s ease-out infinite alternate;
-      }
-      @keyframes cn3zoom {
-        from { transform: scale(1.04); }
-        to   { transform: scale(1.12); }
-      }
-    }
-    .cn3-hero-text {
-      position: relative;
-      z-index: 2;
-      padding: 140px 64px 80px;
-      max-width: 720px;
-    }
-    .cn3-hero-mark {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      margin-bottom: 36px;
-      font-family: "Montserrat", sans-serif;
-      font-size: 11px;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      color: var(--red);
-      font-weight: 700;
-    }
-    .cn3-hero-mark::before,
-    .cn3-hero-mark::after {
-      content: "";
-      flex: 0 0 24px;
-      height: 1px;
-      background: var(--red);
-    }
-    .cn3-hero-mark::after { flex: 1; max-width: 180px; }
-    .cn3-hero h1 {
-      font-family: "Anton", "Oswald", sans-serif;
-      font-weight: 400;
-      font-size: clamp(56px, 9vw, 156px);
-      line-height: 0.88;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
-      margin: 0 0 32px;
-      color: #fff;
-    }
-    .cn3-hero h1 .accent {
-      color: var(--red);
-      display: block;
-    }
-    .cn3-hero h1 .stroke {
-      -webkit-text-stroke: 1.5px #fff;
-      color: transparent;
-      display: block;
-    }
-    .cn3-hero-deck {
-      font-size: 16px;
-      line-height: 1.7;
-      color: var(--text-soft);
-      max-width: 460px;
-      margin: 0 0 48px;
-      font-weight: 300;
-    }
-    .cn3-hero-meta {
-      display: flex;
-      gap: 32px;
-      padding-top: 28px;
-      border-top: 1px solid var(--rule);
-      font-family: "Montserrat", sans-serif;
-      font-size: 11px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--text-mute);
-    }
-    .cn3-hero-meta strong { color: var(--text); display: block; margin-top: 4px; font-size: 18px; font-weight: 600; letter-spacing: 1px; font-family: "Oswald", sans-serif; }
-    .cn3-hero-meta strong em { color: var(--red); font-style: normal; }
-
-    /* Lede block */
-    .cn3-lede {
-      position: relative;
-      z-index: 2;
-      max-width: 1180px;
-      margin: 0 auto;
-      padding: 120px 32px 80px;
-      display: grid;
-      grid-template-columns: 1fr 2fr;
-      gap: 80px;
-      align-items: start;
-    }
-    .cn3-lede-tag {
-      font-family: "Montserrat", sans-serif;
-      font-size: 11px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--red);
-      font-weight: 700;
-      padding-top: 16px;
-      border-top: 2px solid var(--red);
-      max-width: 200px;
-    }
-    .cn3-lede-body {
-      font-family: "Montserrat", sans-serif;
-      font-size: clamp(20px, 1.8vw, 26px);
-      line-height: 1.55;
-      font-weight: 300;
-      color: var(--text);
-    }
-    .cn3-lede-body p { margin: 0 0 1.2em; }
-    .cn3-lede-body p:last-child { margin: 0; color: var(--text-soft); font-size: clamp(15px, 1.3vw, 18px); }
-
-    /* Chapters with vertical timeline */
-    .cn3-chapters {
-      position: relative;
-      z-index: 2;
-      max-width: 1180px;
-      margin: 0 auto;
-      padding: 80px 32px 120px;
-    }
-    .cn3-chapters-title {
-      font-family: "Anton", sans-serif;
-      font-weight: 400;
-      font-size: clamp(40px, 5.5vw, 84px);
-      line-height: 1;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin: 0 0 80px;
-      color: #fff;
-    }
-    .cn3-chapters-title em {
-      color: var(--red);
-      font-style: normal;
-    }
-
-    .cn3-chapter {
-      display: grid;
-      grid-template-columns: 200px 1fr 1fr;
-      gap: 64px;
-      align-items: stretch;
-      padding: 64px 0;
-      border-top: 1px solid var(--rule);
-      position: relative;
-    }
-    .cn3-chapter:last-of-type {
-      border-bottom: 1px solid var(--rule);
-    }
-    .cn3-chapter-num {
-      font-family: "Anton", sans-serif;
-      font-size: clamp(80px, 10vw, 180px);
-      line-height: 0.85;
-      color: var(--ink-3);
-      -webkit-text-stroke: 1.5px var(--red);
-      margin: 0;
-      align-self: start;
-      letter-spacing: 0;
-    }
-    .cn3-chapter-body {
-      align-self: center;
-    }
-    .cn3-chapter-tag {
-      font-family: "Montserrat", sans-serif;
-      font-size: 11px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--red);
-      margin: 0 0 18px;
-      font-weight: 700;
-    }
-    .cn3-chapter-tag::before {
-      content: "› ";
-    }
-    .cn3-chapter h3 {
-      font-family: "Oswald", sans-serif;
-      font-weight: 700;
-      font-size: clamp(28px, 3vw, 42px);
-      line-height: 1.05;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
-      margin: 0 0 20px;
-      color: #fff;
-    }
-    .cn3-chapter p {
-      font-size: 15px;
-      line-height: 1.85;
-      color: var(--text-soft);
-      margin: 0;
-      max-width: 440px;
-      font-weight: 300;
-    }
-    .cn3-chapter-stat {
-      align-self: stretch;
-      padding: 28px;
-      border-left: 1px solid var(--rule);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: flex-start;
-      background: linear-gradient(135deg, var(--ink-2) 0%, transparent 100%);
-    }
-    .cn3-chapter-stat-label {
-      font-family: "Montserrat", sans-serif;
-      font-size: 10px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--text-mute);
-      margin: 0 0 14px;
-    }
-    .cn3-chapter-stat-value {
-      font-family: "Anton", sans-serif;
-      font-size: clamp(48px, 5vw, 80px);
-      line-height: 0.9;
-      color: #fff;
-      margin: 0 0 8px;
-      letter-spacing: 0.5px;
-    }
-    .cn3-chapter-stat-value em {
-      color: var(--red);
-      font-style: normal;
-    }
-    .cn3-chapter-stat-value .small {
-      font-size: 0.34em;
-      color: var(--red);
-      letter-spacing: 2px;
-      vertical-align: middle;
-      margin-left: 6px;
-    }
-    .cn3-chapter-stat-cap {
-      font-family: "Montserrat", sans-serif;
-      font-size: 11px;
-      color: var(--text-mute);
-      margin: 0;
-      letter-spacing: 0.5px;
-    }
-
-    /* Final manifesto */
-    .cn3-manifesto {
-      position: relative;
-      z-index: 2;
-      padding: 140px 32px 120px;
-      text-align: center;
-      max-width: 1080px;
-      margin: 0 auto;
-      border-top: 1px solid var(--rule);
-    }
-    .cn3-manifesto-mark {
-      display: inline-block;
-      font-family: "Montserrat", sans-serif;
-      font-size: 11px;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      color: var(--red);
-      margin: 0 0 36px;
-      font-weight: 700;
-    }
-    .cn3-manifesto-mark::before { content: "— "; }
-    .cn3-manifesto-mark::after { content: " —"; }
-    .cn3-manifesto blockquote {
-      margin: 0;
-      font-family: "Anton", "Oswald", sans-serif;
-      font-weight: 400;
-      font-size: clamp(36px, 5.6vw, 90px);
-      line-height: 1.05;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
-      color: #fff;
-    }
-    .cn3-manifesto blockquote em {
-      color: var(--red);
-      font-style: normal;
-      position: relative;
-    }
-    .cn3-manifesto blockquote em::after {
+    .st3-hero::after {
       content: "";
       position: absolute;
-      left: 0; right: 0;
-      bottom: -6px;
-      height: 4px;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(10,13,18,0.35) 0%, rgba(10,13,18,0.78) 100%);
+    }
+    .st3-hero-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 1240px;
+      height: 100%;
+      margin: 0 auto;
+      padding: 140px 32px 56px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      color: #fff;
+    }
+    .st3-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: rgba(255,255,255,0.92);
+      margin: 0 0 36px;
+    }
+    .st3-eyebrow::before {
+      content: "";
+      width: 8px; height: 8px;
+      background: var(--red);
+      border-radius: 50%;
+      flex: 0 0 8px;
+    }
+    .st3-hero h1 {
+      font-family: "Oswald", "Montserrat", sans-serif;
+      font-weight: 700;
+      font-size: clamp(48px, 7.4vw, 112px);
+      line-height: 0.98;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin: 0 0 28px;
+      color: #fff;
+      max-width: 1100px;
+    }
+    .st3-hero h1 .accent {
+      color: var(--red);
+    }
+    .st3-hero-deck {
+      font-size: clamp(15px, 1.3vw, 18px);
+      line-height: 1.65;
+      color: rgba(255,255,255,0.85);
+      max-width: 580px;
+      margin: 0 0 56px;
+      font-weight: 300;
+    }
+    .st3-hero-meta {
+      display: flex;
+      gap: 56px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255,255,255,0.18);
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
+    }
+    .st3-hero-meta strong {
+      display: block;
+      margin-top: 6px;
+      font-family: "Oswald", sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: #fff;
+    }
+    .st3-hero-meta strong em { color: var(--red); font-style: normal; }
+
+    /* Intro block — centered editorial paragraph */
+    .st3-intro {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 120px 32px 96px;
+      text-align: center;
+    }
+    .st3-intro-tag {
+      display: inline-block;
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--red);
+      margin: 0 0 28px;
+      padding-top: 16px;
+      border-top: 2px solid var(--red);
+    }
+    .st3-intro h2 {
+      font-family: "Oswald", sans-serif;
+      font-weight: 500;
+      font-size: clamp(32px, 4.4vw, 56px);
+      line-height: 1.05;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin: 0 0 36px;
+      color: var(--ink);
+    }
+    .st3-intro p {
+      font-size: clamp(15px, 1.2vw, 17px);
+      line-height: 1.85;
+      color: var(--ink-soft);
+      margin: 0 0 1.2em;
+      font-weight: 400;
+    }
+    .st3-intro p:last-child { margin: 0; }
+
+    /* Index header */
+    .st3-index {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 32px 64px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: end;
+      border-bottom: 1px solid var(--rule);
+      padding-bottom: 40px;
+    }
+    .st3-index-tag {
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--ink-mute);
+      margin: 0 0 18px;
+      font-weight: 600;
+    }
+    .st3-index-tag::before {
+      content: "— ";
+      color: var(--red);
+    }
+    .st3-index h2 {
+      font-family: "Oswald", sans-serif;
+      font-weight: 700;
+      font-size: clamp(36px, 5vw, 64px);
+      line-height: 1;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin: 0;
+    }
+    .st3-index h2 em {
+      color: var(--red);
+      font-style: normal;
+    }
+    .st3-index-desc {
+      font-size: 14px;
+      line-height: 1.75;
+      color: var(--ink-soft);
+      max-width: 460px;
+      margin: 0;
+      justify-self: end;
+    }
+
+    /* Chapters — alternating image+text splits.
+       DOM order is always: image first, content second, in source.
+       The CSS flip uses flex-direction: row-reverse on .alt — DOM stays accessible. */
+    .st3-chapters {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 32px 96px;
+    }
+    .st3-chapter {
+      display: flex;
+      gap: 64px;
+      align-items: center;
+      padding: 80px 0;
+      border-bottom: 1px solid var(--rule);
+    }
+    .st3-chapter:last-of-type { border-bottom: none; }
+    .st3-chapter.alt { flex-direction: row-reverse; }
+    .st3-chapter-img {
+      flex: 1 1 50%;
+      aspect-ratio: 4 / 5;
+      overflow: hidden;
+      background: var(--rule);
+      position: relative;
+    }
+    .st3-chapter-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      transition: transform 0.6s ease;
+    }
+    .st3-chapter:hover .st3-chapter-img img { transform: scale(1.03); }
+    @media (prefers-reduced-motion: reduce) {
+      .st3-chapter-img img { transition: none; }
+      .st3-chapter:hover .st3-chapter-img img { transform: none; }
+    }
+    .st3-chapter-content {
+      flex: 1 1 50%;
+      max-width: 520px;
+    }
+    .st3-chapter-mark {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--ink-mute);
+      font-weight: 700;
+      margin: 0 0 28px;
+    }
+    .st3-chapter-mark::before {
+      content: "";
+      width: 32px;
+      height: 1px;
+      background: var(--red);
+      flex: 0 0 32px;
+    }
+    .st3-chapter-num {
+      font-family: "Oswald", sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--red);
+      letter-spacing: 2px;
+    }
+    .st3-chapter h3 {
+      font-family: "Oswald", sans-serif;
+      font-weight: 500;
+      font-size: clamp(28px, 3.4vw, 44px);
+      line-height: 1.05;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin: 0 0 24px;
+      color: var(--ink);
+    }
+    .st3-chapter p {
+      font-size: 15px;
+      line-height: 1.85;
+      color: var(--ink-soft);
+      margin: 0 0 32px;
+    }
+    .st3-chapter-stat {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 16px;
+      padding: 18px 24px 18px 0;
+      border-top: 1px solid var(--ink);
+    }
+    .st3-chapter-stat-label {
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--ink-mute);
+      font-weight: 600;
+      margin: 0;
+    }
+    .st3-chapter-stat-value {
+      font-family: "Oswald", sans-serif;
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--ink);
+      letter-spacing: 0.5px;
+      margin: 0;
+      line-height: 1;
+    }
+    .st3-chapter-stat-value em {
+      color: var(--red);
+      font-style: normal;
+    }
+    .st3-chapter-stat-value .unit {
+      font-size: 14px;
+      color: var(--ink-mute);
+      font-weight: 500;
+      letter-spacing: 1px;
+      margin-left: 4px;
+    }
+
+    /* Closing line — single editorial pull statement */
+    .st3-close {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 120px 32px 48px;
+      text-align: center;
+      border-top: 1px solid var(--rule);
+    }
+    .st3-close p {
+      font-family: "Oswald", sans-serif;
+      font-size: clamp(28px, 3.6vw, 48px);
+      font-weight: 500;
+      line-height: 1.15;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      max-width: 880px;
+      margin: 0 auto;
+      color: var(--ink);
+    }
+    .st3-close p em {
+      color: var(--red);
+      font-style: normal;
+      position: relative;
+    }
+    .st3-close p em::after {
+      content: "";
+      position: absolute;
+      left: 0; right: 0; bottom: -4px;
+      height: 3px;
       background: var(--red);
     }
 
     @media (max-width: 992px) {
-      .cn3-hero { grid-template-columns: 1fr; min-height: auto; padding-top: 0; }
-      .cn3-hero-img {
-        position: relative;
-        inset: auto;
-        height: 60vh;
-        order: -1;
+      .st3-hero { height: auto; min-height: 0; padding: 0; }
+      .st3-hero-inner { padding: 120px 20px 40px; min-height: 80vh; }
+      .st3-intro { padding: 80px 20px 64px; }
+      .st3-index { grid-template-columns: 1fr; gap: 24px; padding: 0 20px 32px; padding-bottom: 32px; }
+      .st3-index-desc { justify-self: start; }
+      .st3-chapters { padding: 0 20px 64px; }
+      .st3-chapter, .st3-chapter.alt {
+        flex-direction: column;
+        gap: 32px;
+        padding: 56px 0;
       }
-      .cn3-hero::after {
-        background: linear-gradient(180deg, transparent 0%, var(--ink) 90%);
-      }
-      .cn3-hero-text { padding: 48px 24px 80px; }
-      .cn3-lede { grid-template-columns: 1fr; gap: 24px; padding: 80px 24px 48px; }
-      .cn3-chapters { padding: 48px 24px 80px; }
-      .cn3-chapter {
-        grid-template-columns: 1fr;
-        gap: 24px;
-        padding: 48px 0;
-      }
-      .cn3-chapter-stat {
-        border-left: none;
-        border-top: 1px solid var(--rule);
-        padding: 24px 0 0;
-        background: none;
-      }
-      .cn3-manifesto { padding: 80px 24px; }
+      .st3-chapter-img { aspect-ratio: 4 / 3; width: 100%; }
+      .st3-close { padding: 80px 20px 32px; }
+      .st3-hero-meta { gap: 32px; flex-wrap: wrap; }
     }
   </style>
 </head>
-<body class="cn3">
+<body class="st3">
 
   <a href="#main-content" class="skip-link">Aller au contenu principal</a>
-  <div class="cn3-grain" aria-hidden="true"></div>
 
   <header class="header scrolled" id="header">
     <div class="header-inner">
@@ -421,83 +420,95 @@
 
   <main id="main-content">
 
-    <section class="cn3-hero">
-      <div class="cn3-hero-img" aria-hidden="true"></div>
-      <div class="cn3-hero-text">
-        <p class="cn3-hero-mark">Expertise · Sulfate de calcium</p>
-        <h1>
-          <span class="stroke">Planchers</span>
-          <span>Techniques</span>
-          <span class="accent">Surélevés.</span>
-        </h1>
-        <p class="cn3-hero-deck">Une dalle qui ne brûle pas. Qui ne gonfle pas. Qui ne vibre pas. Le standard des bâtiments tertiaires, médicaux et industriels exigeants.</p>
-        <div class="cn3-hero-meta">
-          <div>Feu<strong><em>A1</em></strong></div>
-          <div>Impact<strong>−66 dB</strong></div>
-          <div>Aérien<strong>−45 dB</strong></div>
+    <section class="st3-hero" aria-labelledby="st3-h1">
+      <div class="st3-hero-img" aria-hidden="true"></div>
+      <div class="st3-hero-inner">
+        <p class="st3-eyebrow">Expertise · Sulfate de calcium</p>
+        <h1 id="st3-h1">Planchers techniques <span class="accent">surélevés.</span></h1>
+        <p class="st3-hero-deck">Révolutionnez votre espace avec une dalle qui résiste au feu, à l'humidité et aux nuisances acoustiques — la base technique des bâtiments tertiaires, médicaux et industriels exigeants.</p>
+        <div class="st3-hero-meta">
+          <div>Réaction au feu<strong><em>A1</em></strong></div>
+          <div>Bruits d'impact<strong>−66 dB</strong></div>
+          <div>Isolation aérienne<strong>−45 dB</strong></div>
         </div>
       </div>
     </section>
 
-    <section class="cn3-lede">
-      <p class="cn3-lede-tag">Une solution d'exception</p>
-      <div class="cn3-lede-body">
-        <p>Repoussez les limites de l'architecture moderne avec nos planchers techniques en sulfate de calcium — esthétique raffinée, fonctionnalité optimale, durabilité exceptionnelle.</p>
-        <p>Performance acoustique supérieure, résistance maximale au feu et modularité qui soutient l'évolution technologique des bâtiments. Vérifié sur chantier, certifié par les normes les plus strictes.</p>
-      </div>
+    <section class="st3-intro">
+      <p class="st3-intro-tag">Une solution d'exception</p>
+      <h2>Repoussez les limites<br>de l'architecture moderne.</h2>
+      <p>Nos planchers techniques en sulfate de calcium transforment les espaces de travail en alliant esthétique raffinée, fonctionnalité optimale et durabilité exceptionnelle.</p>
+      <p>Parfait pour les environnements exigeants, ils offrent une performance acoustique supérieure, une résistance maximale au feu et une modularité qui soutient l'évolution technologique des bâtiments.</p>
     </section>
 
-    <section class="cn3-chapters" aria-labelledby="cn3-chap-title">
-      <h2 id="cn3-chap-title" class="cn3-chapters-title">Trois <em>avantages,</em><br>vérifiés sur chantier.</h2>
+    <header class="st3-index">
+      <div>
+        <p class="st3-index-tag">Trois avantages — Index</p>
+        <h2>Vérifiés <em>sur chantier.</em></h2>
+      </div>
+      <p class="st3-index-desc">Trois réponses concrètes aux exigences techniques des bâtiments tertiaires, médicaux et industriels — certifiées par les normes européennes les plus strictes.</p>
+    </header>
 
-      <article class="cn3-chapter">
-        <p class="cn3-chapter-num" aria-hidden="true">01</p>
-        <div class="cn3-chapter-body">
-          <p class="cn3-chapter-tag">Sécurité incendie</p>
+    <section class="st3-chapters" aria-label="Avantages techniques">
+
+      <article class="st3-chapter">
+        <figure class="st3-chapter-img">
+          <img src="media/plancher-surelve/feu.png" alt="" loading="lazy">
+        </figure>
+        <div class="st3-chapter-content">
+          <p class="st3-chapter-mark">
+            <span class="st3-chapter-num" aria-hidden="true">— 01</span>
+            <span>Sécurité incendie</span>
+          </p>
           <h3>Excellente résistance au feu.</h3>
           <p>Nos dalles en sulfate de calcium bénéficient d'une classification A1 selon les normes européennes. Substance non combustible, elles ne favorisent pas la propagation du feu et contribuent à la sécurité des occupants comme à l'intégrité du bâtiment.</p>
-        </div>
-        <div class="cn3-chapter-stat">
-          <p class="cn3-chapter-stat-label">Réaction au feu</p>
-          <p class="cn3-chapter-stat-value">A<em>1</em></p>
-          <p class="cn3-chapter-stat-cap">NF EN 13501-1</p>
+          <div class="st3-chapter-stat">
+            <p class="st3-chapter-stat-label">Réaction au feu<br>NF EN 13501-1</p>
+            <p class="st3-chapter-stat-value">Classe <em>A1</em></p>
+          </div>
         </div>
       </article>
 
-      <article class="cn3-chapter">
-        <p class="cn3-chapter-num" aria-hidden="true">02</p>
-        <div class="cn3-chapter-body">
-          <p class="cn3-chapter-tag">Stabilité dimensionnelle</p>
+      <article class="st3-chapter alt">
+        <figure class="st3-chapter-img">
+          <img src="media/plancher-surelve/eau.png" alt="" loading="lazy">
+        </figure>
+        <div class="st3-chapter-content">
+          <p class="st3-chapter-mark">
+            <span class="st3-chapter-num" aria-hidden="true">— 02</span>
+            <span>Stabilité dimensionnelle</span>
+          </p>
           <h3>Robustesse face à l'humidité.</h3>
           <p>Le sulfate de calcium résiste naturellement aux environnements humides, sans gonflement ni déformation dans le temps. Une qualité particulièrement appréciée dans les data centers, les espaces médicaux et les bâtiments à forte contrainte technique.</p>
-        </div>
-        <div class="cn3-chapter-stat">
-          <p class="cn3-chapter-stat-label">Stabilité long terme</p>
-          <p class="cn3-chapter-stat-value">0<span class="small">% gonflement</span></p>
-          <p class="cn3-chapter-stat-cap">Sans déformation</p>
+          <div class="st3-chapter-stat">
+            <p class="st3-chapter-stat-label">Stabilité long terme</p>
+            <p class="st3-chapter-stat-value"><em>0</em><span class="unit">% gonflement</span></p>
+          </div>
         </div>
       </article>
 
-      <article class="cn3-chapter">
-        <p class="cn3-chapter-num" aria-hidden="true">03</p>
-        <div class="cn3-chapter-body">
-          <p class="cn3-chapter-tag">Confort acoustique</p>
+      <article class="st3-chapter">
+        <figure class="st3-chapter-img">
+          <img src="media/plancher-surelve/son.png" alt="" loading="lazy">
+        </figure>
+        <div class="st3-chapter-content">
+          <p class="st3-chapter-mark">
+            <span class="st3-chapter-num" aria-hidden="true">— 03</span>
+            <span>Confort acoustique</span>
+          </p>
           <h3>Performance acoustique élevée.</h3>
           <p>Avec une réduction jusqu'à 66 dB des bruits d'impact et 45 dB d'isolation aérienne, nos planchers surélevés garantissent un confort acoustique optimal — idéal pour les bureaux ouverts, les établissements de santé et les bâtiments résidentiels exigeants.</p>
-        </div>
-        <div class="cn3-chapter-stat">
-          <p class="cn3-chapter-stat-label">Réduction acoustique</p>
-          <p class="cn3-chapter-stat-value">−<em>66</em><span class="small">dB</span></p>
-          <p class="cn3-chapter-stat-cap">Bruits d'impact · ISO 717-2</p>
+          <div class="st3-chapter-stat">
+            <p class="st3-chapter-stat-label">Bruits d'impact<br>ISO 717-2</p>
+            <p class="st3-chapter-stat-value">−<em>66</em><span class="unit">dB</span></p>
+          </div>
         </div>
       </article>
+
     </section>
 
-    <section class="cn3-manifesto">
-      <p class="cn3-manifesto-mark">Manifeste Cogelas</p>
-      <blockquote>
-        Bâtir <em>solide.</em><br>Bâtir <em>silencieux.</em><br>Bâtir pour <em>durer.</em>
-      </blockquote>
+    <section class="st3-close">
+      <p>Bâtir <em>solide.</em> Bâtir <em>silencieux.</em> Bâtir pour <em>durer.</em></p>
     </section>
 
     <div class="cta-banner">
