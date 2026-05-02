@@ -1624,6 +1624,182 @@ img { max-width: 100%; height: auto; display: block; }
 @media (max-width: 992px) {
   .contact-image { aspect-ratio: 3 / 2; height: auto; min-height: 0; }
 }
+
+/* === CONTACT PAGE — IMAGE + PANEL LAYOUT === */
+.contact-page {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 100px 20px 80px;
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  gap: 48px;
+  align-items: stretch;
+}
+.contact-page-image {
+  position: relative;
+  border-radius: 6px;
+  overflow: hidden;
+  background: var(--light);
+  min-height: 520px;
+}
+.contact-page-image img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+.contact-page-image-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(10, 14, 20, 0.15) 0%, rgba(10, 14, 20, 0.55) 100%);
+  padding: 40px;
+  display: flex;
+  align-items: flex-start;
+}
+.contact-page-image-overlay h1 {
+  color: var(--white);
+  font-family: "Oswald", "Montserrat", sans-serif;
+  font-weight: 700;
+  font-size: clamp(28px, 3vw, 42px);
+  line-height: 1.15;
+  text-transform: none;
+  letter-spacing: 0;
+  margin: 0;
+}
+.contact-page-panel {
+  background: var(--white);
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+.contact-intro {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 24px 28px;
+  margin: 0 0 28px;
+  background: var(--white);
+  border: 1px solid var(--gray-400);
+  border-radius: 4px;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--primary);
+}
+.contact-intro-bullet {
+  flex: 0 0 14px;
+  width: 14px;
+  height: 14px;
+  margin-top: 5px;
+  background: var(--accent);
+  border-radius: 2px;
+}
+
+/* Contact-type pills (radio group) */
+.contact-type-fieldset {
+  border: none;
+  padding: 0;
+  margin: 0 0 32px;
+}
+.contact-type-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+.contact-type-pill {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 48px;
+  padding: 10px 22px 10px 14px;
+  background: var(--white);
+  border: 1.5px solid var(--gray-400);
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--primary);
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.contact-type-pill input {
+  position: absolute;
+  width: 1px; height: 1px;
+  margin: -1px; padding: 0;
+  border: 0; overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+.contact-type-pill-check {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  background: var(--white);
+  border: 1.5px solid var(--gray-400);
+  border-radius: 4px;
+  transition: background var(--transition), border-color var(--transition);
+}
+.contact-type-pill-check::after {
+  content: "";
+  width: 12px;
+  height: 8px;
+  border-left: 2.5px solid var(--white);
+  border-bottom: 2.5px solid var(--white);
+  transform: rotate(-45deg) translate(1px, -2px);
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+.contact-type-pill:has(input:checked) {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--white);
+}
+.contact-type-pill:has(input:checked) .contact-type-pill-check {
+  background: var(--accent);
+  border-color: var(--white);
+}
+.contact-type-pill:has(input:checked) .contact-type-pill-check::after {
+  opacity: 1;
+}
+.contact-type-pill:hover {
+  border-color: var(--accent);
+}
+.contact-type-pill:has(input:focus-visible) {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.required-mark {
+  color: var(--accent);
+  margin-left: 2px;
+}
+
+/* Conditional Société field */
+#societeGroup[hidden] { display: none !important; }
+
+@media (max-width: 992px) {
+  .contact-page {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 80px 16px 60px;
+  }
+  .contact-page-image { min-height: 0; aspect-ratio: 4 / 3; }
+}
+@media (max-width: 576px) {
+  .contact-page-image-overlay { padding: 24px; }
+  .contact-intro { padding: 18px 20px; font-size: 13px; }
+  .contact-type-options { gap: 10px; }
+  .contact-type-pill { font-size: 11px; padding: 8px 16px 8px 10px; min-height: 44px; }
+  .contact-type-pill-check { width: 18px; height: 18px; }
+}
+
 /* Inner pages: projects grid wrapper for realisations (full page, not homepage) */
 .realisations-grid {
   max-width: var(--container);

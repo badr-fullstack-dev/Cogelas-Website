@@ -65,15 +65,24 @@ module.exports = async function handler(req, res) {
   }
 
   // 4. Field validation
-  const nom       = clean(body.nom, 100);
-  const prenom    = clean(body.prenom, 100);
-  const email     = clean(body.email, 200);
-  const telephone = clean(body.telephone, 50);
-  const sujet     = clean(body.sujet, 200);
-  const message   = clean(body.message, 5000);
+  const contactType = clean(body.contact_type, 20).toLowerCase();
+  const isEntreprise = contactType === 'entreprise';
+  const nom         = clean(body.nom, 100);
+  const prenom      = clean(body.prenom, 100);
+  const email       = clean(body.email, 200);
+  const telephone   = clean(body.telephone, 50);
+  const societe     = clean(body.societe, 200);
+  const lieuProjet  = clean(body.lieu_projet, 200);
+  const description = clean(body.description, 5000);
 
-  if (!nom || !prenom || !email || !sujet || !message) {
+  if (contactType !== 'entreprise' && contactType !== 'particulier') {
+    return res.status(400).json({ error: 'Type de contact invalide.' });
+  }
+  if (!nom || !prenom || !email || !lieuProjet) {
     return res.status(400).json({ error: 'Champs requis manquants.' });
+  }
+  if (isEntreprise && !societe) {
+    return res.status(400).json({ error: 'Nom de la societe requis.' });
   }
   if (!isEmail(email)) {
     return res.status(400).json({ error: 'Adresse email invalide.' });
@@ -95,33 +104,42 @@ module.exports = async function handler(req, res) {
     auth: { user, pass }
   });
 
-  const subject = `Nouveau message depuis cogelas.fr — ${sujet}`;
+  const typeLabel = isEntreprise ? 'Entreprise' : 'Particulier';
+  const partyLabel = isEntreprise && societe ? societe : `${prenom} ${nom}`;
+  const subject = `Nouveau message depuis cogelas.fr — ${typeLabel} — ${partyLabel}`;
 
   const text =
-`Nom:        ${nom}
+`Type:       ${typeLabel}
+${isEntreprise ? `Societe:    ${societe}\n` : ''}Nom:        ${nom}
 Prenom:     ${prenom}
 Email:      ${email}
 Telephone:  ${telephone || '-'}
-Sujet:      ${sujet}
+Lieu:       ${lieuProjet}
 
-Message:
-${message}
+Description:
+${description || '-'}
 
 --
 Envoye depuis le formulaire de contact cogelas.fr
 IP: ${ip}`;
 
+  const societeRow = isEntreprise
+    ? `<p style="margin:0 0 12px;"><strong>Societe :</strong> ${escapeHtml(societe)}</p>`
+    : '';
+
   const html = `
 <table cellpadding="8" cellspacing="0" border="0" style="font-family:Arial,sans-serif;font-size:14px;color:#001017;border-collapse:collapse;">
   <tr><td style="background:#001017;color:#fff;padding:16px 24px;font-weight:700;letter-spacing:1px;">NOUVEAU MESSAGE — COGELAS.FR</td></tr>
   <tr><td style="padding:24px;">
+    <p style="margin:0 0 12px;"><strong>Type :</strong> <span style="display:inline-block;padding:2px 10px;background:#D9000D;color:#fff;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;">${escapeHtml(typeLabel)}</span></p>
+    ${societeRow}
     <p style="margin:0 0 12px;"><strong>Nom :</strong> ${escapeHtml(nom)}</p>
     <p style="margin:0 0 12px;"><strong>Prenom :</strong> ${escapeHtml(prenom)}</p>
     <p style="margin:0 0 12px;"><strong>Email :</strong> <a href="mailto:${escapeHtml(email)}" style="color:#D9000D;">${escapeHtml(email)}</a></p>
     <p style="margin:0 0 12px;"><strong>Telephone :</strong> ${escapeHtml(telephone || '-')}</p>
-    <p style="margin:0 0 12px;"><strong>Sujet :</strong> ${escapeHtml(sujet)}</p>
-    <p style="margin:24px 0 8px;"><strong>Message :</strong></p>
-    <div style="white-space:pre-wrap;border-left:3px solid #D9000D;padding:12px 16px;background:#f8f9fa;">${escapeHtml(message)}</div>
+    <p style="margin:0 0 12px;"><strong>Lieu du projet :</strong> ${escapeHtml(lieuProjet)}</p>
+    <p style="margin:24px 0 8px;"><strong>Description :</strong></p>
+    <div style="white-space:pre-wrap;border-left:3px solid #D9000D;padding:12px 16px;background:#f8f9fa;">${escapeHtml(description || '(aucune description)')}</div>
     <p style="margin:24px 0 0;color:#6c757d;font-size:12px;">Envoye depuis le formulaire de contact cogelas.fr — IP ${escapeHtml(ip)}</p>
   </td></tr>
 </table>`;

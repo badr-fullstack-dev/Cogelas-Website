@@ -209,6 +209,33 @@ counters.forEach(c => counterObserver.observe(c));
   var ts = document.getElementById('contactTs');
   if (ts) ts.value = String(Date.now());
 
+  // Toggle "Nom de la société" field based on contact type radio.
+  // disabled removes the field from form submission and the a11y tree.
+  var societeGroup = document.getElementById('societeGroup');
+  var societeInput = document.getElementById('societe');
+  function syncContactType(initial) {
+    var checked = form.querySelector('input[name="contact_type"]:checked');
+    var isEntreprise = checked && checked.value === 'entreprise';
+    if (!societeGroup || !societeInput) return;
+    if (isEntreprise) {
+      societeGroup.hidden = false;
+      societeInput.disabled = false;
+      societeInput.required = true;
+      societeInput.setAttribute('aria-required', 'true');
+    } else {
+      societeGroup.hidden = true;
+      societeInput.disabled = true;
+      societeInput.required = false;
+      societeInput.removeAttribute('aria-required');
+      societeGroup.classList.remove('has-error');
+      if (!initial) societeInput.value = '';
+    }
+  }
+  syncContactType(true);
+  form.querySelectorAll('input[name="contact_type"]').forEach(function(r) {
+    r.addEventListener('change', function() { syncContactType(false); });
+  });
+
   var submitted = false;
   var submitting = false;
 
