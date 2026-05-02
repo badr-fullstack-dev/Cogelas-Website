@@ -230,61 +230,100 @@
     }
     .st3-chapter:last-of-type { border-bottom: none; }
     .st3-chapter.alt { flex-direction: row-reverse; }
-    .st3-chapter-img {
+    /* Chapter visual: typographic stat panel.
+       Replaces a misused icon-on-card layout — the data IS the visual.
+       Each chapter gets a different giant letterform that reflects its
+       defining number (A1, 0%, -66 dB) so the panel doesn't repeat. */
+    .st3-chapter-visual {
       flex: 1 1 50%;
-      aspect-ratio: 4 / 5;
-      overflow: hidden;
-      background:
-        radial-gradient(circle at 30% 20%, rgba(217,0,13,0.06), transparent 60%),
-        linear-gradient(135deg, #f4f1ea 0%, #e9e5dc 100%);
+      aspect-ratio: 5 / 4;
       position: relative;
       display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 40px 48px;
+      background:
+        radial-gradient(circle at 80% 15%, rgba(217,0,13,0.05), transparent 55%),
+        linear-gradient(160deg, #f4f1ea 0%, #ede8de 100%);
+      overflow: hidden;
     }
-    .st3-chapter-img::before {
+    .st3-chapter-visual::before {
       content: "";
       position: absolute;
       inset: 24px;
-      border: 1px solid rgba(10,13,18,0.08);
+      border: 1px solid rgba(10,13,18,0.07);
       pointer-events: none;
     }
-    /* Corner tick varies per chapter so the same mark doesn't read as a system stamp. */
-    .st3-chapter:nth-of-type(1) .st3-chapter-img::after {
+    /* A different corner mark per chapter so the panels don't stamp identically. */
+    .st3-chapter:nth-of-type(1) .st3-chapter-visual::after {
       content: "";
       position: absolute;
       top: 24px; right: 24px;
-      width: 32px; height: 1px;
+      width: 40px; height: 1px;
       background: var(--red);
     }
-    .st3-chapter:nth-of-type(2) .st3-chapter-img::after {
+    .st3-chapter:nth-of-type(2) .st3-chapter-visual::after {
       content: "";
       position: absolute;
       top: 24px; left: 24px;
-      width: 1px; height: 32px;
+      width: 1px; height: 40px;
       background: var(--red);
     }
-    .st3-chapter:nth-of-type(3) .st3-chapter-img::after {
+    .st3-chapter:nth-of-type(3) .st3-chapter-visual::after {
       content: "";
       position: absolute;
       bottom: 24px; right: 24px;
-      width: 8px; height: 8px;
+      width: 10px; height: 10px;
       background: var(--red);
       border-radius: 50%;
     }
-    .st3-chapter-img img {
-      width: 38%;
-      max-width: 220px;
-      height: auto;
-      object-fit: contain;
-      display: block;
-      transition: transform 0.6s ease;
+    .st3-chapter-visual-meta {
+      position: relative;
+      z-index: 1;
+      font-family: "Montserrat", sans-serif;
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--ink-mute);
+      font-weight: 600;
+      margin: 0;
     }
-    .st3-chapter:hover .st3-chapter-img img { transform: scale(1.05); }
-    @media (prefers-reduced-motion: reduce) {
-      .st3-chapter-img img { transition: none; }
-      .st3-chapter:hover .st3-chapter-img img { transform: none; }
+    .st3-chapter-visual-meta strong {
+      color: var(--red);
+      font-weight: 700;
+    }
+    .st3-chapter-visual-figure {
+      position: relative;
+      z-index: 1;
+      font-family: "Oswald", sans-serif;
+      font-weight: 700;
+      font-size: clamp(96px, 14vw, 192px);
+      line-height: 0.85;
+      letter-spacing: -2px;
+      color: var(--ink);
+      margin: 0;
+      align-self: flex-start;
+    }
+    .st3-chapter-visual-figure .accent { color: var(--red); }
+    .st3-chapter-visual-figure .unit {
+      font-size: 0.22em;
+      font-weight: 500;
+      letter-spacing: 4px;
+      color: var(--ink-mute);
+      vertical-align: top;
+      margin-left: 12px;
+      text-transform: uppercase;
+    }
+    .st3-chapter-visual-foot {
+      position: relative;
+      z-index: 1;
+      font-family: "Oswald", sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      margin: 0;
     }
     .st3-chapter-content {
       flex: 1 1 50%;
@@ -331,38 +370,6 @@
       color: var(--ink-soft);
       margin: 0 0 32px;
     }
-    .st3-chapter-stat {
-      display: inline-flex;
-      align-items: baseline;
-      gap: 16px;
-      padding: 18px 24px 18px 0;
-      border-top: 1px solid var(--ink);
-    }
-    .st3-chapter-stat-label {
-      font-size: 10px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--ink-mute);
-      font-weight: 600;
-      margin: 0;
-    }
-    .st3-chapter-stat-value {
-      font-family: "Oswald", sans-serif;
-      font-size: 32px;
-      font-weight: 700;
-      color: var(--ink);
-      letter-spacing: 0.5px;
-      margin: 0;
-      line-height: 1;
-    }
-    .st3-chapter-stat-value .accent { color: var(--red); }
-    .st3-chapter-stat-value .unit {
-      font-size: 14px;
-      color: var(--ink-mute);
-      font-weight: 500;
-      letter-spacing: 1px;
-      margin-left: 4px;
-    }
 
     /* Closing line — single editorial pull statement */
     .st3-close {
@@ -407,7 +414,8 @@
         gap: 32px;
         padding: 56px 0;
       }
-      .st3-chapter-img { aspect-ratio: 4 / 3; width: 100%; }
+      .st3-chapter-visual { aspect-ratio: 16 / 10; width: 100%; padding: 28px 32px; }
+      .st3-chapter-visual-figure { font-size: clamp(72px, 18vw, 144px); }
       .st3-close { padding: 80px 20px 32px; }
       .st3-hero-meta { gap: 32px; flex-wrap: wrap; }
     }
@@ -497,9 +505,11 @@
     <section class="st3-chapters" aria-label="Avantages techniques">
 
       <article class="st3-chapter">
-        <figure class="st3-chapter-img">
-          <img src="media/plancher-surelve/feu.png" alt="" loading="lazy">
-        </figure>
+        <aside class="st3-chapter-visual" aria-hidden="true">
+          <p class="st3-chapter-visual-meta"><strong>01</strong> · Sécurité incendie</p>
+          <p class="st3-chapter-visual-figure">A<span class="accent">1</span></p>
+          <p class="st3-chapter-visual-foot">Classe · NF EN 13501-1</p>
+        </aside>
         <div class="st3-chapter-content">
           <p class="st3-chapter-mark">
             <span class="st3-chapter-num" aria-hidden="true">№ 01</span>
@@ -507,17 +517,15 @@
           </p>
           <h3>Excellente résistance au feu.</h3>
           <p>Nos dalles en sulfate de calcium bénéficient d'une classification A1 selon les normes européennes. Substance non combustible, elles ne favorisent pas la propagation du feu et contribuent à la sécurité des occupants comme à l'intégrité du bâtiment.</p>
-          <div class="st3-chapter-stat">
-            <p class="st3-chapter-stat-label">Réaction au feu<br>NF EN 13501-1</p>
-            <p class="st3-chapter-stat-value">Classe <span class="accent">A1</span></p>
-          </div>
         </div>
       </article>
 
       <article class="st3-chapter alt">
-        <figure class="st3-chapter-img">
-          <img src="media/plancher-surelve/eau.png" alt="" loading="lazy">
-        </figure>
+        <aside class="st3-chapter-visual" aria-hidden="true">
+          <p class="st3-chapter-visual-meta"><strong>02</strong> · Stabilité dimensionnelle</p>
+          <p class="st3-chapter-visual-figure"><span class="accent">0</span><span class="unit">% gonflement</span></p>
+          <p class="st3-chapter-visual-foot">Sans déformation</p>
+        </aside>
         <div class="st3-chapter-content">
           <p class="st3-chapter-mark">
             <span class="st3-chapter-num" aria-hidden="true">№ 02</span>
@@ -525,17 +533,15 @@
           </p>
           <h3>Robustesse face à l'humidité.</h3>
           <p>Le sulfate de calcium résiste naturellement aux environnements humides, sans gonflement ni déformation dans le temps. Une qualité particulièrement appréciée dans les data centers, les espaces médicaux et les bâtiments à forte contrainte technique.</p>
-          <div class="st3-chapter-stat">
-            <p class="st3-chapter-stat-label">Stabilité long terme</p>
-            <p class="st3-chapter-stat-value"><span class="accent">0</span><span class="unit">% gonflement</span></p>
-          </div>
         </div>
       </article>
 
       <article class="st3-chapter">
-        <figure class="st3-chapter-img">
-          <img src="media/plancher-surelve/son.png" alt="" loading="lazy">
-        </figure>
+        <aside class="st3-chapter-visual" aria-hidden="true">
+          <p class="st3-chapter-visual-meta"><strong>03</strong> · Confort acoustique</p>
+          <p class="st3-chapter-visual-figure">−<span class="accent">66</span><span class="unit">dB</span></p>
+          <p class="st3-chapter-visual-foot">Bruits d'impact · ISO 717-2</p>
+        </aside>
         <div class="st3-chapter-content">
           <p class="st3-chapter-mark">
             <span class="st3-chapter-num" aria-hidden="true">№ 03</span>
@@ -543,10 +549,6 @@
           </p>
           <h3>Performance acoustique élevée.</h3>
           <p>Avec une réduction jusqu'à 66 dB des bruits d'impact et 45 dB d'isolation aérienne, nos planchers surélevés garantissent un confort acoustique optimal, idéal pour les bureaux ouverts, les établissements de santé et les bâtiments résidentiels exigeants.</p>
-          <div class="st3-chapter-stat">
-            <p class="st3-chapter-stat-label">Bruits d'impact<br>ISO 717-2</p>
-            <p class="st3-chapter-stat-value">−<span class="accent">66</span><span class="unit">dB</span></p>
-          </div>
         </div>
       </article>
 
