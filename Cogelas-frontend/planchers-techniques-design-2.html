@@ -56,13 +56,15 @@
       filter: blur(4px);
     }
     .bn2-tag {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
       font-family: "JetBrains Mono", monospace;
-      font-size: 11px;
-      letter-spacing: 1px;
-      color: var(--red);
-      background: rgba(217,0,13,0.12);
-      padding: 6px 12px;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 1.2px;
+      color: #ffffff;
+      background: var(--red);
+      padding: 8px 16px;
       border-radius: 999px;
       margin-bottom: 28px;
       position: relative;
@@ -71,9 +73,9 @@
       content: "";
       display: inline-block;
       width: 6px; height: 6px;
-      background: var(--red);
+      background: #ffffff;
       border-radius: 50%;
-      margin-right: 8px;
+      margin-right: 10px;
       vertical-align: middle;
       animation: bn2pulse 2s ease-in-out infinite;
     }
@@ -225,7 +227,7 @@
       margin: 0 0 18px;
     }
     .bn2-card.dark .bn2-card-num { color: var(--red); }
-    .bn2-card.red .bn2-card-num { color: rgba(255,255,255,0.85); }
+    .bn2-card.red .bn2-card-num { color: #ffffff; opacity: 0.95; }
 
     .bn2-stat {
       font-family: "Oswald", monospace;
@@ -246,6 +248,18 @@
       vertical-align: top;
       margin-left: 8px;
       color: var(--red);
+    }
+    .bn2-stat-accent {
+      color: var(--red);
+      display: inline;
+    }
+    .bn2-card.dark .bn2-stat-accent { color: var(--red); }
+    .bn2-card.dark .bn2-stat .unit {
+      display: block;
+      font-size: 0.16em;
+      margin: 8px 0 0;
+      letter-spacing: 3px;
+      color: rgba(255,255,255,0.55);
     }
     .bn2-card-title {
       font-family: "Montserrat", sans-serif;
@@ -397,8 +411,8 @@
           <p>Révolutionnez votre espace avec une solution qui allie résistance maximale au feu, robustesse à l'humidité et performance acoustique de référence.</p>
         </div>
 
-        <div class="bn2-diagram" aria-hidden="true">
-          <p class="bn2-diagram-title">// COUPE TECHNIQUE</p>
+        <div class="bn2-diagram" role="img" aria-label="Coupe technique d'un plancher surélevé : revêtement de finition, dalle en sulfate de calcium classe A1 de 30 à 40 mm, vide technique pour câbles, réseaux et climatisation, dalle structurelle.">
+          <p class="bn2-diagram-title" aria-hidden="true">// COUPE TECHNIQUE</p>
           <div class="bn2-stack">
             <div class="bn2-layer l1">
               <span class="bn2-layer-name">Revêtement</span>
@@ -420,11 +434,12 @@
         </div>
       </section>
 
-      <section class="bn2-grid" aria-label="Avantages techniques">
+      <h2 id="bn2-grid-h2" class="visually-hidden">Avantages techniques</h2>
+      <section class="bn2-grid" aria-labelledby="bn2-grid-h2">
 
-        <article class="bn2-card span-3 dark">
+        <article class="bn2-card span-3 dark" aria-label="Avantage 01 — Résistance au feu">
           <p class="bn2-card-num">FEATURE / 01</p>
-          <p class="bn2-stat">A<span class="unit">classe</span><span style="display:block; font-size: 0.5em; color: var(--red); margin-top: -8px;">1</span></p>
+          <p class="bn2-stat" aria-label="Classe A1">A<span class="bn2-stat-accent">1</span><span class="unit">classe</span></p>
           <h3 class="bn2-card-title">Excellente résistance au feu</h3>
           <p class="bn2-card-desc">Classification A1 selon les normes européennes (NF EN 13501-1). Substance non combustible — ne favorise pas la propagation, protège les occupants comme l'intégrité du bâtiment.</p>
         </article>

@@ -73,7 +73,7 @@
       margin: 0 0 28px;
       font-variation-settings: "opsz" 144, "SOFT" 30;
     }
-    .ed1-hero h1 em {
+    .ed1-hero h1 .accent {
       font-style: italic;
       color: var(--red);
       font-weight: 400;
@@ -173,7 +173,7 @@
       padding-bottom: 10px;
     }
     .ed1-fiche dd:last-child { border-bottom: none; }
-    .ed1-fiche dd em { color: var(--red); font-style: normal; }
+    .ed1-fiche dd .accent { color: var(--red); font-weight: 600; }
 
     .ed1-pull {
       max-width: 1080px;
@@ -190,10 +190,15 @@
       color: var(--ink);
       font-weight: 300;
       font-style: italic;
-      quotes: "« " " »";
+      quotes: "\00ab\00a0" "\00a0\00bb";
       letter-spacing: -0.01em;
     }
-    .ed1-pull q em { color: var(--red); font-style: italic; }
+    .ed1-pull q::before, .ed1-pull q::after {
+      color: var(--red);
+      font-style: normal;
+      opacity: 0.55;
+    }
+    .ed1-pull q .accent { color: var(--red); }
     .ed1-pull-attr {
       display: block;
       margin-top: 28px;
@@ -225,6 +230,11 @@
       line-height: 1;
       letter-spacing: -0.02em;
       margin: 0;
+    }
+    .ed1-chapters-head h2 .accent {
+      color: var(--red);
+      font-style: italic;
+      font-weight: 400;
     }
     .ed1-chapters-head p {
       font-family: "Montserrat", sans-serif;
@@ -359,7 +369,7 @@
     <section class="ed1-hero">
       <div class="ed1-hero-text">
         <p class="ed1-eyebrow">Expertise — Sulfate de calcium</p>
-        <h1>Planchers techniques <em>surélevés.</em></h1>
+        <h1>Planchers techniques <span class="accent">surélevés.</span></h1>
         <p class="ed1-deck">Révolutionner l'espace de travail moderne grâce à un matériau d'exception, conçu pour les bâtiments les plus exigeants.</p>
       </div>
       <div class="ed1-hero-image">
@@ -380,23 +390,23 @@
           <dt>Matériau</dt>
           <dd>Sulfate de calcium</dd>
           <dt>Réaction au feu</dt>
-          <dd>Classe <em>A1</em> (NF EN 13501-1)</dd>
+          <dd>Classe <span class="accent">A1</span> (NF EN 13501-1)</dd>
           <dt>Bruits d'impact</dt>
-          <dd>−<em>66 dB</em></dd>
+          <dd>−<span class="accent">66 dB</span></dd>
           <dt>Isolation aérienne</dt>
-          <dd>−<em>45 dB</em></dd>
+          <dd>−<span class="accent">45 dB</span></dd>
         </dl>
       </aside>
     </section>
 
     <section class="ed1-pull">
-      <q>Une dalle qui ne brûle pas, qui ne gonfle pas, qui ne <em>vibre</em> pas — voilà la base d'un bâtiment intelligent.</q>
+      <q>Une dalle qui ne brûle pas, qui ne gonfle pas, qui ne <span class="accent">vibre</span> pas — voilà la base d'un bâtiment intelligent.</q>
       <span class="ed1-pull-attr">Bureau d'études — Cogelas</span>
     </section>
 
     <section class="ed1-chapters" aria-labelledby="ch-head">
       <header class="ed1-chapters-head">
-        <h2 id="ch-head">Trois <em style="font-style:italic; color: var(--red);">avantages</em>.</h2>
+        <h2 id="ch-head">Trois <span class="accent">avantages</span>.</h2>
         <p>Trois réponses concrètes aux exigences techniques des bâtiments tertiaires, médicaux et industriels — vérifiées sur chantier.</p>
       </header>
 
