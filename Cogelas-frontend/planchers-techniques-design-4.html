@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+  <title>Planchers techniques · Variante 4 (Atelier) • Cogelas</title>
+  <meta name="description" content="Variante 4 inspirée d'un atelier d'édition : bloc noir, titre stencil, étiquettes verticales et accent rouge.">
+  <link rel="icon" type="image/png" sizes="32x32" href="media/favicon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="media/favicon.png">
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Archivo+Black&family=Archivo+Narrow:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    :root {
+      --red: #D9000D;
+      --ink: #0a0d12;
+      --ink-soft: #2c3340;
+      --ink-mute: #5a5f6a;
+      --paper: #f3f0eb;
+      --paper-soft: #ece8df;
+      --rule: #d4cfc4;
+      --white: #fefcfb;
+    }
+
+    .atb4 { background: var(--paper); color: var(--ink); font-family: "Montserrat", sans-serif; }
+    .atb4 ::selection { background: var(--ink); color: var(--paper); }
+
+    /* Breadcrumb strip — minimal, atelier style */
+    .atb4-strip {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 104px 48px 0;
+      display: flex;
+      justify-content: space-between;
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--ink-mute);
+      font-weight: 600;
+    }
+    .atb4-strip a { color: var(--ink-mute); text-decoration: none; }
+    .atb4-strip a:hover, .atb4-strip a:focus-visible { color: var(--red); }
+    .atb4-strip span[aria-current] { color: var(--ink); }
+
+    /* HERO — black label box on the left, giant stencil-style title on the right */
+    .atb4-hero {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 48px 48px 80px;
+      display: grid;
+      grid-template-columns: minmax(280px, 380px) 1fr;
+      gap: 56px;
+      align-items: stretch;
+    }
+    .atb4-hero-block {
+      background: var(--ink);
+      color: var(--paper);
+      padding: 32px 32px 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 280px;
+      position: relative;
+    }
+    .atb4-hero-block-eyebrow {
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--paper);
+      font-weight: 600;
+      margin: 0;
+    }
+    .atb4-hero-block-eyebrow .accent { color: var(--red); }
+    .atb4-hero-block-sub {
+      font-size: 13px;
+      color: rgba(243,240,235,0.7);
+      font-weight: 400;
+      margin: 8px 0 0;
+      letter-spacing: 0.5px;
+    }
+    .atb4-hero-block-tags {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(243,240,235,0.55);
+      font-weight: 500;
+    }
+    .atb4-hero-block-tags span:not(:last-child)::after {
+      content: " ·";
+      margin-left: 18px;
+      color: var(--red);
+    }
+
+    .atb4-hero-title {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .atb4-hero-title h1 {
+      font-family: "Archivo Black", "Montserrat", sans-serif;
+      font-weight: 900;
+      font-size: clamp(56px, 8.5vw, 132px);
+      line-height: 0.88;
+      letter-spacing: -3px;
+      margin: 0;
+      color: var(--ink);
+      text-transform: uppercase;
+    }
+    .atb4-hero-title h1 .line { display: block; }
+    .atb4-hero-title h1 .line.accent { color: var(--red); }
+
+    /* Red rule + caps lede */
+    .atb4-lede-wrap {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 48px;
+      border-top: 2px solid var(--red);
+    }
+    .atb4-lede {
+      max-width: 920px;
+      margin: 0;
+      padding: 40px 0 80px;
+      font-family: "Archivo Narrow", "Montserrat", sans-serif;
+      font-weight: 700;
+      font-size: clamp(20px, 2vw, 28px);
+      line-height: 1.45;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--red);
+    }
+
+    /* Paired blocks — image + text + image rhythm with vertical rotated labels */
+    .atb4-pairs {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 48px;
+      display: flex;
+      flex-direction: column;
+      gap: 96px;
+    }
+    .atb4-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+      align-items: center;
+    }
+    .atb4-pair.alt { grid-template-columns: 1fr 1fr; }
+
+    /* Image cell with optional vertical rotated label running along its side */
+    .atb4-figure {
+      position: relative;
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+      background: var(--paper-soft);
+    }
+    .atb4-figure picture { display: contents; }
+    .atb4-figure img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .atb4-figure-label {
+      position: absolute;
+      writing-mode: vertical-rl;
+      top: 16px;
+      bottom: 16px;
+      padding: 14px 8px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--red);
+      background: var(--paper);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin: 0;
+    }
+    .atb4-figure-label.left { left: 16px; }
+    .atb4-figure-label.right { right: 16px; transform: rotate(180deg); }
+    .atb4-figure-label .num {
+      color: var(--ink);
+      font-family: "Archivo Black", sans-serif;
+      font-size: 13px;
+      letter-spacing: 0;
+    }
+
+    .atb4-pair-text { padding: 0 12px; }
+    .atb4-pair-mark {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 10px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--ink-mute);
+      font-weight: 700;
+      margin: 0 0 24px;
+    }
+    .atb4-pair-mark::before {
+      content: "";
+      width: 28px;
+      height: 2px;
+      background: var(--red);
+      flex: 0 0 28px;
+    }
+    .atb4-pair-text h3 {
+      font-family: "Archivo Black", "Montserrat", sans-serif;
+      font-weight: 900;
+      font-size: clamp(28px, 3vw, 40px);
+      line-height: 1.05;
+      letter-spacing: -1px;
+      text-transform: uppercase;
+      margin: 0 0 24px;
+      color: var(--ink);
+    }
+    .atb4-pair-text p {
+      font-size: 15px;
+      line-height: 1.8;
+      color: var(--ink-soft);
+      margin: 0;
+      max-width: 480px;
+    }
+
+    /* Third feature variant — black caption overlay laid over the image, like
+       the Parkett tile on the reference. The caption is a real text block, not
+       an image, so screen readers read it correctly. */
+    .atb4-overlay {
+      position: relative;
+      aspect-ratio: 16 / 10;
+      overflow: hidden;
+      background: var(--paper-soft);
+    }
+    .atb4-overlay picture { display: contents; }
+    .atb4-overlay img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .atb4-overlay-caption {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      width: min(46%, 380px);
+      padding: 28px 32px;
+      background: var(--ink);
+      color: var(--paper);
+    }
+    .atb4-overlay-caption h3 {
+      font-family: "Archivo Black", sans-serif;
+      font-weight: 900;
+      font-size: clamp(20px, 1.6vw, 26px);
+      line-height: 1.1;
+      letter-spacing: -0.5px;
+      text-transform: uppercase;
+      margin: 0 0 12px;
+      color: var(--paper);
+    }
+    .atb4-overlay-caption h3 .accent { color: var(--red); }
+    .atb4-overlay-caption p {
+      font-size: 13px;
+      line-height: 1.7;
+      color: rgba(243,240,235,0.78);
+      margin: 0;
+    }
+
+    .atb4-third {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 96px 48px 0;
+    }
+    .atb4-third-mark {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 10px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--ink-mute);
+      font-weight: 700;
+      margin: 0 0 24px;
+    }
+    .atb4-third-mark::before {
+      content: "";
+      width: 28px;
+      height: 2px;
+      background: var(--red);
+      flex: 0 0 28px;
+    }
+
+    /* Closing band — solid red, white stencil text */
+    .atb4-close {
+      margin-top: 120px;
+      background: var(--red);
+      color: var(--paper);
+      padding: 96px 48px;
+      text-align: center;
+    }
+    .atb4-close p {
+      max-width: 1100px;
+      margin: 0 auto;
+      font-family: "Archivo Black", sans-serif;
+      font-weight: 900;
+      font-size: clamp(28px, 3.6vw, 52px);
+      line-height: 1.1;
+      letter-spacing: -1px;
+      text-transform: uppercase;
+      color: var(--paper);
+    }
+    .atb4-close p .ink { color: var(--ink); }
+
+    /* Mobile collapse */
+    @media (max-width: 992px) {
+      .atb4-strip { padding: 96px 20px 0; }
+      .atb4-hero { padding: 32px 20px 56px; grid-template-columns: 1fr; gap: 28px; }
+      .atb4-hero-block { min-height: 200px; }
+      .atb4-lede-wrap { padding: 0 20px; }
+      .atb4-lede { padding: 28px 0 56px; }
+      .atb4-pairs { padding: 0 20px; gap: 64px; }
+      .atb4-pair, .atb4-pair.alt { grid-template-columns: 1fr; gap: 28px; }
+      .atb4-pair.alt .atb4-figure { order: -1; }
+      .atb4-figure-label.left { left: 0; }
+      .atb4-figure-label.right { right: 0; }
+      .atb4-third { padding: 64px 20px 0; }
+      .atb4-overlay-caption { width: 70%; padding: 20px 22px; }
+      .atb4-close { padding: 64px 20px; margin-top: 80px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+    }
+  </style>
+</head>
+<body class="atb4">
+
+  <a href="#main-content" class="skip-link">Aller au contenu principal</a>
+
+  <header class="header scrolled" id="header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <img src="media/logo.png" alt="Cogelas">
+      </a>
+      <nav class="nav-menu" id="navMenu">
+        <a href="index.html" class="nav-link">Accueil</a>
+        <a href="realisations.html" class="nav-link">Réalisations</a>
+        <a href="qui-sommes-nous.html" class="nav-link">Qui sommes-nous ?</a>
+        <div class="nav-dropdown">
+          <button class="nav-link nav-dropdown-toggle nav-dropdown-active" aria-haspopup="true" aria-expanded="false">Expertises</button>
+          <div class="nav-dropdown-menu">
+            <a href="planchers-techniques.html" aria-current="page">Planchers techniques surélevés</a>
+            <a href="revetement-de-sol.html">Revêtement de sol</a>
+            <a href="terrassement.html">Terrassement et Assainissement</a>
+            <a href="maconnerie.html">Maçonnerie / Gros Œuvre</a>
+            <a href="isolation-thermique.html">Isolation thermique par l'extérieur</a>
+          </div>
+        </div>
+        <a href="contact.html" class="nav-cta">J'ai un projet !</a>
+      </nav>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <nav class="mobile-nav" id="mobileNav">
+    <a href="index.html">Accueil</a>
+    <a href="realisations.html">Réalisations</a>
+    <a href="qui-sommes-nous.html">Qui sommes-nous ?</a>
+    <button class="mobile-folder-toggle" aria-expanded="false">Expertises</button>
+    <a href="planchers-techniques.html" class="mobile-sub-link" aria-current="page">Planchers techniques surélevés</a>
+    <a href="revetement-de-sol.html" class="mobile-sub-link">Revêtement de sol</a>
+    <a href="terrassement.html" class="mobile-sub-link">Terrassement et Assainissement</a>
+    <a href="maconnerie.html" class="mobile-sub-link">Maçonnerie / Gros Œuvre</a>
+    <a href="isolation-thermique.html" class="mobile-sub-link">Isolation thermique par l'extérieur</a>
+    <a href="contact.html" style="color: var(--accent);">J'ai un projet !</a>
+  </nav>
+
+  <main id="main-content">
+
+    <p class="atb4-strip">
+      <a href="index.html">Accueil</a>
+      <span aria-current="page">Planchers techniques surélevés</span>
+    </p>
+
+    <section class="atb4-hero">
+      <div class="atb4-hero-block">
+        <div>
+          <p class="atb4-hero-block-eyebrow"><span class="accent">●</span> Expertise Cogelas</p>
+          <p class="atb4-hero-block-sub">Sulfate de calcium, panneaux surélevés modulaires pour bureaux, data centers et environnements techniques.</p>
+        </div>
+        <p class="atb4-hero-block-tags" aria-hidden="true">
+          <span>Sécurité</span><span>Stabilité</span><span>Acoustique</span>
+        </p>
+      </div>
+      <div class="atb4-hero-title">
+        <h1>
+          <span class="line">Planchers</span>
+          <span class="line">Techniques</span>
+          <span class="line accent">Surélevés.</span>
+        </h1>
+      </div>
+    </section>
+
+    <div class="atb4-lede-wrap">
+      <p class="atb4-lede">
+        Le plancher surélevé est le socle d'un bâtiment intelligent. Cogelas pose des dalles sulfate de calcium, classées A1, conçues pour durer.
+      </p>
+    </div>
+
+    <section class="atb4-pairs" aria-label="Trois performances">
+
+      <article class="atb4-pair">
+        <div class="atb4-figure">
+          <picture>
+            <source type="image/webp" srcset="media/plancher-surelve/plancher-sureleve-800.webp 800w, media/plancher-surelve/plancher-sureleve-1200.webp 1200w" sizes="(max-width: 992px) 100vw, 50vw">
+            <img src="media/plancher-surelve/plancher-sureleve.png" alt="Vue de coupe d'une dalle technique surélevée en sulfate de calcium" loading="lazy" decoding="async">
+          </picture>
+          <p class="atb4-figure-label left" aria-hidden="true">
+            <span class="num">01</span>
+            Sécurité incendie · NF EN 13501-1
+          </p>
+        </div>
+        <div class="atb4-pair-text">
+          <p class="atb4-pair-mark">№ 01 · Sécurité incendie</p>
+          <h3>Excellente résistance au feu.</h3>
+          <p>Nos dalles en sulfate de calcium bénéficient d'une classification A1 selon les normes européennes. Substance non combustible, elles ne favorisent pas la propagation du feu et contribuent à la sécurité des occupants comme à l'intégrité du bâtiment.</p>
+        </div>
+      </article>
+
+      <article class="atb4-pair alt">
+        <div class="atb4-pair-text">
+          <p class="atb4-pair-mark">№ 02 · Stabilité dimensionnelle</p>
+          <h3>Robustesse face à l'humidité.</h3>
+          <p>Le sulfate de calcium résiste naturellement aux environnements humides, sans gonflement ni déformation dans le temps. Une qualité particulièrement appréciée dans les data centers, les espaces médicaux et les bâtiments à forte contrainte technique.</p>
+        </div>
+        <div class="atb4-figure">
+          <picture>
+            <source type="image/webp" srcset="media/plancher-surelve/plancher-sureleve-800.webp 800w, media/plancher-surelve/plancher-sureleve-1200.webp 1200w" sizes="(max-width: 992px) 100vw, 50vw">
+            <img src="media/plancher-surelve/plancher-sureleve.png" alt="Détail d'un panneau de sulfate de calcium en environnement humide" loading="lazy" decoding="async">
+          </picture>
+          <p class="atb4-figure-label right" aria-hidden="true">
+            <span class="num">02</span>
+            Stabilité · 0% gonflement
+          </p>
+        </div>
+      </article>
+
+    </section>
+
+    <section class="atb4-third" aria-label="Confort acoustique">
+      <p class="atb4-third-mark">№ 03 · Confort acoustique</p>
+      <div class="atb4-overlay">
+        <picture>
+          <source type="image/webp" srcset="media/plancher-surelve/plancher-sureleve-1200.webp 1200w, media/plancher-surelve/plancher-sureleve-1600.webp 1600w" sizes="100vw">
+          <img src="media/plancher-surelve/plancher-sureleve.png" alt="Plancher technique installé dans un open-space" loading="lazy" decoding="async">
+        </picture>
+        <div class="atb4-overlay-caption">
+          <h3>Performance acoustique <span class="accent">élevée.</span></h3>
+          <p>Jusqu'à 66 dB de réduction des bruits d'impact et 45 dB d'isolation aérienne. Idéal pour les bureaux ouverts, les établissements de santé et les bâtiments résidentiels exigeants.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="atb4-close">
+      <p>Une dalle. <span class="ink">Trois performances.</span> Vérifiées sur chantier.</p>
+    </section>
+
+    <div class="cta-banner">
+      <h2>J'ai un projet !</h2>
+      <p>Obtenez votre devis gratuit</p>
+      <a href="contact.html" class="cta-banner-btn">Nous contacter</a>
+    </div>
+
+  </main>
+
+  <footer class="footer" id="contact">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="index.html" class="logo">
+          <img src="media/logo.png" alt="Cogelas">
+        </a>
+        <p>Pour vous, nous aménageons le meilleur.</p>
+      </div>
+      <div>
+        <div class="footer-social">
+          <span>Nous suivre</span>
+          <a href="https://www.linkedin.com/company/lagny-construction/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (nouvel onglet)">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D9000D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+        </div>
+        <div class="footer-details">
+          <div>
+            <p class="detail-label">Adresse</p>
+            <p class="detail-value">17 rue Parmentier,<br>95190 Goussainville</p>
+          </div>
+          <div>
+            <p class="detail-label">Email</p>
+            <p class="detail-value"><a href="mailto:info@cogelas.fr">info@cogelas.fr</a></p>
+          </div>
+          <div>
+            <p class="detail-label">Téléphone</p>
+            <p class="detail-value"><a href="tel:+33170928129">01 70 92 81 29</a></p>
+          </div>
+        </div>
+        <div class="footer-links">
+          <a href="mentions-legales.html">Mentions légales</a>
+          <a href="politique-de-confidentialite.html">Politique de confidentialité</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Cogelas. Tous droits réservés.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
