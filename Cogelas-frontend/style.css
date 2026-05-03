@@ -227,14 +227,15 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 .hero-content h1 {
-  font-family: "Oswald", "Montserrat", sans-serif;
-  font-size: clamp(32px, 4.6vw, 56px);
-  font-weight: 700;
+  font-family: "Archivo Black", "Montserrat", system-ui, sans-serif;
+  font-size: clamp(40px, 7vw, 92px);
+  font-weight: 400;            /* Archivo Black ships only 400 — IS the weight */
   color: var(--white);
-  letter-spacing: 3px;
-  line-height: 1.15;
+  letter-spacing: -0.015em;
+  line-height: 1.02;
   margin-bottom: 20px;
-  text-transform: uppercase;
+  text-transform: none;
+  text-wrap: balance;
 }
 
 .hero-content h1 .hero-accent {
@@ -313,11 +314,11 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 .cta-tile--devis {
-  --cta-tile-photo: url("https://files.sbcdnsb.com/images/fobeHVRJj0vtAY3IbVrsrg/content/1744033468/5604325/800/capture_d_ecran_2025-02-17_a_11-20-16.webp");
+  --cta-tile-photo: url("https://files.sbcdnsb.com/images/fobeHVRJj0vtAY3IbVrsrg/content/1763393415/5604326/800/capture_d_ecran_2025-02-17_a_11-20-16.png");
 }
 
 .cta-tile--realisations {
-  --cta-tile-photo: url("https://files.sbcdnsb.com/images/fobeHVRJj0vtAY3IbVrsrg/content/1763393415/5604326/800/capture_d_ecran_2025-02-17_a_11-20-16.png");
+  --cta-tile-photo: url("media/cta-card.png");
 }
 
 .cta-tile:hover::before {
@@ -1375,6 +1376,32 @@ img { max-width: 100%; height: auto; display: block; }
   text-align: center;
 }
 
+/* About-intro additions */
+.about-kicker {
+  font-size: 13px;
+  color: var(--gray-600);
+  margin-bottom: 18px;
+  letter-spacing: 0.2px;
+}
+.about-hashtag {
+  display: block;
+  margin: 8px auto 28px;
+  height: auto;
+  max-width: 280px;
+  width: 60%;
+}
+.about-lead {
+  font-size: 16px !important;
+  color: var(--primary) !important;
+  margin-bottom: 24px !important;
+}
+
+/* Inline red emphasis for body text */
+.hl-red {
+  color: var(--accent);
+  font-weight: 700;
+}
+
 /* Feature Cards (3-col grid) */
 .feature-cards {
   max-width: var(--container);
@@ -2128,7 +2155,7 @@ body.nav-open { overflow: hidden; }
     justify-content: center;
   }
   .hero-content h1 {
-    letter-spacing: 1.5px;
+    letter-spacing: -0.01em;
     margin-bottom: 0;
   }
   /* CTA cards: in-flow flex item, dark tile bg shows over the video without
