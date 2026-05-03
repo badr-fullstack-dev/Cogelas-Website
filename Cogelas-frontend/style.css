@@ -229,11 +229,11 @@ img { max-width: 100%; height: auto; display: block; }
 
 .hero-content h1 {
   font-family: "Archivo Black", "Montserrat", system-ui, sans-serif;
-  font-size: clamp(40px, 7vw, 92px);
+  font-size: clamp(32px, 4.6vw, 56px);
   font-weight: 400;            /* Archivo Black ships only 400 — IS the weight */
   color: var(--white);
-  letter-spacing: -0.015em;
-  line-height: 1.02;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
   margin-bottom: 20px;
   text-transform: none;
   text-wrap: balance;
@@ -572,6 +572,14 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 .section-header a:hover { color: var(--accent); }
+
+/* Centered variant: title centered, link sits below also centered */
+.section-header--centered {
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 18px;
+}
 
 /* === EXPERTISES GRID === */
 .expertises {
