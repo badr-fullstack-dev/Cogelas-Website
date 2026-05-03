@@ -1470,34 +1470,40 @@ img { max-width: 100%; height: auto; display: block; }
   font-weight: 700;
 }
 
-/* === ABOUT STORY (qui-sommes-nous) — asymmetric photo collage + text block === */
-.about-story {
-  max-width: 980px;
-  margin: 0 auto;
-  padding: 80px 20px 64px;
+/* ==========================================================================
+   QUI-SOMMES-NOUS — Swiss-modernism trio: APPROCHE / PARCOURS / CERTIFICATIONS
+   8px base unit; 12-col grid mentality; single red accent.
+   ========================================================================== */
+
+/* Shared eyebrow + section header */
+.approach-eyebrow,
+.parcours-eyebrow,
+.certifications-eyebrow {
+  font-family: var(--font);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--accent);
+  margin: 0 0 12px;
+  position: relative;
+  padding-left: 32px;
 }
-.about-collage {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
-  margin-bottom: 56px;
+.approach-eyebrow::before,
+.parcours-eyebrow::before,
+.certifications-eyebrow::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 24px;
+  height: 2px;
+  background: var(--accent);
+  transform: translateY(-50%);
 }
-.about-collage-figure {
-  margin: 0;
-  overflow: hidden;
-}
-.about-collage-figure img {
-  width: 100%;
-  height: auto;
-  display: block;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
-}
-.about-story-text {
-  max-width: 720px;
-  margin: 0 auto;
-}
-.about-story-text h2 {
+.approach-header h2,
+.parcours-header h2,
+.certifications-header h2 {
   font-family: var(--font-display);
   font-size: clamp(24px, 3vw, 36px);
   font-weight: 800;
@@ -1505,28 +1511,445 @@ img { max-width: 100%; height: auto; display: block; }
   letter-spacing: 0.03em;
   line-height: 1.1;
   color: var(--accent);
+  margin: 0 0 48px;
+}
+
+/* === 1. NOTRE APPROCHE === */
+.approach {
+  background: var(--white);
+  padding: 96px 0 80px;
+}
+.approach-inner {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+.approach-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+.approach-card {
+  position: relative;
+  padding: 40px 28px 32px;
+  background: var(--white);
+  border-top: 2px solid var(--primary);
+  transition: border-color var(--transition), transform var(--transition);
+}
+.approach-card:hover {
+  border-top-color: var(--accent);
+  transform: translateY(-4px);
+}
+.approach-num {
+  display: block;
+  font-family: "Archivo Black", "Archivo", sans-serif;
+  font-weight: 400;
+  font-size: clamp(40px, 5vw, 56px);
+  line-height: 1;
+  color: var(--accent);
+  letter-spacing: -0.02em;
+  margin-bottom: 24px;
+}
+.approach-card-title {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+  color: var(--primary);
+  margin: 0 0 16px;
+}
+.approach-card p {
+  font-family: var(--font);
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--gray-600);
+  margin: 0;
+}
+
+/* === 2. NOTRE PARCOURS — vertical timeline === */
+.parcours {
+  background: var(--light);
+  padding: 96px 0 80px;
+}
+.parcours-inner {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+.parcours-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+.parcours-list::before {
+  content: "";
+  position: absolute;
+  left: 96px;
+  top: 8px;
+  bottom: 8px;
+  width: 1px;
+  background: var(--gray-400);
+}
+.parcours-item {
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  align-items: start;
+  gap: 32px;
+  padding: 24px 0;
+  position: relative;
+}
+.parcours-year {
+  font-family: "Archivo Black", "Archivo", sans-serif;
+  font-weight: 400;
+  font-size: clamp(28px, 3.5vw, 36px);
+  line-height: 1;
+  color: var(--accent);
+  letter-spacing: -0.01em;
+  text-align: right;
+  padding-top: 4px;
+}
+.parcours-body {
+  position: relative;
+  padding-left: 32px;
+}
+.parcours-body::before {
+  content: "";
+  position: absolute;
+  left: -5px;
+  top: 12px;
+  width: 11px;
+  height: 11px;
+  background: var(--accent);
+  border-radius: 50%;
+  box-shadow: 0 0 0 4px var(--light);
+}
+.parcours-event {
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  line-height: 1.2;
+  color: var(--primary);
+  margin: 0 0 8px;
+}
+.parcours-body p {
+  font-family: var(--font);
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--gray-600);
+  margin: 0;
+}
+
+/* === 3. NOS CERTIFICATIONS — RGE + partners trust band === */
+.certifications {
+  background: var(--white);
+  padding: 96px 0 96px;
+}
+.certifications-inner {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+.certifications-content {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  align-items: center;
+  gap: 56px;
+  padding: 40px 0 56px;
+  border-top: 1px solid var(--gray-400);
+  border-bottom: 1px solid var(--gray-400);
+}
+.certifications-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.certifications-badge img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+.certifications-text p {
+  font-family: var(--font);
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--primary);
+  margin: 0 0 12px;
+}
+.certifications-text p:last-child { margin-bottom: 0; }
+.certifications-text-muted {
+  color: var(--gray-600) !important;
+  font-size: 14px !important;
+}
+
+.certifications-partners {
+  margin-top: 56px;
+}
+.certifications-partners-label {
+  font-family: var(--font);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--gray-600);
+  text-align: center;
   margin: 0 0 28px;
 }
+.certifications-partners-row {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+  align-items: center;
+}
+.certifications-partners-row li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.certifications-partners-row img {
+  max-width: 140px;
+  max-height: 56px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  filter: grayscale(100%) opacity(0.6);
+  transition: filter var(--transition);
+}
+.certifications-partners-row li:hover img,
+.certifications-partners-row li:focus-within img {
+  filter: grayscale(0) opacity(1);
+}
+
+/* === Mobile === */
+@media (max-width: 768px) {
+  .approach,
+  .parcours,
+  .certifications { padding: 64px 0 56px; }
+
+  .approach-grid { grid-template-columns: 1fr; gap: 20px; }
+
+  .parcours-list::before { left: 60px; }
+  .parcours-item { grid-template-columns: 60px 1fr; gap: 20px; padding: 16px 0; }
+  .parcours-year { font-size: 22px; }
+  .parcours-body { padding-left: 24px; }
+
+  .certifications-content {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    text-align: center;
+  }
+  .certifications-badge img { max-width: 140px; }
+  .certifications-partners-row { grid-template-columns: repeat(2, 1fr); gap: 24px 16px; }
+}
+
+@media (max-width: 380px) {
+  .parcours-list::before { left: 48px; }
+  .parcours-item { grid-template-columns: 48px 1fr; gap: 14px; }
+  .parcours-year { font-size: 20px; }
+  .parcours-body { padding-left: 20px; }
+}
+
+/* ==========================================================================
+   ABOUT STORY (qui-sommes-nous) — Swiss-modernism editorial bento
+   12-col grid mentality, eyebrow + left-aligned title to match the trio,
+   asymmetric photo bento, vertical red rule on the text column,
+   stat strip pulled from the credibility set.
+   ========================================================================== */
+.about-story {
+  background: var(--white);
+  padding: 96px 0 80px;
+}
+.about-story-inner {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Header — same eyebrow + red Archivo title pattern as approach/parcours/certifications */
+.about-story-head { margin-bottom: 56px; }
+.about-story-eyebrow {
+  font-family: var(--font);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--accent);
+  margin: 0 0 12px;
+  position: relative;
+  padding-left: 32px;
+}
+.about-story-eyebrow::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 24px;
+  height: 2px;
+  background: var(--accent);
+  transform: translateY(-50%);
+}
+.about-story-head h2 {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 3.6vw, 44px);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  line-height: 1.05;
+  color: var(--accent);
+  margin: 0;
+  max-width: 18ch;
+}
+
+/* Bento grid: 12-col, lead photo (8 cols) + text column (4 cols),
+   then a wide accent photo (7 cols) + a stat strip (5 cols). */
+.about-story-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 24px;
+}
+.about-story-photo {
+  margin: 0;
+  position: relative;
+  overflow: hidden;
+}
+.about-story-photo img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+.about-story-photo--lead {
+  grid-column: 1 / span 8;
+  aspect-ratio: 16 / 9;
+}
+.about-story-photo--accent {
+  grid-column: 1 / span 7;
+  aspect-ratio: 4 / 3;
+}
+.about-story-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background: var(--primary);
+  color: var(--white);
+  font-family: var(--font);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  padding: 10px 16px;
+}
+
+/* Text column sits to the right of the lead photo, anchored top */
+.about-story-text {
+  grid-column: 9 / span 4;
+  border-left: 2px solid var(--accent);
+  padding: 4px 0 4px 24px;
+  align-self: start;
+}
 .about-story-text p {
-  font-size: 15px;
-  line-height: 1.8;
+  font-family: var(--font);
+  font-size: 14px;
+  line-height: 1.75;
   color: var(--gray-600);
-  margin: 0 0 18px;
+  margin: 0 0 16px;
 }
 .about-story-text p:last-child { margin-bottom: 0; }
-.about-story-text .about-story-lead {
-  font-size: 16px;
-  color: var(--primary);
+.about-story-lead {
+  font-size: 15px !important;
+  color: var(--primary) !important;
+  margin-bottom: 20px !important;
 }
 .about-story-text strong { color: var(--primary); font-weight: 700; }
 .about-story-text strong.hl-red { color: var(--accent); }
 
-@media (max-width: 768px) {
-  .about-story { padding: 56px 20px 40px; }
-  .about-collage {
+/* Stat strip — sits beside the accent photo, mirrors approach card rhythm */
+.about-story-stats {
+  grid-column: 8 / span 5;
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  align-content: stretch;
+  gap: 16px;
+  border-top: 2px solid var(--primary);
+  padding-top: 16px;
+}
+.about-story-stat {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--gray-400);
+}
+.about-story-stat:last-child { border-bottom: none; }
+.about-story-stat-num {
+  font-family: "Archivo Black", "Archivo", sans-serif;
+  font-weight: 400;
+  font-size: clamp(36px, 4vw, 52px);
+  line-height: 1;
+  color: var(--accent);
+  letter-spacing: -0.02em;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+}
+.about-story-stat-unit {
+  font-size: 0.42em;
+  font-weight: 800;
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+}
+.about-story-stat-label {
+  font-family: var(--font);
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--primary);
+  margin-top: 8px;
+}
+
+/* === Tablet: relax the 12-col asymmetry, keep the editorial feel === */
+@media (max-width: 960px) {
+  .about-story-photo--lead { grid-column: 1 / span 12; aspect-ratio: 16 / 10; }
+  .about-story-text { grid-column: 1 / span 12; padding-left: 20px; }
+  .about-story-photo--accent { grid-column: 1 / span 7; }
+  .about-story-stats { grid-column: 8 / span 5; }
+}
+
+/* === Mobile === */
+@media (max-width: 640px) {
+  .about-story { padding: 64px 0 56px; }
+  .about-story-head { margin-bottom: 36px; }
+  .about-story-grid { gap: 20px; }
+  .about-story-photo--lead,
+  .about-story-photo--accent,
+  .about-story-text,
+  .about-story-stats {
+    grid-column: 1 / span 12;
+  }
+  .about-story-photo--lead { aspect-ratio: 16 / 11; }
+  .about-story-photo--accent { aspect-ratio: 4 / 3; }
+  .about-story-stats {
+    grid-template-rows: none;
     grid-template-columns: 1fr;
-    gap: 16px;
-    margin-bottom: 40px;
+    border-top-width: 1px;
+  }
+  .about-story-caption {
+    font-size: 10px;
+    padding: 8px 12px;
+    letter-spacing: 0.12em;
   }
 }
 
