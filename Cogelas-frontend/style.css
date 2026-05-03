@@ -1015,7 +1015,9 @@ img { max-width: 100%; height: auto; display: block; }
 .rge-badge {
   display: inline-block;
   margin-top: 20px;
-  background: transparent;
+  background: #ffffff;
+  padding: 8px;
+  border-radius: 4px;
   line-height: 0;
   transition: transform var(--transition);
 }
