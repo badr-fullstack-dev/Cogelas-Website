@@ -1467,6 +1467,69 @@ img { max-width: 100%; height: auto; display: block; }
   font-weight: 700;
 }
 
+/* === ABOUT STORY (qui-sommes-nous) — asymmetric photo collage + text block === */
+.about-story {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 72px 20px 56px;
+}
+.about-collage {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 32px;
+  margin-bottom: 56px;
+}
+.about-collage-figure {
+  margin: 0;
+  overflow: hidden;
+}
+.about-collage-figure img {
+  width: 100%;
+  height: auto;
+  display: block;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+.about-collage-figure--accent {
+  align-self: end;
+  margin-top: 96px;
+}
+.about-story-text {
+  max-width: 720px;
+}
+.about-story-lead {
+  font-family: var(--font);
+  font-size: 18px;
+  font-weight: 700;
+  text-transform: none;
+  letter-spacing: 0;
+  line-height: 1.4;
+  color: var(--primary);
+  margin-bottom: 24px;
+}
+.about-story-text p {
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--gray-600);
+  margin-bottom: 18px;
+}
+.about-story-text p strong {
+  color: var(--primary);
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .about-collage {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+  .about-collage-figure--accent {
+    margin-top: 0;
+    width: 80%;
+    margin-left: auto;
+  }
+}
+
 /* Feature Cards (3-col grid) */
 .feature-cards {
   max-width: var(--container);
