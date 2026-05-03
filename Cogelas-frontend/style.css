@@ -1469,9 +1469,9 @@ img { max-width: 100%; height: auto; display: block; }
 
 /* === ABOUT STORY (qui-sommes-nous) — asymmetric photo collage + text block === */
 .about-story {
-  max-width: 860px;
+  max-width: 980px;
   margin: 0 auto;
-  padding: 72px 20px 56px;
+  padding: 80px 20px 64px;
 }
 .about-collage {
   display: grid;
@@ -1496,28 +1496,34 @@ img { max-width: 100%; height: auto; display: block; }
 }
 .about-story-text {
   max-width: 720px;
+  margin: 0 auto;
 }
-.about-story-lead {
-  font-family: var(--font);
-  font-size: 18px;
-  font-weight: 700;
-  text-transform: none;
-  letter-spacing: 0;
-  line-height: 1.4;
-  color: var(--primary);
-  margin-bottom: 24px;
+.about-story-text h2 {
+  font-family: var(--font-display);
+  font-size: clamp(24px, 3vw, 36px);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  line-height: 1.1;
+  color: var(--accent);
+  margin: 0 0 28px;
 }
 .about-story-text p {
   font-size: 15px;
   line-height: 1.8;
   color: var(--gray-600);
-  margin-bottom: 18px;
+  margin: 0 0 18px;
 }
-.about-story-text p strong {
+.about-story-text p:last-child { margin-bottom: 0; }
+.about-story-text .about-story-lead {
+  font-size: 16px;
   color: var(--primary);
-  font-weight: 700;
 }
+.about-story-text strong { color: var(--primary); font-weight: 700; }
+.about-story-text strong.hl-red { color: var(--accent); }
+
 @media (max-width: 768px) {
+  .about-story { padding: 56px 20px 40px; }
   .about-collage {
     grid-template-columns: 1fr;
     gap: 16px;
