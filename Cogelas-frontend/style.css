@@ -1442,15 +1442,12 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 /* About-intro additions */
-.about-kicker {
-  font-size: 13px;
-  color: var(--gray-600);
-  margin-bottom: 18px;
-  letter-spacing: 0.2px;
+.content-section--centered h2 {
+  margin-bottom: 0;   /* image sits directly under the title */
 }
 .about-hashtag {
   display: block;
-  margin: 8px auto 28px;
+  margin: 4px auto 28px;
   height: auto;
   max-width: 280px;
   width: 60%;
