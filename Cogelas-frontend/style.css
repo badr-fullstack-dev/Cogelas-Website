@@ -1475,8 +1475,8 @@ img { max-width: 100%; height: auto; display: block; }
 }
 .about-collage {
   display: grid;
-  grid-template-columns: 1.4fr 1fr;
-  gap: 32px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
   margin-bottom: 56px;
 }
 .about-collage-figure {
@@ -1489,10 +1489,6 @@ img { max-width: 100%; height: auto; display: block; }
   display: block;
   aspect-ratio: 4 / 3;
   object-fit: cover;
-}
-.about-collage-figure--accent {
-  align-self: end;
-  margin-top: 96px;
 }
 .about-story-text {
   max-width: 720px;
@@ -1528,11 +1524,6 @@ img { max-width: 100%; height: auto; display: block; }
     grid-template-columns: 1fr;
     gap: 16px;
     margin-bottom: 40px;
-  }
-  .about-collage-figure--accent {
-    margin-top: 0;
-    width: 80%;
-    margin-left: auto;
   }
 }
 
