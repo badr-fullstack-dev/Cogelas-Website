@@ -1751,10 +1751,11 @@ img { max-width: 100%; height: auto; display: block; }
   display: flex;
   align-items: flex-start;
 }
-.contact-page-image-overlay h1 {
+.contact-page-image-overlay h1,
+.contact-page-image-overlay h2 {
   color: var(--white);
-  font-family: "Oswald", "Montserrat", sans-serif;
-  font-weight: 700;
+  font-family: var(--font-display);
+  font-weight: 800;
   font-size: clamp(28px, 3vw, 42px);
   line-height: 1.15;
   text-transform: none;
