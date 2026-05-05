@@ -291,6 +291,14 @@ img { max-width: 100%; height: auto; display: block; }
     var(--cta-tile-photo);
 }
 
+/* Realisations card: lighter overlay so the photo reads through.
+   Keeps a darker bottom band to preserve text contrast (white on rgba 0.78). */
+.cta-tile--realisations {
+  background-image:
+    linear-gradient(180deg, rgba(10, 14, 20, 0.30) 0%, rgba(10, 14, 20, 0.78) 100%),
+    var(--cta-tile-photo);
+}
+
 .cta-tile::before {
   content: "";
   position: absolute;
@@ -311,6 +319,12 @@ img { max-width: 100%; height: auto; display: block; }
 .cta-tile--realisations:hover {
   background-image:
     linear-gradient(180deg, rgba(10, 14, 20, 0.45) 0%, rgba(10, 14, 20, 0.82) 100%),
+    var(--cta-tile-photo);
+}
+
+.cta-tile--realisations:hover {
+  background-image:
+    linear-gradient(180deg, rgba(10, 14, 20, 0.22) 0%, rgba(10, 14, 20, 0.72) 100%),
     var(--cta-tile-photo);
 }
 
@@ -719,6 +733,16 @@ img { max-width: 100%; height: auto; display: block; }
   padding-bottom: 80px;
 }
 
+/* Projects heading: scoped to .projects so other pages' .section-header h2 stay
+   on Archivo 800 uppercase. Here we mirror the hero h1 (Archivo Black). */
+.projects .section-header h2 {
+  font-family: "Archivo Black", "Montserrat", system-ui, sans-serif;
+  font-size: clamp(34px, 4.4vw, 52px);
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: -0.01em;
+}
+
 .projects-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -901,11 +925,11 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 .domaines-header h2 {
-  font-family: var(--font-display);
-  font-size: clamp(24px, 3vw, 36px);
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
+  font-family: "Archivo Black", "Montserrat", system-ui, sans-serif;
+  font-size: clamp(28px, 3.4vw, 42px);
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: -0.01em;
   line-height: 1.1;
   margin-bottom: 8px;
 }
@@ -1453,10 +1477,10 @@ img { max-width: 100%; height: auto; display: block; }
 }
 .about-hashtag {
   display: block;
-  margin: 4px auto 28px;
+  margin: -4px auto 24px;
   height: auto;
-  max-width: 280px;
-  width: 60%;
+  max-width: 220px;
+  width: 48%;
 }
 .about-lead {
   font-size: 16px !important;
@@ -2484,11 +2508,11 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 .partners-title {
-  font-family: var(--font-display);
-  font-size: clamp(22px, 2.6vw, 32px);
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
+  font-family: "Archivo Black", "Montserrat", system-ui, sans-serif;
+  font-size: clamp(28px, 3.4vw, 42px);
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: -0.01em;
   line-height: 1.1;
   text-align: center;
   color: var(--primary);
@@ -2743,7 +2767,7 @@ body.nav-open { overflow: hidden; }
   .domaines { padding: 56px 0; }
   .domaines-header { margin-bottom: 32px; }
   .partners { padding: 48px 0 40px; }
-  .partners-title { margin-bottom: 28px; font-size: 22px; }
+  .partners-title { margin-bottom: 28px; }
   .projects { padding-bottom: 56px; }
   .section-header { padding: 40px 0 24px; }
   .realisations-grid { padding: 40px 16px 56px; }
