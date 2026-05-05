@@ -2235,14 +2235,15 @@ img { max-width: 100%; height: auto; display: block; }
   display: grid;
   grid-template-columns: 5fr 7fr;
   gap: 48px;
-  align-items: stretch;
+  align-items: start;
 }
 .contact-page-image {
   position: relative;
   border-radius: 6px;
   overflow: hidden;
   background: var(--light);
-  min-height: 520px;
+  height: clamp(280px, 32vw, 420px);
+  align-self: start;
 }
 .contact-page-image img {
   position: absolute;
@@ -2393,7 +2394,7 @@ img { max-width: 100%; height: auto; display: block; }
     gap: 24px;
     padding: 80px 16px 60px;
   }
-  .contact-page-image { min-height: 0; aspect-ratio: 4 / 3; }
+  .contact-page-image { height: auto; min-height: 0; aspect-ratio: 4 / 3; }
 }
 @media (max-width: 576px) {
   .contact-page-image-overlay { padding: 24px; }
