@@ -2238,12 +2238,16 @@ img { max-width: 100%; height: auto; display: block; }
   align-items: start;
 }
 .contact-page-image {
-  position: relative;
+  position: sticky;
+  top: 100px;
   border-radius: 6px;
   overflow: hidden;
   background: var(--light);
-  height: clamp(280px, 32vw, 420px);
+  height: 560px;
   align-self: start;
+}
+@media (prefers-reduced-motion: reduce) {
+  .contact-page-image { position: relative; top: auto; }
 }
 .contact-page-image img {
   position: absolute;
