@@ -24,10 +24,386 @@
   <meta name="twitter:description" content="Découvrez Cogelas, entreprise de construction en Île-de-France depuis plus de 25 ans. Nos valeurs, notre engagement et nos projections.">
   <meta name="twitter:image" content="https://d3scdyhm3l4ak2.cloudfront.net/media/Drapeau+Cogelas.png">
   <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;900&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Archivo+Black&family=Archivo+Narrow:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <style>
+    :root {
+      --red: #D9000D;
+      --ink: #0a0d12;
+      --ink-soft: #2c3340;
+      --ink-mute: #5a5f6a;
+      --paper: #f3f0eb;
+      --paper-soft: #ece8df;
+      --rule: #d4cfc4;
+      --white: #fefcfb;
+    }
+
+    .atb4 { background: var(--paper); color: var(--ink); font-family: "Montserrat", sans-serif; }
+    .atb4 ::selection { background: var(--ink); color: var(--paper); }
+
+    /* Breadcrumb strip */
+    .atb4-strip {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 104px 48px 0;
+      display: flex;
+      justify-content: space-between;
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--ink-mute);
+      font-weight: 600;
+    }
+    .atb4-strip a { color: var(--ink-mute); text-decoration: none; }
+    .atb4-strip a:hover, .atb4-strip a:focus-visible { color: var(--red); }
+    .atb4-strip span[aria-current] { color: var(--ink); }
+
+    /* HERO — black info-box + giant stencil title */
+    .atb4-hero {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 48px 48px 80px;
+      display: grid;
+      grid-template-columns: minmax(280px, 380px) 1fr;
+      gap: 56px;
+      align-items: stretch;
+    }
+    .atb4-hero-block {
+      background: var(--ink);
+      color: var(--paper);
+      padding: 32px 32px 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 280px;
+      position: relative;
+    }
+    .atb4-hero-block-eyebrow {
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--paper);
+      font-weight: 600;
+      margin: 0;
+    }
+    .atb4-hero-block-eyebrow .accent { color: var(--red); }
+    .atb4-hero-block-sub {
+      font-size: 13px;
+      color: rgba(243,240,235,0.7);
+      font-weight: 400;
+      margin: 8px 0 0;
+      letter-spacing: 0.5px;
+    }
+    .atb4-hero-block-tags {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(243,240,235,0.55);
+      font-weight: 500;
+    }
+    .atb4-hero-block-tags span:not(:last-child)::after {
+      content: " ·";
+      margin-left: 18px;
+      color: var(--red);
+    }
+
+    .atb4-hero-title {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .atb4-hero-title h1 {
+      font-family: "Archivo Black", "Montserrat", sans-serif;
+      font-weight: 900;
+      font-size: clamp(56px, 8.5vw, 132px);
+      line-height: 0.88;
+      letter-spacing: -3px;
+      margin: 0;
+      color: var(--ink);
+      text-transform: uppercase;
+    }
+    .atb4-hero-title h1 .line { display: block; }
+    .atb4-hero-title h1 .line.accent { color: var(--red); }
+
+    /* Red rule + caps lede */
+    .atb4-lede-wrap {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 48px;
+      border-top: 2px solid var(--red);
+    }
+    .atb4-lede {
+      max-width: 920px;
+      margin: 0;
+      padding: 40px 0 80px;
+      font-family: "Archivo Narrow", "Montserrat", sans-serif;
+      font-weight: 700;
+      font-size: clamp(20px, 2vw, 28px);
+      line-height: 1.45;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--red);
+    }
+
+    /* Paired blocks */
+    .atb4-pairs {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 48px;
+      display: flex;
+      flex-direction: column;
+      gap: 96px;
+    }
+    .atb4-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+      align-items: center;
+    }
+    .atb4-pair.alt { grid-template-columns: 1fr 1fr; }
+
+    .atb4-figure {
+      position: relative;
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+      background: var(--paper-soft);
+    }
+    .atb4-figure picture { display: contents; }
+    .atb4-figure img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .atb4-figure-label {
+      position: absolute;
+      writing-mode: vertical-rl;
+      top: 16px;
+      bottom: 16px;
+      padding: 14px 8px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--red);
+      background: var(--paper);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin: 0;
+    }
+    .atb4-figure-label.left { left: 16px; }
+    .atb4-figure-label.right { right: 16px; transform: rotate(180deg); }
+    .atb4-figure-label .num {
+      color: var(--ink);
+      font-family: "Archivo Black", sans-serif;
+      font-size: 13px;
+      letter-spacing: 0;
+    }
+
+    .atb4-pair-text { padding: 0 12px; }
+    .atb4-pair-mark {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 10px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--ink-mute);
+      font-weight: 700;
+      margin: 0 0 24px;
+    }
+    .atb4-pair-mark::before {
+      content: "";
+      width: 28px;
+      height: 2px;
+      background: var(--red);
+      flex: 0 0 28px;
+    }
+    .atb4-pair-text h3 {
+      font-family: "Archivo Black", "Montserrat", sans-serif;
+      font-weight: 900;
+      font-size: clamp(28px, 3vw, 40px);
+      line-height: 1.05;
+      letter-spacing: -1px;
+      text-transform: uppercase;
+      margin: 0 0 24px;
+      color: var(--ink);
+    }
+    .atb4-pair-text p {
+      font-size: 15px;
+      line-height: 1.8;
+      color: var(--ink-soft);
+      margin: 0 0 16px;
+      max-width: 480px;
+    }
+    .atb4-pair-text p:last-child { margin-bottom: 0; }
+    .atb4-pair-text ol {
+      list-style: none;
+      counter-reset: discipline;
+      margin: 0;
+      padding: 0;
+      max-width: 480px;
+    }
+    .atb4-pair-text ol li {
+      counter-increment: discipline;
+      position: relative;
+      padding: 14px 0 14px 56px;
+      border-top: 1px solid var(--rule);
+      font-size: 14px;
+      line-height: 1.65;
+      color: var(--ink-soft);
+    }
+    .atb4-pair-text ol li:last-child { border-bottom: 1px solid var(--rule); }
+    .atb4-pair-text ol li::before {
+      content: counter(discipline, decimal-leading-zero);
+      position: absolute;
+      left: 0;
+      top: 14px;
+      font-family: "Archivo Black", sans-serif;
+      color: var(--red);
+      font-size: 14px;
+      letter-spacing: 0;
+    }
+    .atb4-pair-text ol li strong {
+      display: block;
+      color: var(--ink);
+      font-family: "Archivo Black", "Montserrat", sans-serif;
+      font-size: 13px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    /* Third feature variant — black caption overlay */
+    .atb4-overlay {
+      position: relative;
+      aspect-ratio: 16 / 10;
+      overflow: hidden;
+      background: var(--paper-soft);
+    }
+    .atb4-overlay picture { display: contents; }
+    .atb4-overlay img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .atb4-overlay-caption {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      width: min(46%, 420px);
+      padding: 28px 32px;
+      background: var(--ink);
+      color: var(--paper);
+    }
+    .atb4-overlay-caption h3 {
+      font-family: "Archivo Black", sans-serif;
+      font-weight: 900;
+      font-size: clamp(20px, 1.6vw, 26px);
+      line-height: 1.1;
+      letter-spacing: -0.5px;
+      text-transform: uppercase;
+      margin: 0 0 16px;
+      color: var(--paper);
+    }
+    .atb4-overlay-caption h3 .accent { color: var(--red); }
+    .atb4-overlay-caption ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .atb4-overlay-caption ul li {
+      display: grid;
+      grid-template-columns: 60px 1fr;
+      gap: 12px;
+      padding: 8px 0;
+      border-top: 1px solid rgba(243,240,235,0.18);
+      font-size: 12px;
+      line-height: 1.5;
+      color: rgba(243,240,235,0.85);
+    }
+    .atb4-overlay-caption ul li:first-child { border-top: 0; }
+    .atb4-overlay-caption ul li b {
+      font-family: "Archivo Black", sans-serif;
+      font-weight: 900;
+      color: var(--red);
+      letter-spacing: 0;
+    }
+
+    .atb4-third {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 96px 48px 0;
+    }
+    .atb4-third-mark {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 10px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--ink-mute);
+      font-weight: 700;
+      margin: 0 0 24px;
+    }
+    .atb4-third-mark::before {
+      content: "";
+      width: 28px;
+      height: 2px;
+      background: var(--red);
+      flex: 0 0 28px;
+    }
+
+    /* Closing band */
+    .atb4-close {
+      margin-top: 120px;
+      background: var(--red);
+      color: var(--paper);
+      padding: 96px 48px;
+      text-align: center;
+    }
+    .atb4-close p {
+      max-width: 1100px;
+      margin: 0 auto;
+      font-family: "Archivo Black", sans-serif;
+      font-weight: 900;
+      font-size: clamp(28px, 3.6vw, 52px);
+      line-height: 1.1;
+      letter-spacing: -1px;
+      text-transform: uppercase;
+      color: var(--paper);
+    }
+    .atb4-close p .ink { color: var(--ink); }
+
+    /* Mobile collapse */
+    @media (max-width: 992px) {
+      .atb4-strip { padding: 96px 20px 0; }
+      .atb4-hero { padding: 32px 20px 56px; grid-template-columns: 1fr; gap: 28px; }
+      .atb4-hero-block { min-height: 200px; }
+      .atb4-lede-wrap { padding: 0 20px; }
+      .atb4-lede { padding: 28px 0 56px; }
+      .atb4-pairs { padding: 0 20px; gap: 64px; }
+      .atb4-pair, .atb4-pair.alt { grid-template-columns: 1fr; gap: 28px; }
+      .atb4-pair.alt .atb4-figure { order: -1; }
+      .atb4-figure-label.left { left: 0; }
+      .atb4-figure-label.right { right: 0; }
+      .atb4-third { padding: 64px 20px 0; }
+      .atb4-overlay-caption { width: 70%; padding: 20px 22px; }
+      .atb4-close { padding: 64px 20px; margin-top: 80px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+    }
+  </style>
 </head>
-<body>
+<body class="atb4">
 
   <a href="#main-content" class="skip-link">Aller au contenu principal</a>
 
@@ -73,150 +449,108 @@
 
   <main id="main-content">
 
-    <section class="page-hero" style="background-image: url('https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1920&h=800&fit=crop&crop=center');">
-      <div class="page-hero-overlay"></div>
-      <div class="page-hero-content">
-        <p class="breadcrumb"><a href="index.html">Accueil</a> › Qui sommes-nous</p>
-        <h1>Qui sommes-nous ?</h1>
-        <p>Construire avec confiance depuis plus de 25 ans</p>
-      </div>
-    </section>
+    <p class="atb4-strip">
+      <a href="index.html">Accueil</a>
+      <span aria-current="page">Qui sommes-nous</span>
+    </p>
 
-    <section class="about-story reveal" aria-labelledby="about-story-title">
-      <div class="about-story-inner">
-        <header class="about-story-head">
-          <p class="about-story-eyebrow">L'entreprise</p>
-          <h2 id="about-story-title">Bâtir sur des fondations solides</h2>
-        </header>
-
-        <div class="about-story-grid">
-          <figure class="about-story-photo about-story-photo--lead">
-            <img src="media/Qui%20somme%20nous/image.webp" alt="Chantier Cogelas — équipes au travail sur un chantier de gros œuvre" loading="lazy">
-            <figcaption class="about-story-caption">Gros œuvre &mdash; Chantier en cours</figcaption>
-          </figure>
-
-          <div class="about-story-text">
-            <p class="about-story-lead"><strong>COGELAS</strong> est née d'une conviction simple : le secteur du bâtiment a besoin de partenaires agiles, capables de relever des défis techniques complexes sans la lourdeur administrative des grands groupes.</p>
-            <p>Portée par une direction cumulant plus de <strong class="hl-red">25 ans d'expérience métier</strong>, notre entreprise incarne la nouvelle génération d'entrepreneurs engagés. Nous ne sommes pas de simples exécutants ; nous sommes des stratèges du chantier, impliqués de la phase d'étude jusqu'à la livraison finale.</p>
-            <p>Nous parlons le langage du terrain, de la technique et de l'efficacité pour transformer vos visions architecturales en réalités concrètes et durables.</p>
-          </div>
-
-          <figure class="about-story-photo about-story-photo--accent">
-            <img src="media/Qui%20somme%20nous/image%202.webp" alt="Pelle mécanique Volvo en intervention sur un chantier de terrassement Cogelas" loading="lazy">
-            <figcaption class="about-story-caption">Terrassement &mdash; Île-de-France</figcaption>
-          </figure>
-
-          <aside class="about-story-stats" aria-label="Repères clés">
-            <div class="about-story-stat">
-              <span class="about-story-stat-num">25<span class="about-story-stat-unit">ans</span></span>
-              <span class="about-story-stat-label">d'expérience métier</span>
-            </div>
-            <div class="about-story-stat">
-              <span class="about-story-stat-num">130<span class="about-story-stat-unit">+</span></span>
-              <span class="about-story-stat-label">logements livrés</span>
-            </div>
-            <div class="about-story-stat">
-              <span class="about-story-stat-num">RGE</span>
-              <span class="about-story-stat-label">Qualibat certifié</span>
-            </div>
-          </aside>
+    <section class="atb4-hero" aria-label="Présentation Cogelas">
+      <div class="atb4-hero-block">
+        <div>
+          <p class="atb4-hero-block-eyebrow"><span class="accent">●</span> L'entreprise</p>
+          <p class="atb4-hero-block-sub">Construction &amp; rénovation en Île-de-France. Direction expérimentée, équipes terrain, exécution maîtrisée — sans la lourdeur des grands groupes.</p>
         </div>
+        <p class="atb4-hero-block-tags" aria-hidden="true">
+          <span>Depuis 1999</span><span>130+ logements</span><span>RGE Qualibat</span>
+        </p>
+      </div>
+      <div class="atb4-hero-title">
+        <h1>
+          <span class="line">Qui</span>
+          <span class="line">Sommes-</span>
+          <span class="line accent">Nous.</span>
+        </h1>
       </div>
     </section>
 
-    <!-- ========== NOTRE APPROCHE — 3 numbered principles ========== -->
-    <section class="approach reveal" aria-labelledby="approach-title">
-      <div class="approach-inner">
-        <header class="approach-header">
-          <p class="approach-eyebrow">Méthode</p>
-          <h2 id="approach-title">Notre approche</h2>
-        </header>
-        <ol class="approach-grid" role="list">
-          <li class="approach-card reveal">
-            <span class="approach-num" aria-hidden="true">01</span>
-            <h3 class="approach-card-title">Études en amont</h3>
-            <p>Avant la première pose, nous analysons les contraintes du site, la faisabilité technique et le cahier des charges pour anticiper chaque interface entre les corps d'état.</p>
-          </li>
-          <li class="approach-card reveal reveal-delay-1">
-            <span class="approach-num" aria-hidden="true">02</span>
-            <h3 class="approach-card-title">Maîtrise du chantier</h3>
-            <p>Coordination quotidienne des équipes et des sous-traitants, contrôle qualité à chaque phase, pilotage budgétaire serré — vous gardez la visibilité, nous portons l'exécution.</p>
-          </li>
-          <li class="approach-card reveal reveal-delay-2">
-            <span class="approach-num" aria-hidden="true">03</span>
-            <h3 class="approach-card-title">Engagement sur les délais</h3>
-            <p>Un planning tenu n'est pas une promesse, c'est une discipline. Réunions de chantier hebdomadaires, alertes proactives et livraison conforme à la date contractuelle.</p>
-          </li>
-        </ol>
-      </div>
-    </section>
+    <div class="atb4-lede-wrap">
+      <p class="atb4-lede">
+        Bâtir avec confiance depuis plus de 25 ans. Une direction qui parle le langage du terrain, de la technique et de l'efficacité.
+      </p>
+    </div>
 
-    <!-- ========== NOTRE PARCOURS — vertical timeline ========== -->
-    <section class="parcours reveal" aria-labelledby="parcours-title">
-      <div class="parcours-inner">
-        <header class="parcours-header">
-          <p class="parcours-eyebrow">Histoire</p>
-          <h2 id="parcours-title">Notre parcours</h2>
-        </header>
-        <ol class="parcours-list" role="list">
-          <li class="parcours-item reveal">
-            <span class="parcours-year" aria-hidden="true">1999</span>
-            <div class="parcours-body">
-              <h3 class="parcours-event">Fondation de COGELAS</h3>
-              <p>Création de l'entreprise en Île-de-France autour d'une équipe de gros œuvre et second œuvre.</p>
-            </div>
-          </li>
-          <li class="parcours-item reveal reveal-delay-1">
-            <span class="parcours-year" aria-hidden="true">2010</span>
-            <div class="parcours-body">
-              <h3 class="parcours-event">Spécialisation planchers techniques</h3>
-              <p>Cogelas devient référent en pose de planchers techniques surélevés en sulfate de calcium pour bureaux, hôpitaux et data centers.</p>
-            </div>
-          </li>
-          <li class="parcours-item reveal reveal-delay-2">
-            <span class="parcours-year" aria-hidden="true">2018</span>
-            <div class="parcours-body">
-              <h3 class="parcours-event">Certification RGE Qualibat</h3>
-              <p>Reconnaissance officielle de notre engagement environnemental et de la qualité de nos interventions de rénovation énergétique.</p>
-            </div>
-          </li>
-          <li class="parcours-item reveal reveal-delay-3">
-            <span class="parcours-year" aria-hidden="true">2026</span>
-            <div class="parcours-body">
-              <h3 class="parcours-event">130 logements livrés à Chevilly-la-Rue</h3>
-              <p>Plus grande opération à ce jour : entreprise générale, gros œuvre et second œuvre coordonnés, livraison dans les délais.</p>
-            </div>
-          </li>
-        </ol>
-      </div>
-    </section>
+    <section class="atb4-pairs" aria-label="Histoire et méthode">
 
-    <!-- ========== NOS CERTIFICATIONS — RGE + partners trust band ========== -->
-    <section class="certifications reveal" aria-labelledby="certifications-title">
-      <div class="certifications-inner">
-        <header class="certifications-header">
-          <p class="certifications-eyebrow">Confiance</p>
-          <h2 id="certifications-title">Nos certifications</h2>
-        </header>
-        <div class="certifications-content">
-          <div class="certifications-badge">
-            <img src="media/RGE.webp" alt="Certifié RGE Qualibat — label de fiabilité" width="160" height="194" loading="lazy" decoding="async">
-          </div>
-          <div class="certifications-text">
-            <p>Cogelas est titulaire de la mention <strong>RGE délivrée par Qualibat</strong>, garantissant à nos clients la qualité de nos interventions de rénovation énergétique et l'éligibilité aux aides publiques.</p>
-            <p class="certifications-text-muted">Notre engagement va au-delà de la certification : c'est une exigence quotidienne sur chacun de nos chantiers.</p>
-          </div>
+      <article class="atb4-pair">
+        <div class="atb4-figure">
+          <picture>
+            <img src="media/Qui%20somme%20nous/image.webp" alt="Chantier Cogelas — équipes au travail sur un chantier de gros œuvre" loading="lazy" decoding="async">
+          </picture>
+          <p class="atb4-figure-label left" aria-hidden="true">
+            <span class="num">01</span>
+            L'entreprise · Île-de-France · Depuis 1999
+          </p>
         </div>
-        <div class="certifications-partners" aria-labelledby="partners-label">
-          <p id="partners-label" class="certifications-partners-label">Ils nous font confiance</p>
-          <ul class="certifications-partners-row" role="list">
-            <li><img src="https://d3scdyhm3l4ak2.cloudfront.net/Logo/ANAH.png" alt="ANAH" loading="lazy"></li>
-            <li><img src="https://d3scdyhm3l4ak2.cloudfront.net/Logo/3F+Groupe.jpg" alt="3F Groupe Action Logement" loading="lazy"></li>
-            <li><img src="https://d3scdyhm3l4ak2.cloudfront.net/Logo/nexity.png" alt="Nexity" loading="lazy"></li>
-            <li><img src="https://d3scdyhm3l4ak2.cloudfront.net/Logo/Region+haut+de+france.jpg" alt="Région Hauts-de-France" loading="lazy"></li>
+        <div class="atb4-pair-text">
+          <p class="atb4-pair-mark">№ 01 · L'entreprise</p>
+          <h3>Bâtir sur des fondations solides.</h3>
+          <p>COGELAS est née d'une conviction simple : le secteur du bâtiment a besoin de partenaires agiles, capables de relever des défis techniques complexes sans la lourdeur administrative des grands groupes.</p>
+          <p>Portée par une direction cumulant plus de 25 ans d'expérience métier, notre entreprise incarne la nouvelle génération d'entrepreneurs engagés. Nous ne sommes pas de simples exécutants — nous sommes des stratèges du chantier, impliqués de la phase d'étude jusqu'à la livraison finale.</p>
+        </div>
+      </article>
+
+      <article class="atb4-pair alt">
+        <div class="atb4-pair-text">
+          <p class="atb4-pair-mark">№ 02 · Méthode</p>
+          <h3>Étudier. Maîtriser. Tenir.</h3>
+          <ol>
+            <li>
+              <strong>Études en amont</strong>
+              Nous analysons les contraintes du site, la faisabilité technique et le cahier des charges pour anticiper chaque interface entre corps d'état.
+            </li>
+            <li>
+              <strong>Maîtrise du chantier</strong>
+              Coordination quotidienne, contrôle qualité à chaque phase, pilotage budgétaire serré. Vous gardez la visibilité, nous portons l'exécution.
+            </li>
+            <li>
+              <strong>Engagement délais</strong>
+              Un planning tenu n'est pas une promesse, c'est une discipline. Réunions hebdomadaires, alertes proactives, livraison conforme.
+            </li>
+          </ol>
+        </div>
+        <div class="atb4-figure">
+          <picture>
+            <img src="media/Qui%20somme%20nous/image%202.png" alt="Pelle mécanique Volvo en intervention sur un chantier de terrassement Cogelas" loading="lazy" decoding="async">
+          </picture>
+          <p class="atb4-figure-label right" aria-hidden="true">
+            <span class="num">02</span>
+            Méthode · 3 disciplines · Tenue de planning
+          </p>
+        </div>
+      </article>
+
+    </section>
+
+    <section class="atb4-third" aria-label="Parcours et certifications">
+      <p class="atb4-third-mark">№ 03 · Parcours</p>
+      <div class="atb4-overlay">
+        <picture>
+          <img src="media/Qui%20somme%20nous/image.webp" alt="Vue d'un chantier Cogelas illustrant l'historique de l'entreprise" loading="lazy" decoding="async">
+        </picture>
+        <div class="atb4-overlay-caption">
+          <h3>Notre parcours <span class="accent">en 4 dates.</span></h3>
+          <ul>
+            <li><b>1999</b><span>Fondation de COGELAS en Île-de-France.</span></li>
+            <li><b>2010</b><span>Spécialisation planchers techniques surélevés.</span></li>
+            <li><b>2018</b><span>Certification RGE délivrée par Qualibat.</span></li>
+            <li><b>2026</b><span>130 logements livrés à Chevilly-la-Rue.</span></li>
           </ul>
         </div>
       </div>
+    </section>
+
+    <section class="atb4-close">
+      <p>Construire avec confiance. <span class="ink">Depuis 1999.</span></p>
     </section>
 
     <div class="cta-banner">
